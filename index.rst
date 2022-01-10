@@ -13,8 +13,8 @@ Protocon Network Documentation
    :maxdepth: 1
    :caption: Models
    
-   docs/models/currency/introduction
-   docs/models/blocksign/introduction
+   docs/models/mitum-currency
+   docs/models/mitum-data-blocksign
 
 .. toctree::
    :maxdepth: 1
@@ -30,5 +30,5 @@ Protocon Network Documentation
 
    docs/faq/common
    docs/faq/mitum
-   docs/faq/model/common
-   docs/faq/util/common
+   docs/faq/models
+   docs/faq/utils

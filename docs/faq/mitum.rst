@@ -1,2 +1,2 @@
-MITUM FAQ
+MITUM
 ===========

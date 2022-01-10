@@ -1,2 +1,0 @@
-mitum-currency API
-====================
