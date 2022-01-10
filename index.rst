@@ -7,7 +7,7 @@ Protocon Network Documentation
    
    docs/start/introduction
    docs/start/all-documents
-   doct/start/about-mitum
+   docs/start/about-mitum
 
 .. toctree::
    :maxdepth: 1
@@ -20,9 +20,9 @@ Protocon Network Documentation
    :maxdepth: 1
    :caption: Utils
    
-   docs/util/mitum-js-util
-   docs/util/mitum-py-util
-   docs/util/mitum-java-util
+   docs/utils/mitum-js-util
+   docs/utils/mitum-py-util
+   docs/utils/mitum-java-util
 
 .. toctree::
    :maxdepth: 1
