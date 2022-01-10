@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'mitum-general-doc'
+copyright = '2022, ProtoconNet'
+author = 'wyuinche'
 
 release = '0.1'
 version = '0.1.0'
