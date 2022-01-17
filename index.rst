@@ -50,6 +50,7 @@ Contents
    docs/run/intro
    docs/run/prep
    docs/run/install
+   docs/run/config
    docs/run/run
    docs/run/buildnet
 
