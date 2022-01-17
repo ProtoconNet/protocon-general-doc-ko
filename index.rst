@@ -4,8 +4,6 @@ Protocon Network Document
 
 | Hello! This is the document for Protocon Network.
 
-| 
-
 ---------------------------------------------------
 Protocon Network
 ---------------------------------------------------
@@ -27,15 +25,16 @@ Contents
    :maxdepth: 1
    :caption: Blockchain Application Model
    
-   docs/model/mc/intro
+   docs/model/intro
+   docs/model/currency
 
 .. toctree::
    :maxdepth: 1
    :caption: SDK
    
-   docs/sdk/js/intro
-   docs/sdk/py/intro
-   docs/sdk/java/intro
+   docs/sdk/js
+   docs/sdk/python
+   docs/sdk/java
 
 .. toctree::
    :maxdepth: 1
@@ -66,10 +65,8 @@ Contents
    :maxdepth: 1
    :caption: Appendix
 
-   docs/appendix
+   docs/appendix/timestamp
 
 .. toctree::
    :maxdepth: 1
    :caption: Archive
-
-   docs/archive/archive
