@@ -4,7 +4,7 @@ Installation
 
 * Please download the source code of `Mitum Currency <https://github.com/spikeekips/mitum-currency>`_.
 
-* Using `Git`,
+* Using **Git**,
 
 .. code-block:: sh
 

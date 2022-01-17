@@ -10,10 +10,10 @@ What is MITUM?
 Mitum Technical SPEC
 ---------------------------------------------------
 
-* Mitum (blockchain core framework) uses `ISAAC+ consensus protocol` based on `PBFT`.
+* Mitum (blockchain core framework) uses **ISAAC+ consensus protocol** based on **PBFT**.
 * The network transport protocol is `quic <https://en.wikipedia.org/wiki/QUIC>`_ (based on udp).
-* `Gossip-Based` Node Discovery Protocol.
-* The main storage engine of the blockchain uses `mongodb` and the local file system is used for block storage.
+* **Gossip-Based** Node Discovery Protocol.
+* The main storage engine of the blockchain uses **MongoDB** and the local file system is used for block storage.
 * Parallel operation processing
 * Main hash algorithm: `Keccak <https://keccak.team>`_ 256, SHA-3
 * Supports multiple hash algorithm: ``Keccak 256``, ``Keccak 512``, ``Raw bytes.``

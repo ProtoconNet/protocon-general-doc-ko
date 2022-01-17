@@ -6,12 +6,10 @@ Mitum Currency
 What is Mitum Currency
 ---------------------------------------------------
 
-* `Mitum Currency` is a currency model that operates on the `Mitum` blockchain networks.
+* **Mitum Currency** is a currency model that operates on the **Mitum** blockchain networks.
 * The Mitum model is a solution that can provide various services as an extension layer that extends the Mitum main chain.
 * In Mitum Currency, flexible policy settings related to currency issuance and operation are possible.
-* Mitum Currency is implemented based on `Mitum` (blockchain core framework).
-
-|
+* Mitum Currency is implemented based on Mitum (blockchain core framework).
 
 .. image:: ../images/mitum_blockchain_layer.png
     :height: 570
@@ -19,14 +17,12 @@ What is Mitum Currency
     :scale: 50 
     :alt: Mitum Blockchain Layer
 
-|
-
 ---------------------------------------------------
 Feature of Mitum Currency
 ---------------------------------------------------
 
 * Mitum Currency provides core features to meet the business needs of various fields related to tokens.
-* `Multiple keys` can be registered when creating an account, and related keys can be replaced through key update operation.
+* **Multiple keys** can be registered when creating an account, and related keys can be replaced through key update operation.
 * Mitum Currency can issue new currency and related policy can be customized.
 * Currency-related policy can be updated at any time as needed.
 * Mitum Currency has no compensation for block generation and there is also no inflation.
@@ -36,8 +32,8 @@ Feature of Mitum Currency
 Digest Service
 ---------------------------------------------------
 
-* `Digest Service` is an internal service that stores block data stored by `Mitum` separately to serve as `HTTP-based API`.
-* For more information on `Digest Service`, please refer to `REST API <https://protocon-general-doc.readthedocs.io/en/develop/docs/api/intro.html>`_.
+* **Digest Service** is an internal service that stores block data stored by **Mitum** separately to serve as **HTTP-based API**.
+* For more information on **Digest Service**, please refer to `REST API <https://protocon-general-doc.readthedocs.io/en/develop/docs/api/intro.html>`_.
 
 ---------------------------------------------------
 Seal and Operation
@@ -46,7 +42,7 @@ Seal and Operation
 Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In the Mitum blockchain network, an operation is `a unit of command that changes data`.
+| In the Mitum blockchain network, an operation is **a unit of command that changes data**.
 
 | Mitum Currency has operations of,
 
@@ -64,7 +60,7 @@ Operation
 Fact and token
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Every operation contains a `fact`. In other words, `the content of the operation is actually contained in the fact`.
+| Every operation contains a *fact*. In other words, **the content of the operation is actually contained in the fact**.
 
 | Facts play an important role in Mitum Currency.
 
@@ -84,7 +80,7 @@ Fact and token
 
 | If so, does that mean that operations with the same fact content cannot be duplicated?
 
-| Don’t worry, in each `fact` we use a value called `token` to make it unique.
+| Don’t worry, in each fact, we use a value called *token* to make it unique.
 | The token is a value added to the essential contents of the operation.
 
 .. code-block:: json
@@ -119,7 +115,7 @@ Fact and token
         ]
     }
 
-| A token is similar to a memo, but has the characteristic of making a fact unique by `using a unique token value` for the same fact content.
+| A token is similar to a memo, but has the characteristic of making a fact unique by **using a unique token value** for the same fact content.
 
 | Making the fact essential to every operation unique expands usability in many ways.
 
@@ -127,7 +123,7 @@ Fact and token
 * Anyone can calculate the fact hash if they know the sender, receiver, currencyID, amount, and a specific token value was used.
 * Therefore, anyone can inquire whether the corresponding operation has been processed with the fact hash.
 
-| A `fact hash` is like a `public proof` recorded in a blockchain. If the evidence disclosed in the blockchain is used well, various applications can be made.
+| A *fact hash* is like a **public proof** recorded in a blockchain. If the evidence disclosed in the blockchain is used well, various applications can be made.
 | For example, even an outsider who does not have a direct account in the blockchain can check the fact hash, which is the only value indicating whether the operation is processed or not, and make the implementation conditional on this.
 
 | In addition, facts and tokens can be usefully used in models that deal with various data as well as remittance.
@@ -135,7 +131,7 @@ Fact and token
 Seal
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| `Seal` is `a collection of operations` transmitted to the network. In other words, the Operation is contained in the seal and transmitted.
+| *Seal* is **a collection of operations** transmitted to the network. In other words, the Operation is contained in the seal and transmitted.
 
 * To transmit the seal, a signature made with a private key is required.
 * To create signature, you must use the private key created in Mitum’s keypair package.
@@ -165,9 +161,9 @@ Block Data
 Block data in Mitum Currency Node
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In the `Mitum Currency Node`, block data is stored in two spaces: `Database` and `File System`.
+| In the **Mitum Currency Node**, block data is stored in two spaces: *Database* and *File System*.
 
-* The `database` stores the informations which are used for consensus, such as,
+* The **database** stores the informations which are used for consensus, such as,
 
 .. code-block:: none
 
@@ -181,7 +177,7 @@ Block data in Mitum Currency Node
     state: state data by each block
     voteproof
 
-* The file system stores all block data, such as,
+* The **file system** stores all block data, such as,
 
 .. code-block:: none
 
@@ -192,8 +188,8 @@ Block data in Mitum Currency Node
     suffrage information
     voteproofs(and init and accept ballots)
 
-* Block data stored in the `database` is required to run the mitum currency node and participate in the network normally.
-* Block data in the `file system` is not used at runtime, but is used to provide block data to syncing nodes.
+* Block data stored in the **database** is required to run the mitum currency node and participate in the network normally.
+* Block data in the **file system** is not used at runtime, but is used to provide block data to syncing nodes.
 
 | An intact node must support block data for other nodes which want to synchronize block data.
 
@@ -202,7 +198,7 @@ BlockDataMap
 
 | By default, block data is stored on the local file system.
 
-| `blockdatamap` contains the information about where the actual block data is located.
+| *blockdatamap* contains the information about where the actual block data is located.
 
 .. code-block:: json
 
@@ -229,7 +225,7 @@ BlockDataMap for block data stored in external storage
 
 | Mitum Currency supports storing block data in external storage rather than the node’s local file system.
 
-| After going through some process to store block data externally, `blockdatamap` becomes as follows.
+| After going through some process to store block data externally, *blockdatamap* becomes as follows.
 
 .. code-block:: json
     
@@ -256,19 +252,19 @@ How to update BlockDataMap for external Storage
 
 | For example, suppose that block data with a block height of 10 is moved to an external storage.
 
-| Here we will do this using the node’s `deploy key`.
-| This `deploy key` of the node is a key that can be used instead of the private key of the node.
+| Here we will do this using the node’s *deploy key*.
+| This *deploy key* of the node is a key that can be used instead of the private key of the node.
 
 | See ``deploy`` command in `Node Command <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/node.html>`_ for how to create a deploy key.
 
-| The process of `moving block data` and updating `blockdatamap` is as follows.
+| The process of **moving block data** and **updating blockdatamap** is as follows.
 
-* Get the new `deploy key` of mitum currency node.
-* Download the current `blockdatamap` by using the ``storage download map`` command.
+* Get the new *deploy key* of mitum currency node.
+* Download the current *blockdatamap* by using the ``storage download map`` command.
 * Upload all the block data files of height 10 to external storage(example : AWS S3)
 * Update the ``url`` field value of the downloaded BlockDataMap with the new url of external storage.
-* Update the node’s `blockdatamap` by running the ``storage set-blockdatamaps`` command.
-* Check the newly updated `blockdatamap` with ``storage download map`` command
+* Update the node’s *blockdatamap* by running the ``storage set-blockdatamaps`` command.
+* Check the newly updated *blockdatamap* with ``storage download map`` command
 
 | After updating blockdatamap successfully, mitum currency node will remove all the files of height, 10 automatically after 30 minute.
 
@@ -423,4 +419,4 @@ Support Operations
 | transfer                           | Transfer amount of tokens          | 
 +------------------------------------+------------------------------------+
 
-| Refer to `CLI <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/intro.html>`_ to check how to create those operations by `Command`.
+| Refer to `CLI <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/intro.html>`_ to check how to create those operations by commands.
