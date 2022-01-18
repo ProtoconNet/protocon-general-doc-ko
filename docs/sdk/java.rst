@@ -22,7 +22,7 @@ Prerequisite and Requirements
 
 | This package has been developed by,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ java -version
     openjdk version "16.0.1" 2021-04-20
@@ -45,7 +45,7 @@ Installation
 
 | Using *Gradle*,
 
-.. code-block:: sh
+.. code-block:: shell
 
     implementation files('./lib/mitum-java-util-1.3.0.jar')
 
@@ -352,8 +352,8 @@ Create Account
     Operation keyUpdater = gn.newOperation(fact);
     keyUpdater.addSign(targetPrivateKey);
 
-| **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
-| **So record new private keys somewhere before send key-updater operation to the network**
+* **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
+* **So record new private keys somewhere before send key-updater operation to the network.**
 
 Transfer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -681,6 +681,7 @@ JSONParser
 | If you would like to use other js package to export ``Operation`` to file or to print it in JSON format, you don't need to use ``JSONParser`` of **mitum-java-util**.
 
 .. code-block:: java
+
     /*
     import org.mitumc.sdk.JSONParser;
     */

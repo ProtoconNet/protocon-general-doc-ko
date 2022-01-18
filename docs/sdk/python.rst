@@ -22,7 +22,7 @@ Prerequisite and Requirements
 
 | This package has been developed by,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ python --version
     Python 3.9.2
@@ -34,7 +34,7 @@ Installation
 
 * Using **Git**,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ git clone https://github.com/ProtoconNet/mitum-py-util.git
 
@@ -44,7 +44,7 @@ Installation
 
 | If setup.py doesn't work properly, please just install necessary packages with requirements.txt before running setup.py.
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ pip install -r requirements.txt
 
@@ -337,8 +337,8 @@ Key Updater
     keyUpdater = generator.createOperation(keyUpdaterFact, "")
     keyUpdater.addFactSign(targetPrivateKey)
 
-| **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
-| **So record new private keys somewhere before send key-updater operation to the network**
+* **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
+* **So record new private keys somewhere before send key-updater operation to the network.**
 
 Transfer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -24,7 +24,7 @@ Prerequisite and Requirements
 
 | Especially, this package has been developed by,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ npm --version
     v16.10.0
@@ -39,19 +39,19 @@ Installation
 
 * Using **npm**,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ npm install mitumc
 
 * Using **yarn**,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ yarn add mitumc
 
 * Using **Git**,
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ git clone https://github.com/ProtoconNet/mitum-js-util.git
 
@@ -313,7 +313,7 @@ Create Account
 
 | The detailed explanation was omitted. See at the start of 'Make Your First Operation'.
 
- Key Updater
+Key Updater
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | This operation is literally to update keys of the account.
@@ -359,8 +359,8 @@ Create Account
     const keyUpdater = generator.createOperation(keyUpdaterFact, "")
     keyUpdater.addSign(targetPrivateKey) // only one signature since the account is single-sig
 
-| **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
-| **So record new private keys somewhere before send key-updater operation to the network**
+* **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
+* **So record new private keys somewhere before send key-updater operation to the network.**
 
 Transfer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

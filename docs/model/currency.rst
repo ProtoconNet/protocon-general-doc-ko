@@ -268,7 +268,7 @@ How to update BlockDataMap for external Storage
 
 | After updating blockdatamap successfully, mitum currency node will remove all the files of height, 10 automatically after 30 minute.
 
-.. code-block:: sh
+.. code-block:: shell
 
     $ DEPLOY_KEY=d-974702df-89a7-4fd1-a742-2d66c1ead6cd
     

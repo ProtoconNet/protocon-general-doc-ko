@@ -30,11 +30,25 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: SDK
-   
-   docs/sdk/js
-   docs/sdk/python
-   docs/sdk/java
+   :caption: Run a Node
+
+   docs/run/intro
+   docs/run/config
+   docs/run/run
+   docs/run/buildnet
+   docs/run/handover
+
+.. toctree::
+   :maxdepth: 1
+   :caption: CLI
+
+   docs/cli/intro
+   docs/cli/node
+   docs/cli/key
+   docs/cli/seal
+   docs/cli/storage
+   docs/cli/deploy
+   docs/cli/etc
 
 .. toctree::
    :maxdepth: 1
@@ -43,24 +57,14 @@ Contents
    docs/api/intro
    docs/api/rapi
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Run a Node
-
-   docs/run/intro
-   docs/run/prep
-   docs/run/install
-   docs/run/config
-   docs/run/run
-   docs/run/buildnet
 
 .. toctree::
    :maxdepth: 1
-   :caption: CLI
-
-   docs/cli/intro
-   docs/cli/node
-   docs/cli/operation
+   :caption: SDK
+   
+   docs/sdk/js
+   docs/sdk/python
+   docs/sdk/java
 
 .. toctree::
    :maxdepth: 1
