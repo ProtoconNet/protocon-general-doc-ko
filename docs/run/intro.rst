@@ -3,9 +3,9 @@ Get Started
 ===================================================
 
 | In this part, it will introduce how to run nodes on **Mitum Currency**.
-| For using *Mitum Currency*, you need to install *docker* and *golang* first.
+| For using Mitum Currency, you need to install *docker* and *golang* first.
 
-| If you are looking for the usage of *Mitum Blocksign*, visit `mitum-data-blocksign <https://github.com/ProtoconNet/mitum-data-blocksign>`_.
+| If you are looking for the usage of **Mitum Blocksign**, visit `mitum-data-blocksign <https://github.com/ProtoconNet/mitum-data-blocksign>`_.
 
 ---------------------------------------------------
 About Mitum Currency Node

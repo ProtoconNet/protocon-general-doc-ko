@@ -222,7 +222,7 @@ BlockDataMap
 | In this BlockDataMap example, the data of ``operation_tree`` is located at ``file:///000/000/000/000/000/000/002/2-operations_tree-1f9877aebf8854fd42154c6e6479ff6a3e379b2762c65995c80f3dff2a357a26.jsonld.gz``
 
 BlockDataMap for block data stored in external storage
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | Mitum Currency supports storing block data in external storage rather than the node’s local file system.
 
@@ -249,7 +249,7 @@ BlockDataMap for block data stored in external storage
 | As you can see, the ``url`` is replaced with the external storage server.
 
 How to update BlockDataMap for external Storage
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | For example, suppose that block data with a block height of 10 is moved to an external storage.
 

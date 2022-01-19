@@ -35,7 +35,6 @@ Contents
    docs/run/intro
    docs/run/config
    docs/run/run
-   docs/run/buildnet
    docs/run/handover
 
 .. toctree::

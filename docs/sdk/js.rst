@@ -422,7 +422,7 @@ Sign
 | What you have to care about is,
 
 * Is every signature is a signature signed by private key of the account?
-* Is the sum of every weight for each signer bigger than or equal to the account threshold?
+* Is the sum of every weight for each signer greater than or equal to the account threshold?
 
 | Of course, there are other conditions each operation must satisfy but we will focus on **signature**(especially about fact signature) in this section.
 

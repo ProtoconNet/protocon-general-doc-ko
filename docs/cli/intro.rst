@@ -2,9 +2,27 @@
 Command Line Interface
 ===================================================
 
+| In this part, we will introduce you what commands Mitum Currency provides and how to use them.
+
+| There are seven major commands it supports,
+
+* ``version``
+* ``node``
+* ``key``
+* ``seal``
+* ``storage``
+* ``deploy``
+* ``quic-client``
+
+| You may be familiar with ``node`` command if you have already been to ``Run`` page.
+
+| It is easy to play ``version`` and ``quic-client``. They are described in ``Others``. Other commands will be explained one by one.
+
 ---------------------------------------------------
 Summary
 ---------------------------------------------------
+
+| This is the all commands that Mitum Currency provides.
 
 .. code-block:: shell
 
