@@ -525,7 +525,7 @@ Get Mitum Keypair
 
 | There are three methods to create a keypair.
 
-Just create new keypair
+Just Create New Keypair
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | **mitum-js-util** will create random keypair for you!
@@ -544,7 +544,7 @@ Just create new keypair
     kp.getRawPrivateKey() // KzF4ia7G8in3hm7TzSr5k7cNtx46BdEFTzVdnh82vAopqxJG8rHo
     kp.getRawPublicKey() // 25jrVNpKr59bYxrWH8eTkbG1iQ8hjvSFKVpfCcDT8oFf8mpu
 
-Get keypair from your private key
+Get Keypair From Your Private Key
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | If you already have own private key, create keypair with it!

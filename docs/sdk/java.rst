@@ -304,7 +304,7 @@ Create Account
 
 | The detailed explanation was omitted. See at the start of 'Make Your First Operation'.
 
- Key Updater
+Key Updater
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | This operation is literally to update keys of the account.
@@ -515,7 +515,7 @@ Get Mitum Keypair
 
 | There are three methods to create a keypair.
 
-Just create new keypair
+Just Create New Keypair
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | **mitum-java-util** will create random keypair for you!
@@ -532,7 +532,7 @@ Just create new keypair
     kp.getPrivateKey(); // returns private key of the keypair
     kp.getPublicKey(); // returns public key of the keypair
 
-Get keypair from your private key
+Get Keypair From Your Private Key
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | If you already have own private key, create keypair with it!
@@ -545,7 +545,7 @@ Get keypair from your private key
     String key = "KzafpyGojcN44yme25UMGvZvKWdMuFv1SwEhsZn8iF8szUz16jskmpr";
     Keypair pkp = Keypair.fromPrivateKey(key);
 
-Get Keypair from your seed
+Get Keypair From Your Seed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | You can get keypair from your seed, too. Even if you don't remeber the private key of the keypair, the keypair can be recovered by it's seed.
@@ -590,7 +590,7 @@ Get Account Address with Keys
     Key key1 = generator.currency().newKey("vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu", 40);
     Key key2 = generator.currency().newKey("29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu", 30);
     Key key3 = generator.currency().newKey("uJKiGLBeXF3BdaDMzKSqJ4g7L5kAukJJtW3uuMaP1NLumpu", 30);
-   
+
     Keys keys = generator.currency().newKeys(100); // newKeys(threshold)
     keys.addKey(key1);
     keys.addKey(key2);

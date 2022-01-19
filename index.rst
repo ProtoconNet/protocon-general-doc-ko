@@ -55,8 +55,8 @@ Contents
    :caption: REST API
 
    docs/api/intro
+   docs/api/builder
    docs/api/rapi
-
 
 .. toctree::
    :maxdepth: 1

@@ -496,7 +496,7 @@ Get Mitum Keypair
 
 | There are three methods to create a keypair.
 
-Just create new keypair
+Just Create New Keypair
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | **mitum-py-util** will create random keypair for you!
@@ -512,7 +512,7 @@ Just create new keypair
     kp.privateKey # KzafpyGojcN44yme25UMGvZvKWdMuFv1SwEhsZn8iF8szUz16jskmpr
     kp.publicKey # 24TbbrNYVngpPEdq6Zc5rD1PQSTGQpqwabB9nVmmonXjqmpu
 
-Get keypair from your private key
+Get Keypair From Your Private Key
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | If you already have own private key, create keypair with it!
@@ -524,7 +524,7 @@ Get keypair from your private key
     # get Keypair from your private key
     pkp = getKeypairFromPrivateKey("L2ddEkdgYVBkhtdN8HVXLZk5eAcdqXxecd17FDTobVeFfZNPk2ZDmpr")
 
-Get Keypair from your seed
+Get Keypair From Your Seed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | You can get keypair from your seed, too. Even if you don't remeber the private key of the keypair, the keypair can be recovered by it's seed.

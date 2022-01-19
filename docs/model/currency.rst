@@ -11,11 +11,12 @@ What is Mitum Currency
 * In Mitum Currency, flexible policy settings related to currency issuance and operation are possible.
 * Mitum Currency is implemented based on Mitum (blockchain core framework).
 
-.. image:: ../images/mitum_blockchain_layer.png
+
+.. image:: ../images/model.currency/mitum_blockchain_layer.png
     :height: 570
-    :width: 1495
     :scale: 50 
     :alt: Mitum Blockchain Layer
+
 
 ---------------------------------------------------
 Feature of Mitum Currency
