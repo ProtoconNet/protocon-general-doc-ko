@@ -6,6 +6,16 @@ Mitum Protocol
 What is MITUM?
 ---------------------------------------------------
 
+| **Mitum** is a general privacy blockchain with flexible and resilient way.
+
+| Mitum can be used for various kind of purposes.
+
+* public and private blockchain like cryptocurrency network
+* data-centric blockchain for arbitrary data
+* secure anonymity voting system
+
+| If you want to know more about **MITUM**, visit `Mitum Document <https://mitum-doc.readthedocs.io/en/proto2/index.html>`_.
+
 ---------------------------------------------------
 Mitum Technical SPEC
 ---------------------------------------------------

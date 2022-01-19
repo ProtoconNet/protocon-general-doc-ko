@@ -52,7 +52,7 @@ Installation and Setup
 Golang
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| **Mitum Currency** is developed using the programming language `Go <https://golang.org>_`.
+| **Mitum Currency** is developed using the programming language `Go <https://golang.org>`_.
 
 | To create an executable binary, you need to build it from the source code.
 | We do not provide detailed instructions for installing the Go language here.
