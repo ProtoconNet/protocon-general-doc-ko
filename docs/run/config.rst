@@ -35,16 +35,16 @@ genesis-operations
 .. code-block:: none
 
     genesis-operations:
-    - account-keys:
-          keys:
-              - publickey: rcrd3KA2wWNhKdAP8rHRzfRmgp91oR9mqopckyXRmCvGmpu
-                weight: 100
-          threshold: 100
-      currencies:
-          - balance: "99999999999999999999"
-            currency: MCC
-            new-account-min-balance: "33"
-      type: genesis-currencies
+        - account-keys:
+            keys:
+                - publickey: rcrd3KA2wWNhKdAP8rHRzfRmgp91oR9mqopckyXRmCvGmpu
+                  weight: 100
+            threshold: 100
+        currencies:
+            - balance: "99999999999999999999"
+              currency: MCC
+              new-account-min-balance: "33"
+        type: genesis-currencies
 
 ---------------------------------------------------
 network
@@ -106,8 +106,8 @@ rate-limit
 
 * ``cache``: cache for requests. At this time, supports “memory:” and “redis://<redis server>”
 
-  * *memory*: memory cache
-  * *redis://<redis server>*: cached in redis server
+  * **memory**: memory cache
+  * **redis://<redis server>**: cached in redis server
 
 * ``preset``: pre defined rate limit settings.
 
@@ -120,7 +120,7 @@ rate-limit
     * Rules consist of *IP address*(or IP address range), ``preset`` and detailed ``rate-limit`` settings.
     * The IP address can be a single value or a range of IP addresses expressed in *CIDR* notation.
       * example : 3.3.3.3, 4.4.4.4/24, 127.0.0.1/24
-    * **Rate limit** can be set through ``preset`` and additional ``limits``.
+    * Rate limit can be set through ``preset`` and additional ``limits``.
     * ``preset`` can be pre-defined preset like ``suffrage``, ``world`` or user-defined preset like ``bad-nodes``.
     * Additional limit such as ``blockdata: 5/m`` can be added to the ``preset``.
     * Rules will be checked by the defined order. The upper rule will be checked first.
@@ -154,7 +154,7 @@ rate-limit
         preset: bad-nodes
         blockdata: 0/m
 
-
+---------------------------------------------------
 network-id
 ---------------------------------------------------
 
@@ -177,7 +177,7 @@ keypair
 
 .. code-block:: none
 
-    privatekey: Kxt22aSeFzJiDQagrvfXPWbEbrTSPsRxbYm9BhNbNJTsrbPbFnPA-0112:0.0.1
+    privatekey: Kxt22aSeFzJiDQagrvfXPWbEbrTSPsRxbYm9BhNbNJTsrbPbFnPAmpr
 
 | See `Key Command <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/key.html>`_ to learn how to create a key pair.
 
@@ -201,132 +201,163 @@ storage
 | ``port number`` should be same with that when running docker.
 
 ---------------------------------------------------
-suffrage > nodes
+suffrage
 ---------------------------------------------------
+
+nodes
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | Set addresses for suffrage nodes participating in consensus.
 
-The alias name of the local node is n0sas.
+| The alias name of the local node is ``n0sas``.
+| If ``n0``, ``n1``, ``n2``, ``n3`` nodes are included in the suffrage nodes, it can be set as follows.
 
-If n0, n1, n2, n3 nodes are included in the suffrage nodes, it can be set as follows.
+.. code-block:: none
 
-suffrage:
+    suffrage:
+        nodes:
+            - n0sas
+            - n1sas
+            - n2sas
+            - n3sas
+
+| If the ``n0`` node, which is a local node, is not included in the suffrage nodes, the local node becomes a *None-suffrage* node and serves only as a *syncing node*.
+
+* The *Syncing node* does not participate in consensus and only syncs the generated block data.
+* The *None-suffrage* node handles only the seal containing the operation.
+* The *None-suffrage* node does not process ballots and proposals related to voting between nodes.
+* When the *None-suffrage* node stores the operation seal, it broadcasts the seal to the suffrage nodes.
+
+| If the *None-suffrage* node does not add other nodes to the suffrage node, or does not configure other suffrage nodes, operation seal cannot be processed.
+
+.. code-block:: none
+
+    suffrage:
+        nodes:
+            - n1sas
+            - n2sas
+            - n3sas
+
+---------------------------------------------------
+sync-interval
+---------------------------------------------------
+
+| *None-suffrage* node periodically syncs block data.
+
+| The default interval is 10 seconds.
+| You can change the interval value through the ``sync-interval`` setting.
+
+.. code-block:: none
+
+    sync-interval: 3s
+
+---------------------------------------------------
+nodes
+---------------------------------------------------
+
+| Write the ``address`` (alias for the address), ``public key``, and ``url`` (ip address) of known nodes in the blockchain network.
+
+* If not written, it operates as a **standalone node**.
+* If the node is a suffrage node and the node discovery function is used, the ``url`` of the node is not required.
+* However, if the node is not a suffrage node, the ``url``s of the suffrage nodes must be included.
+
+| Mitum nodes use *CA signed certificate* (public certificate) by default.
+
+* If certificate related settings are not made in *Network config*, the node uses *self-signed certificate*.
+* If other Mitum nodes use self-signed certificate, ``tls-insecure: true`` should be set to all the nodes which use self-signed certificate.
+
+.. code-block:: none
+
+    (In case of suffrage node)
+
     nodes:
-        - n0sas
-        - n1sas
-        - n2sas
-        - n3sas
-If the n0 node, which is a local node, is not included in the suffrage nodes, the local node becomes a None-Suffrage node and serves only as a syncing node.
+        - address: n1sas
+        publickey: ktJ4Lb6VcmjrbexhDdJBMnXPXfpGWnNijacdxD2SbvRMmpu
+        tls-insecure: true
+        - address: n2sas
+        publickey: wfVsNvKaGbzB18hwix9L3CEyk5VM8GaogdRT4fD3Z6Zdmpu
+        tls-insecure: true
+        - address: n3sas
+        publickey: vAydAnFCHoYV6VDUhgToWaiVEtn5V4SXEFpSJVcTtRxbmpu
+        tls-insecure: true
 
-The Syncing node does not participate in consensus and only syncs the generated block data.
+.. code-block:: none
 
-The None-suffrage node handles only the seal containing the operation.
+    (If it is not a suffrage node)
 
-The None-suffrage node does not process ballots and proposals related to voting between nodes.
-
-When the node-suffrage node stores the operation seal, it broadcasts the seal to the suffrage nodes.
-
-If the None-suffrage node does not add other nodes to the suffrage node, or does not configure other suffrage nodes, operation seal cannot be processed.
-
-suffrage:
     nodes:
-        - n1sas
-        - n2sas
-        - n3sas
-sync-interval
-None-suffrage node periodically syncs block data.
+        - address: n1sas
+        publickey: ktJ4Lb6VcmjrbexhDdJBMnXPXfpGWnNijacdxD2SbvRMmpu
+        url: https://127.0.0.1:54331
+        tls-insecure: true
+        - address: n2sas
+        publickey: wfVsNvKaGbzB18hwix9L3CEyk5VM8GaogdRT4fD3Z6Zdmpu
+        url: https://127.0.0.1:54341
+        tls-insecure: true
+        - address: n3sas
+        publickey: vAydAnFCHoYV6VDUhgToWaiVEtn5V4SXEFpSJVcTtRxbmpu
+        url: https://127.0.0.1:54351
+        tls-insecure: true
 
-The default interval is 10 seconds.
+---------------------------------------------------
+digest
+---------------------------------------------------
 
-You can change the interval value through the sync-interval setting.
+| Specify the *mongodb address* that stores the data to be provided by the *API* and the *IP address* of the API access.
 
-sync-interval: 3s
-nodes
-Write the address (alias for the address), public key, and url (ip address) of known nodes in the blockchain network.
+.. code-block:: none
 
-If not written, it operates as a standalone node.
+    digest:
+        network:
+            bind: https://localhost:54320
+            url: https://localhost:54320
+            cert-key: mitum.key
+            cert: mitum.crt
 
-If the node is a suffrage node and the node discovery function is used, the url of the node is not required.
+---------------------------------------------------
+tutorial.yml
+---------------------------------------------------
 
-However, if the node is not a suffrage node, the urls of the suffrage nodes must be included.
+| This is an example of **standalone** node configuration.
 
-Mitum nodes use CA signed certificate (public certificate) by default.
+.. code-block:: none
 
-If certificate related settings are not made in Network config, the node uses self-signed certifate.
-
-If other Mitum nodes use self-signed certificate, tls-insecure:true should be set to all the nodes which use self-signed certificate.
-
-(In case of suffrage node)
-nodes:
-    - address: n1sas
-      publickey: ktJ4Lb6VcmjrbexhDdJBMnXPXfpGWnNijacdxD2SbvRMmpu
-      tls-insecure: true
-    - address: n2sas
-      publickey: wfVsNvKaGbzB18hwix9L3CEyk5VM8GaogdRT4fD3Z6Zdmpu
-      tls-insecure: true
-    - address: n3sas
-      publickey: vAydAnFCHoYV6VDUhgToWaiVEtn5V4SXEFpSJVcTtRxbmpu
-      tls-insecure: true
-(If it is not a suffrage node)
-nodes:
-    - address: n1sas
-      publickey: ktJ4Lb6VcmjrbexhDdJBMnXPXfpGWnNijacdxD2SbvRMmpu
-      url: https://127.0.0.1:54331
-      tls-insecure: true
-    - address: n2sas
-      publickey: wfVsNvKaGbzB18hwix9L3CEyk5VM8GaogdRT4fD3Z6Zdmpu
-      url: https://127.0.0.1:54341
-      tls-insecure: true
-    - address: n3sas
-      publickey: vAydAnFCHoYV6VDUhgToWaiVEtn5V4SXEFpSJVcTtRxbmpu
-      url: https://127.0.0.1:54351
-      tls-insecure: true
-digest
-Specify the mongodb address that stores the data to be provided by the API and the IP address of the API access.
-
-digest:
+    address: mc-nodesas
+    privatekey: Kxt22aSeFzJiDQagrvfXPWbEbrTSPsRxbYm9BhNbNJTsrbPbFnPAmpr
+    storage:
+        database:
+            uri: mongodb://127.0.0.1:27017/mc
+        blockdata:
+            path: ./mc-blockfs
+    network-id: mitum
     network:
-        bind: https://localhost:54320
-        url: https://localhost:54320
+        bind: https://0.0.0.0:54321
+        url: https://127.0.0.1:54321
         cert-key: mitum.key
         cert: mitum.crt
-tutorial.yml (standalone node config example)
-address: mc-nodesas
-privatekey: Kxt22aSeFzJiDQagrvfXPWbEbrTSPsRxbYm9BhNbNJTsrbPbFnPAmpr
-storage:
-    database:
-        uri: mongodb://127.0.0.1:27017/mc
-    blockdata:
-        path: ./mc-blockfs
-network-id: mitum
-network:
-    bind: https://0.0.0.0:54321
-    url: https://127.0.0.1:54321
-    cert-key: mitum.key
-    cert: mitum.crt
-genesis-operations:
-    - type: genesis-currencies
-      account-keys:
-          keys:
-              - publickey: rcrd3KA2wWNhKdAP8rHRzfRmgp91oR9mqopckyXRmCvGmpu
-                weight: 100
-          threshold: 100
-      currencies:
-          - balance: "99999999999999999999"
-            currency: MCC
-            new-account-min-balance: "33"
-            feeer:
-                type: fixed
-                amount: 1
-policy:
-    threshold: 100
-suffrage:
-    nodes:
-        - mc-nodesas
+    genesis-operations:
+        - type: genesis-currencies
+        account-keys:
+            keys:
+                - publickey: rcrd3KA2wWNhKdAP8rHRzfRmgp91oR9mqopckyXRmCvGmpu
+                    weight: 100
+            threshold: 100
+        currencies:
+            - balance: "99999999999999999999"
+                currency: MCC
+                new-account-min-balance: "33"
+                feeer:
+                    type: fixed
+                    amount: 1
+    policy:
+        threshold: 100
+    suffrage:
+        nodes:
+            - mc-nodesas
 
-digest:
-    network:
-        bind: https://0.0.0.0:54320
-        url: https://127.0.0.1:54320
-        cert-key: mitum.key
-        cert: mitum.crt
+    digest:
+        network:
+            bind: https://0.0.0.0:54320
+            url: https://127.0.0.1:54320
+            cert-key: mitum.key
+            cert: mitum.crt

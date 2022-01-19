@@ -22,7 +22,7 @@ Feature of Mitum Currency
 ---------------------------------------------------
 
 * Mitum Currency provides core features to meet the business needs of various fields related to tokens.
-* **Multiple keys** can be registered when creating an account, and related keys can be replaced through key update operation.
+* *Multiple keys* can be registered when creating an account, and related keys can be replaced through key update operation.
 * Mitum Currency can issue new currency and related policy can be customized.
 * Currency-related policy can be updated at any time as needed.
 * Mitum Currency has no compensation for block generation and there is also no inflation.
@@ -32,8 +32,8 @@ Feature of Mitum Currency
 Digest Service
 ---------------------------------------------------
 
-* **Digest Service** is an internal service that stores block data stored by **Mitum** separately to serve as **HTTP-based API**.
-* For more information on **Digest Service**, please refer to `REST API <https://protocon-general-doc.readthedocs.io/en/develop/docs/api/intro.html>`_.
+* **Digest Service** is an internal service that stores block data stored by Mitum separately to serve as *HTTP-based API*.
+* For more information on Digest Service, please refer to `REST API <https://protocon-general-doc.readthedocs.io/en/develop/docs/api/intro.html>`_.
 
 ---------------------------------------------------
 Seal and Operation
@@ -161,7 +161,7 @@ Block Data
 Block data in Mitum Currency Node
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In the **Mitum Currency Node**, block data is stored in two spaces: *Database* and *File System*.
+| In the **Mitum Currency Node**, block data is stored in two spaces: **Database** and **File System**.
 
 * The **database** stores the informations which are used for consensus, such as,
 
