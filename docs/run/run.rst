@@ -77,7 +77,7 @@ node run
 
 | ``–log`` command line option can collect logs to the specific files.
 
-| Mitum dumps huge debugging log messages, including *quic*(http) request message like this,
+| Mitum dumps huge debugging log messages, including *quic* (http) request message like this,
 
 .. code-block:: json
     
@@ -96,7 +96,7 @@ node run
 
 | Multiple file can be set to ``–network-log`` and ``–log``.
 
-| In mitum Currency, ``–network-log`` option will also collect the requests log from *digest API*(http2)
+| In mitum Currency, ``–network-log`` option will also collect the requests log from *digest API* (http2)
 | ``–network-log`` option is only available in ``node run`` command.
 
 Lookup Genesis Account

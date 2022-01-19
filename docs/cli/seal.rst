@@ -11,7 +11,7 @@ Seal Command
 * ``key-updater``
 * ``currency-register``
 * ``currency-policy-updater``
-* ``suffrage-inflation
+* ``suffrage-inflation``
 
 | ``seal`` command also help create a signature and sends a seal.
 

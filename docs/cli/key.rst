@@ -12,7 +12,8 @@ Key Command
 
 .. note::
 
-    **Keypair**
+    Keypair
+    
     * *Private key* and *public key* are created through keypair generation.
     * The generated keypair is used to *create an account*, *register a keypair* of a node, and *create a signature* of operation and seal.
 
@@ -119,19 +120,23 @@ Multi Sig Account
 
     These are examples of available account states.
 
-    **CASE1 (single)**
+    CASE1 (single)
+
     * threshold: 100
     * keys: {key: rd89Gx…, weight: 100}
 
-    **CASE2 (single)**
+    CASE2 (single)
+
     * threshold: 50
     * keys: {key: rd89Gx…, weight: 60}
 
-    **CASE3 (multi)**
+    CASE3 (multi)
+    
     * threshold: 100
     * keys: {key: rd89Gx…, weight: 40}, {key: skRdC6…, weight: 30}, {key: mymMwq…, weight: 30}
 
-    **CASE4 (multi)**
+    CASE4 (multi)
+
     * threshold: 50
     * keys: {key: rd89Gx…, weight: 20}, {key: skRdC6…, weight: 20}, {key: mymMwq…, weight: 10}
 

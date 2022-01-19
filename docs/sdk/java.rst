@@ -417,7 +417,7 @@ Sign
 * Is every signature is a signature signed by private key of the account?
 * Is the sum of every weight for each signer greater than or equal to the account threshold?
 
-| Of course, there are other conditions each operation must satisfy but we will focus on **signature**(especially about fact signature) in this section.
+| Of course, there are other conditions each operation must satisfy but we will focus on **signature** (especially about fact signature) in this section.
 
 | Let's suppose there is an multi-sig account with 3 keys s.t each weight is 30 and threshold is 50.
 

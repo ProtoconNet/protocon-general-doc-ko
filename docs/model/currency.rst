@@ -27,7 +27,7 @@ Feature of Mitum Currency
 * Mitum Currency can issue new currency and related policy can be customized.
 * Currency-related policy can be updated at any time as needed.
 * Mitum Currency has no compensation for block generation and there is also no inflation.
-* The node configuration for the Mitum Currency network follows the node operation policy of the Mitum blockchain, and details can be found at `Build Network <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/buildnet.html>`_.
+* The node configuration for the Mitum Currency network follows the node operation policy of the Mitum blockchain, and details can be found at `Build Multi Nodes Network <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/run.html#build-multi-nodes-network>`_.
 
 ---------------------------------------------------
 Digest Service
@@ -256,7 +256,7 @@ How to update BlockDataMap for external Storage
 | Here we will do this using the node’s *deploy key*.
 | This *deploy key* of the node is a key that can be used instead of the private key of the node.
 
-| See ``deploy`` command in `Node Command <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/node.html>`_ for how to create a deploy key.
+| See ``deploy key`` command in `Deploy Command <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/deploy.html>`_ for how to create a deploy key.
 
 | The process of **moving block data** and **updating blockdatamap** is as follows.
 
@@ -420,4 +420,4 @@ Support Operations
 | transfer                           | Transfer amount of tokens          | 
 +------------------------------------+------------------------------------+
 
-| Refer to `CLI <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/intro.html>`_ to check how to create those operations by commands.
+| Refer to `Seal Command <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/seal.html>`_ to check how to create those operations by commands.

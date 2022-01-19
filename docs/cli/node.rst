@@ -17,7 +17,7 @@ init
 
 | By ``init`` command, **initialize the node** with the node design file containing the node configuration.
 
-| See `Run - node init <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/run.html>`_ for a detailed explanation of ``init`` command.
+| See `node init <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/run.html#node-init>`_ for a detailed explanation of ``init`` command.
 
 .. code-block:: shell
 
@@ -29,7 +29,7 @@ run
 
 | By ``run`` command, **run the node** with the node design file containing the node configuration.
 
-| See `Run - node run <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/run.html>`_ for a detailed explanation of ``run`` command.
+| See `node run <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/run.html#node-run>`_ for a detailed explanation of ``run`` command.
 
 .. code-block:: shell
 

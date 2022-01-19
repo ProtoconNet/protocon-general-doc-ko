@@ -25,7 +25,7 @@ genesis-operations
 
 | It registers the information about,
 
-* Keys of the *genesis account*(key, weight, threshold)
+* Keys of the *genesis account* (key, weight, threshold)
 * Initial balance
 * Currency ID
 * Fee policy of the currency to be created
@@ -117,7 +117,7 @@ rate-limit
 * Rules:
 
     * **Rate-limit Settings** for a specific IP
-    * Rules consist of *IP address*(or IP address range), ``preset`` and detailed ``rate-limit`` settings.
+    * Rules consist of *IP address* (or IP address range), ``preset`` and detailed ``rate-limit`` settings.
     * The IP address can be a single value or a range of IP addresses expressed in *CIDR* notation.
       * example : 3.3.3.3, 4.4.4.4/24, 127.0.0.1/24
     * Rate limit can be set through ``preset`` and additional ``limits``.
