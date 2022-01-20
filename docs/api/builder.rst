@@ -470,7 +470,7 @@ Confirming the Success of the Operation
     
     1. *insufficient balance of sender* when sending money
     2. *incorrect signature*
-    3. *creation-account amount less than new-account-min-balance*
+    3. *create-account amount less than new-account-min-balance*
     4. etc...
 
 | You can check the reason for failure in ``_embedded.reason.msg`` in the response message.
