@@ -51,6 +51,7 @@ Contents
    docs/cli/storage
    docs/cli/deploy
    docs/cli/etc
+   docs/cli/lookup
 
 .. toctree::
    :maxdepth: 1
