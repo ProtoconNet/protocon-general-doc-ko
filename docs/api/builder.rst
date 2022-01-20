@@ -110,7 +110,7 @@ Get Operation Fact Template
 * ``token`` is a *base64* encoded value.
 * Use the ``_hint`` item as it is.
 
-| Check `Key Command <https://protocon-general-doc.readthedocs.io/en/develop/docs/cli/key.html>`_ for the details of key registration of accounts related to ``keys``.
+| Check `Key Command <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/key.html>`_ for the details of key registration of accounts related to ``keys``.
 
 ---------------------------------------------------
 Build Operation Message

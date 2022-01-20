@@ -7,7 +7,7 @@ REST API
 
 * API is provided through *HTTP/2 network protocol*.
 * Response message follows `HAL <https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-08>`_ and is delivered in *JSON* format.
-* API data storage can be set in `Configuration <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/config.html>`_ of Mitum Currency.
+* API data storage can be set in `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_ of Mitum Currency.
 * Mitum's main storage can be used, or a separate database is also possible.
 * *TLS certificates* required for *HTTP/2* will randomly generate self signed certificates if the service host is localhost unless the path of the file is set separately.
 
