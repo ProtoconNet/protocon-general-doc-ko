@@ -8,14 +8,14 @@ Run
 
     * A node can find out the addresses of all nodes by using the node discovery protocol.
     * *Digest API* is included in Mitum Currency, so API service is provided by default.
-    * Please check `Configuration <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/config.html>`_ for Digest setting.
+    * Please check `Configuration <https://protocon-general-doc.readthedocs.io/en/latest/docs/run/config.html>`_ for Digest setting.
     * If Digest is not set, data for API service must be processed separately.
 
 ---------------------------------------------------
 Running the Standalone Node
 ---------------------------------------------------
 
-| Before running a node, please prepare tutorial.yml by refering to `Configuration <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/config.html>`_.
+| Before running a node, please prepare tutorial.yml by refering to `Configuration <https://protocon-general-doc.readthedocs.io/en/latest/docs/run/config.html>`_.
 
 node init
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -142,7 +142,7 @@ Lookup using Digest API
 
 | Account information can also be checked through *Digest API*.
 
-| The api address according to the digest setting `Configuration <https://protocon-general-doc.readthedocs.io/en/develop/docs/run/config.html>`_ is https://localhost:54320.
+| The api address according to the digest setting `Configuration <https://protocon-general-doc.readthedocs.io/en/latest/docs/run/config.html>`_ is https://localhost:54320.
 
 | Check genesis account through account information.
 

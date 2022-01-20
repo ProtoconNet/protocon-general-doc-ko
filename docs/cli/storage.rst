@@ -53,7 +53,7 @@ map
 
 | By ``download map`` command, download blockdata map.
 
-| See `Block Data <https://protocon-general-doc.readthedocs.io/en/develop/docs/model/currency.html#block-data>`_ for details.
+| See `Block Data <https://protocon-general-doc.readthedocs.io/en/latest/docs/model/currency.html#block-data>`_ for details.
 
 .. code-block:: shell
 
@@ -261,7 +261,7 @@ set-blockdatamaps
 
 | By ``set-blockdatamaps`` command, update multiple BlockDataMaps.
 
-| See `Block Data <https://protocon-general-doc.readthedocs.io/en/develop/docs/model/currency.html#block-data>`_ for details.
+| See `Block Data <https://protocon-general-doc.readthedocs.io/en/latest/docs/model/currency.html#block-data>`_ for details.
 
 .. code-block:: shell
 
