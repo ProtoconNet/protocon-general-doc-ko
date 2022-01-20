@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Protocon Network
+# This file is distributed under the same license as the Protocon Network
+# Document package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Protocon Network Document \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-20 14:18+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../index.rst:3
+msgid "Protocon Network Document"
+msgstr ""
+
+#: ../../index.rst:5
+msgid "Hello! This is the document for Protocon Network."
+msgstr ""
+
+#: ../../index.rst:9
+msgid "Protocon Network"
+msgstr ""
+
+#: ../../index.rst:11
+msgid ""
+"**Protocon** is a blockchain project that aims to build a self-operating "
+"digital economy based on protocols."
+msgstr ""
+
+#: ../../index.rst:13
+msgid ""
+"*ISAAC+*, Protocon's core consensus protocol, is designed for large-scale"
+" data processing for use in the industry, and has secured versatility so "
+"that it can be used in any area that requires blockchain technology. "
+"Based on this, we will promote a protocol-based pure digital economy."
+msgstr ""
+
+#: ../../index.rst:15
+msgid ""
+"For more information about Protocon, visit `Protocon "
+"<https://protocon.cafe24.com/en/protocon_en/>`_."
+msgstr ""
+
+#: ../../index.rst:19
+msgid "Contents"
+msgstr ""
+
+#: ../../index.rst:21
+msgid "Protocon Blockchain"
+msgstr ""
+
+#: ../../index.rst:27
+msgid "Blockchain Application Model"
+msgstr ""
+
+#: ../../index.rst:34
+msgid "Run a Node"
+msgstr ""
+
+#: ../../index.rst:43
+msgid "CLI"
+msgstr ""
+
+#: ../../index.rst:56
+msgid "REST API"
+msgstr ""
+
+#: ../../index.rst:64
+msgid "SDK"
+msgstr ""
+
+#: ../../index.rst:72
+msgid "Appendix"
+msgstr ""
+

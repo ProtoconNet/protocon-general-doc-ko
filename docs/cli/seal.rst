@@ -140,7 +140,7 @@ create-account
 
 | That means, the sender creates and sends only one operation that creates two account in the seal. It can be processed successfully. **Don't make multiple separate operations which senders are same.**
 
-.. code-block::
+.. code-block:: none
 
     sender's account - who create new account
     private key: L5GTSKkRs9NPsXwYgACZdodNUJqCAWjz2BccuR4cAgxJumEZWjokmpr
