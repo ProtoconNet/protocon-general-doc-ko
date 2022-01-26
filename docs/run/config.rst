@@ -1,3 +1,5 @@
+.. _config:
+
 ===================================================
 Configuration
 ===================================================
@@ -179,7 +181,7 @@ keypair
 
     privatekey: Kxt22aSeFzJiDQagrvfXPWbEbrTSPsRxbYm9BhNbNJTsrbPbFnPAmpr
 
-| See `Key Command <https://protocon-general-doc.readthedocs.io/en/latest/docs/cli/key.html>`_ to learn how to create a key pair.
+| See :ref:`key command` to learn how to create a key pair.
 
 ---------------------------------------------------
 storage

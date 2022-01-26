@@ -1,3 +1,5 @@
+.. _seal command:
+
 ===================================================
 Seal Command
 ===================================================
@@ -23,7 +25,7 @@ Seal Command
 
 | Whether the operation is successfully processed can be checked through the api.
 
-| For more information, please refer to `Confirming the Success of the Operation <https://protocon-general-doc.readthedocs.io/en/latest/docs/api/builder.html#confirming-the-success-of-the-operation>`_.
+| For more information, please refer to :ref:`confirm success`.
 
 ---------------------------------------------------
 create-account
@@ -41,7 +43,7 @@ create-account
 
 | We will proceed with the process of creating two accounts, ``ac0`` and ``ac1`` as an example.
 
-| For how to create a keypair, please refer to `Key Command <https://protocon-general-doc.readthedocs.io/en/latest/docs/cli/key.html#>`_.
+| For how to create a keypair, please refer to :ref:`key command`.
 
 | The operation that creates account ``ac0`` is as follows.
 
@@ -454,6 +456,8 @@ transfer
     $ ./mc seal transfer --network-id=$NETWORK_ID $AC0_PRV $AC0_ADDR $AC1_ADDR $CURRENCY_ID,3 | jq \
         ./mc seal send --network-id=$NETWORK_ID $AC0_PRV --seal=-
 
+.. _key updater:
+
 ---------------------------------------------------
 key-updater
 ---------------------------------------------------
@@ -468,7 +472,7 @@ key-updater
 
 * KEY: <pub key, weight>
 
-For more information about account keys, refer to `Multi Sig Account <https://protocon-general-doc.readthedocs.io/en/latest/docs/cli/key.html#multi-sig-account>`_.
+For more information about account keys, refer to :ref:`multi sig`.
 
 | **EXAMPLE**
 
@@ -914,7 +918,7 @@ send
 
 | Operations created in Mitum Currency are **transmitted in units of seals**.
 
-| Signature is required to transmit the seal. Refer to `Seal <https://protocon-general-doc.readthedocs.io/en/latest/docs/model/currency.html#seal>`_ for the part related to the keypair used for signature creation.
+| Signature is required to transmit the seal. Refer to :ref:`seal` for the part related to the keypair used for signature creation.
 
 | **EXAMPLE**
 
