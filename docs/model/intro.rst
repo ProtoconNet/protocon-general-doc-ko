@@ -2,26 +2,26 @@
 Blockchain Application Model
 ===================================================
 
-| *Mitum* is designed for general purpose blockchain. To fill this requirement, **policy** and **data** of Mitum can be configurable and manageable by practical way.
+| Mitum은 범용 블록체인으로 디자인 되었습니다. 이 요구를 충족하기 위해, Mitum의 정책 및 데이터는 실용적인 방법으로 구성 및 관리할 수 있습니다.
 
-| To make a long story short, network designers will design their network in 2 parts:
+| 간단히 말해, 네트워크 디자이너는 네트워크를 두 부분으로 디자인 할 것입니다.
 
-* Data
-* Policy
+* 데이터
+* 정책
 
-| By designing *data* and *policy*, designers can build and launch their own model of network.
+| 데이터와 정책을 디자인함으로써 디자이너는 자신의 네트워크 모델을 구축하고 출시할 수 있습니다.
 
-| For example, suppose that a designer want to build currency model in Mitum. He/She can define several currencies and relative data and add additional policy.
+| 예를 들어, 디자이너가 Mitum에서 currency 모델을 빌드하고자 한다고 가정해봅시다. 그는 여러 currency를 정의할 수 있으며 관련 데이터와 추가적인 정책을 추가할 수 있습니다.
 
-| Data types:
+| 데이터 타입:
 
-* account
-* balance
+* 계정
+* 잔액
 
-| Policy:
+| 정책:
 
-* total amount
-* minimum amount of new balance
-* multisig
-* inflation
-* etc...
+* 총량
+* 새 계정의 최소 잔액
+* 멀티 시그
+* 인플레이션
+* 기타...

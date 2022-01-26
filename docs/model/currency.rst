@@ -6,10 +6,10 @@ Mitum Currency
 What is Mitum Currency
 ---------------------------------------------------
 
-* **Mitum Currency** is a currency model that operates on the **Mitum** blockchain networks.
-* The Mitum model is a solution that can provide various services as an extension layer that extends the Mitum main chain.
-* In Mitum Currency, flexible policy settings related to currency issuance and operation are possible.
-* Mitum Currency is implemented based on Mitum (blockchain core framework).
+* Mitum Currency는 Mitum 네트워크 위에서 운용되는 currency 모델입니다.
+* Mitum 모델은 Mitum main chain을 확장하는 확장층으로서 다양한 서비스를 제공할 수 있는 솔루션입니다.
+* Mitum Currency에서, 화폐 발행 및 운용과 관련한 유연한 정책 설정이 가능합니다.
+* Mitum Currency는 Mitum(blockchain core framework)을 기반으로 구현되었습니다.
 
 
 .. image:: ../images/model.currency/mitum_blockchain_layer.png
@@ -22,19 +22,19 @@ What is Mitum Currency
 Feature of Mitum Currency
 ---------------------------------------------------
 
-* Mitum Currency provides core features to meet the business needs of various fields related to tokens.
-* *Multiple keys* can be registered when creating an account, and related keys can be replaced through key update operation.
-* Mitum Currency can issue new currency and related policy can be customized.
-* Currency-related policy can be updated at any time as needed.
-* Mitum Currency has no compensation for block generation and there is also no inflation.
-* The node configuration for the Mitum Currency network follows the node operation policy of the Mitum blockchain, and details can be found at :ref:`build network`.
+* Mitum Currency가 제공하는 주요 특징은 토큰과 관련한 다양한 분야의 비즈니스 요구를 충족합니다.
+* 새 계정 생성 시 다중 키가 등록될 수 있으며 관련 키들은 key update operation으로 교체될 수 있습니다.
+* Mitum Currency는 새로운 currency를 발행하고 정책을 사용자화 할 수 있습니다.
+* currency 정책은 필요할 때 언제나 업데이트 될 수 있습니다.
+* Mitum Currency는 블록 생성에 보상이 없으며 인플레이션도 없습니다.
+* Mitum Currency 네트워크의 노드 구성은 Mitum의 노드 operation 정책에 따르며 자세한 내용은 :ref:`build network` 에서 찾아볼 수 있습니다.
 
 ---------------------------------------------------
 Digest Service
 ---------------------------------------------------
 
-* **Digest Service** is an internal service that stores block data stored by Mitum separately to serve as *HTTP-based API*.
-* For more information on Digest Service, please refer to :ref:`rest api`.
+* Digest Service는 Mitum에 저장된 블록 데이터를 저장하며 HTTP-based API로 서비스되는 내부 서비스입니다.
+* Digest Service에 대한 자세한 내용은 :ref:`rest api` 를 참고해주세요.
 
 ---------------------------------------------------
 Seal and Operation
@@ -43,9 +43,9 @@ Seal and Operation
 Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In the Mitum blockchain network, an operation is **a unit of command that changes data**.
+| Mitum 블록체인 네트워크에서 operation은 데이터를 변경하는 명령의 단위입니다.
 
-| Mitum Currency has operations of,
+| Mitum Currency가 지원하는 operation은 다음과 같습니다.
 
 * ``create-account``
 * ``transfer``
@@ -54,35 +54,35 @@ Operation
 * ``currency-policy-updater``
 * ``suffrage-infration``
 
-| Each operation requires a signature made with a private key according to its contents.
+| 각 operation은 그 내용에 따라 개인키로 서명한 서명이 필요합니다.
 
-| The fact in the operation contains the contents to be executed, and the hash value summarizing the body of the fact is also included.
+| operation의 fact는 실행할 내용을 담고 있으며 fact는 내용을 요약하는 hash 값이 포함되어 있습니다.
 
 Fact and token
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Every operation contains a *fact*. In other words, **the content of the operation is actually contained in the fact**.
+| 모든 operation은 fact를 포함하고 있습니다. 한 마디로, operation의 내용은 실재로는 fact에 들어있습니다.
 
-| Facts play an important role in Mitum Currency.
+| fact는 Mitum Currency에서 중요한 역할을 합니다.
 
-* The fact hash is a value representing the processed operation.
-* The fact hash must have a unique value in the blockchain.
-* So to check whether the operation is stored in the block, it can be retrieved using the fact hash.
+* fact hash는 처리된 operation을 대표하는 값입니다.
+* fact hash 블록체인에서 고유값을 가집니다.
+* operation이 블록에 저장되었는지는 fact hash를 검색해 확인할 수 있습니다.
 
-| In fact, the contents of the facts can be duplicated. 
+| 사실, fact의 내용은 중복될 수 있습니다. 
 
-| For example, 
+| 예를 들어, 
 
     .. code-block:: none
         
-        - The contents that `sender A sends 100 to receiver B` must always have the same fact.
-        - Fact hashes created using the same fact content can result in duplicate values.
-        - If there are two or more operations that result in duplicate values of the fact hash, only the first operation is processed and the remaining operations are ignored.
+        - `sender A가 receiver B에게 토큰 100을 보낸다`는 항상 같은 fact 내용을 가집니다.
+        - 그러므로 같은 fact 내용만으로 만든 fact의 hash 값은 중복될 가능성이 있습니다.
+        - 만약 fact hash가 중복된 여러 개의 operation이 있을 경우 오직 첫 번째 operation만이 처리되며 나머지는 무시됩니다.
 
-| If so, does that mean that operations with the same fact content cannot be duplicated?
+| 그렇다면, 같은 내용을 가진 fact는 다시 보낼 수 없을까요?
 
-| Don’t worry, in each fact, we use a value called *token* to make it unique.
-| The token is a value added to the essential contents of the operation.
+| 걱정하지 마세요. 각 fact에는 fact를 고유하게 만들어주는 token 값이 포함되어 있습니다.
+| token은 operation에 추가되어야 하는 필수적인 값입니다.
 
 .. code-block:: json
     
@@ -116,46 +116,46 @@ Fact and token
         ]
     }
 
-| A token is similar to a memo, but has the characteristic of making a fact unique by **using a unique token value** for the same fact content.
+| token은 memo와 비슷하지만, 같은 fact 내용에 대해 고유한 token을 사용함으로써 fact를 고유하게 만들어주는 특성이 있습니다.
 
-| Making the fact essential to every operation unique expands usability in many ways.
+| 모든 operation의 fact를 고유하게 만드는 것은 많은 방향으로 사용성을 확장시킵니다.
 
-* The biggest advantage is that if you know exactly the contents of the fact along with the token, you can simply check whether the operation is processed or not.
-* Anyone can calculate the fact hash if they know the sender, receiver, currencyID, amount, and a specific token value was used.
-* Therefore, anyone can inquire whether the corresponding operation has been processed with the fact hash.
+* 가장 큰 이점은 token과 fact의 정확한 내용을 알고 있으면 operation이 처리되었는지 간단히 확인할 수 있다는 것입니다.
+* sender, receiver, currencyID, amount, 그리고 특정 token 값을 알고 있으면 누구나 fact hash를 계산할 수 있습니다.
+* 그러므로 fact hash에 상응하는 operation이 처리되었는지 누구나 알 수 있습니다.
 
-| A *fact hash* is like a **public proof** recorded in a blockchain. If the evidence disclosed in the blockchain is used well, various applications can be made.
-| For example, even an outsider who does not have a direct account in the blockchain can check the fact hash, which is the only value indicating whether the operation is processed or not, and make the implementation conditional on this.
+| fact hash는 블록체인에 기록되는 공개 증명과 같습니다. 만약 블록체인에 게시된 증명을 잘 사용하면 다양하게 응용할 수 있습니다.
+| 예를 들자면 블록체인에 직접 계정을 가지지 않은 외부인도 operation이 처리되었는지를 나타내는 유일한 값인 fact hash를 알아내고 조건에 맞게 구현할 수 있습니다.
 
-| In addition, facts and tokens can be usefully used in models that deal with various data as well as remittance.
+| 게다가 fact와 token들은 송금뿐만이 아닌 다양한 데이터를 다루는 모델에 유용하게 사용될 수 있습니다.
 
 .. _seal:
 
 Seal
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| *Seal* is **a collection of operations** transmitted to the network. In other words, the Operation is contained in the seal and transmitted.
+| Seal은 operation의 모음으로 네트워크에 전송됩니다. 즉, operation이 seal에 담겨 전송됩니다.
 
-* To transmit the seal, a signature made with a private key is required.
-* To create signature, you must use the private key created in Mitum’s keypair package.
-* Seal can contain up to 100 operations.
+* seal을 전송하기 위해, 개인키로 만든 서명이 필요합니다.
+* 서명을 생성하기 위해 Mitum의 키페어 패키지로부터 생성한 개인키가 필요합니다.
+* seal은 최대 100 개의 operation을 담을 수 있습니다.
 
-| The private key used for the signature has nothing to do with the blockchain account. In other words, it doesn’t have to be the private key used by the account.
+| seal 서명에 사용되는 개인키는 블록체인 상에서 아무것도 할 필요가 없습니다. 즉, 해당 개인키는 등록된 계정의 키일 필요가 없습니다.
 
 Send
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| After creating an operation, the client creates and attaches a signature.
+| operation 생성 후, 클라이언트는 서명을 생성 해 seal에 붙입니다.
 
-* Create as many operations as necessary within the maximum number able to be included in the seal, and put them in the seal.
-* Create and put a signature on the seal.
-* Send seal to Mitum node.
+* seal에 담을 수 있는 최대 operation 수 내에서 필요한 가능한 많은 operation을 만들어 seal에 담으세요.
+* seal 서명을 생성해 추가하세요.
+* Mitum 노드에 seal을 전송하세요.
 
 Stored in Block
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| The operation transmitted to the Blockchain network changes the state of the account if it is normal and is finally saved in the block.
-| Whether the operation is confirmed and saved in the block can be checked through :ref:`rest api`.
+| 블록체인 네트워크에 전송된 operation은 그 operation이 정상적이고 블록에 쌓인 경우 계정의 상태를 변화시킵니다.
+| operation이 블록에 저장되었는지 :ref:`rest api` 를 통해 확인할 수 있습니다.
 
 .. _block data:
 
@@ -166,9 +166,9 @@ Block Data
 Block data in Mitum Currency Node
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In the **Mitum Currency Node**, block data is stored in two spaces: **Database** and **File System**.
+| Mitum Currency Node에서 블록 데이터는 두 공간에 저장됩니다: 데이터베이스, 파일 시스템
 
-* The **database** stores the informations which are used for consensus, such as,
+* 데이터베이스는 합의에 사용되는 다음과 같은 정보를 저장합니다.
 
 .. code-block:: none
 
@@ -182,7 +182,7 @@ Block data in Mitum Currency Node
     state: state data by each block
     voteproof
 
-* The **file system** stores all block data, such as,
+* 파일 시스템은 다음과 같은 모든 블록 데이터를 저장합니다.
 
 .. code-block:: none
 
@@ -193,17 +193,17 @@ Block data in Mitum Currency Node
     suffrage information
     voteproofs(and init and accept ballots)
 
-* Block data stored in the **database** is required to run the mitum currency node and participate in the network normally.
-* Block data in the **file system** is not used at runtime, but is used to provide block data to syncing nodes.
+* 데이터베이스에 저장된 블록 데이터는 mitum currency 노드를 실행하고 정상적으로 네트워크에 참여하기 위해 필요합니다.
+* 파일 시스템의 블록 데이터는 런타임에 사용되지 않으며 syncing 노드에 블록 데이터를 제공하는데 사용됩니다.
 
-| An intact node must support block data for other nodes which want to synchronize block data.
+| 온전한 노드는 블록 데이터를 동기화하길 원하는 다른 노드들을 위해 블록 데이터를 제공해야 합니다.
 
 BlockDataMap
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| By default, block data is stored on the local file system.
+| 기본적으로 블록 데이터는 로컬 파일 시스템에 저장됩니다.
 
-| *blockdatamap* contains the information about where the actual block data is located.
+| blockdatamap은 실제 블록 데이터가 어디에 위치해있는지에 대한 정보를 포함합니다.
 
 .. code-block:: json
 
@@ -223,14 +223,14 @@ BlockDataMap
         "writer": "blockdata-writer-v0.0.1"
     }
 
-| In this BlockDataMap example, the data of ``operation_tree`` is located at ``file:///000/000/000/000/000/000/002/2-operations_tree-1f9877aebf8854fd42154c6e6479ff6a3e379b2762c65995c80f3dff2a357a26.jsonld.gz``
+| 이 BlockDataMap 예제에서, ``operation_tree`` 의 데이터는 ``file:///000/000/000/000/000/000/002/2-operations_tree-1f9877aebf8854fd42154c6e6479ff6a3e379b2762c65995c80f3dff2a357a26.jsonld.gz`` 에 위치해있습니다.
 
 BlockDataMap for block data stored in external storage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| Mitum Currency supports storing block data in external storage rather than the node’s local file system.
+| Mitum Currency는 노드의 로컬 파일 시스템이 아닌 외부 스토리지에 블록 데이터를 저장하는 것을 지원합니다.
 
-| After going through some process to store block data externally, *blockdatamap* becomes as follows.
+| 블록 데이터를 외부에 저장하기 위한 몇 가지 과정을 거치고 나면 blockdatamap은 다음과 같아집니다.
 
 .. code-block:: json
     
@@ -250,28 +250,28 @@ BlockDataMap for block data stored in external storage
         "writer": "blockdata-writer-v0.0.1"
     }
 
-| As you can see, the ``url`` is replaced with the external storage server.
+| 보이는 것처럼 ``url`` 은 외부 스토리지 서버로 교체됩니다.
 
 How to update BlockDataMap for external Storage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| For example, suppose that block data with a block height of 10 is moved to an external storage.
+| 예를 들어 block height 10의 블록 데이터가 외부 스토리지로 옮겨졌다고 가정해봅시다.
 
-| Here we will do this using the node’s *deploy key*.
-| This *deploy key* of the node is a key that can be used instead of the private key of the node.
+| 노드의 deploy key를 사용하겠습니다.
+| 노드의 이 deploy key는 노드의 개인키 대신 사용되는 키입니다.
 
-| See ``deploy key`` command in :ref:`deploy command` for how to create a deploy key.
+| deploy key를 만드는 방법은 :ref:`deploy command` 의 ``deploy key`` 를 참고하세요.
 
-| The process of **moving block data** and **updating blockdatamap** is as follows.
+| 블록 데이터 이동과 blockdatamap 업데이트 과정은 다음과 같습니다.
 
-* Get the new *deploy key* of mitum currency node.
-* Download the current *blockdatamap* by using the ``storage download map`` command.
-* Upload all the block data files of height 10 to external storage(example : AWS S3)
-* Update the ``url`` field value of the downloaded BlockDataMap with the new url of external storage.
-* Update the node’s *blockdatamap* by running the ``storage set-blockdatamaps`` command.
-* Check the newly updated *blockdatamap* with ``storage download map`` command
+* mitum currency 노드의 새로운 deploy key를 얻습니다.
+* ``storage download map`` 을 사용해 현재 blockdatamap을 내려받습니다.
+* block height 10의 모든 블록 데이터를 외부 스토리지에 업로드합니다. (example : AWS S3)
+* 내려받은 BlockDataMap의 ``url`` 필드값을 새로운 외부 스토리지 url로 교체합니다.
+* ``storage set-blockdatamaps`` 명령어를 실행하여 노드의 blockdatamap을 업데이트합니다.
+* 새롭게 업데이트 된 blockdatamap을 ``storage download map`` 명령어로 확인하세요.
 
-| After updating blockdatamap successfully, mitum currency node will remove all the files of height, 10 automatically after 30 minute.
+| blockdatamap을 성공적으로 업데이트하면 mitum currency 노드는 30초뒤 자동적으로 height 10의 모든 파일을 지웁니다.
 
 .. code-block:: shell
 
@@ -424,4 +424,4 @@ Support Operations
 | transfer                           | Transfer amount of tokens          | 
 +------------------------------------+------------------------------------+
 
-| Refer to :ref:`seal command` to check how to create those operations by commands.
+| 명령어로 위 operation을 생성하는 방법은 :ref:`seal command` 을 참고하세요.
