@@ -25,11 +25,7 @@ Seal Command
 
 | Whether the operation is successfully processed can be checked through the api.
 
-<<<<<<< HEAD
-| For more information, please refer to `Confirming the Success of the Operation <https://protocon-general-doc.readthedocs.io/en/stable/docs/api/builder.html#confirming-the-success-of-the-operation>`_.
-=======
 | For more information, please refer to :ref:`confirm success`.
->>>>>>> main
 
 ---------------------------------------------------
 create-account
@@ -47,11 +43,7 @@ create-account
 
 | We will proceed with the process of creating two accounts, ``ac0`` and ``ac1`` as an example.
 
-<<<<<<< HEAD
-| For how to create a keypair, please refer to `Key Command <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/key.html#>`_.
-=======
 | For how to create a keypair, please refer to :ref:`key command`.
->>>>>>> main
 
 | The operation that creates account ``ac0`` is as follows.
 
@@ -480,11 +472,7 @@ key-updater
 
 * KEY: <pub key, weight>
 
-<<<<<<< HEAD
-For more information about account keys, refer to `Multi Sig Account <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/key.html#multi-sig-account>`_.
-=======
 For more information about account keys, refer to :ref:`multi sig`.
->>>>>>> main
 
 | **EXAMPLE**
 

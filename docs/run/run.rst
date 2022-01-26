@@ -8,24 +8,16 @@ Run
 
     * A node can find out the addresses of all nodes by using the node discovery protocol.
     * *Digest API* is included in Mitum Currency, so API service is provided by default.
-<<<<<<< HEAD
-    * Please check `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_ for Digest setting.
-=======
     * Please check :ref:`config` for Digest setting.
->>>>>>> main
     * If Digest is not set, data for API service must be processed separately.
 
 ---------------------------------------------------
 Running the Standalone Node
 ---------------------------------------------------
 
-<<<<<<< HEAD
-| Before running a node, please prepare tutorial.yml by refering to `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_.
-=======
 | Before running a node, please prepare tutorial.yml by refering to :ref:`config`.
 
 .. _node init:
->>>>>>> main
 
 node init
 '''''''''''''''''''''''''''''''''''''''''''''''''''

@@ -53,11 +53,7 @@ map
 
 | By ``download map`` command, download blockdata map.
 
-<<<<<<< HEAD
-| See `Block Data <https://protocon-general-doc.readthedocs.io/en/stable/docs/model/currency.html#block-data>`_ for details.
-=======
 | See :ref:`block data` for details.
->>>>>>> main
 
 .. code-block:: shell
 

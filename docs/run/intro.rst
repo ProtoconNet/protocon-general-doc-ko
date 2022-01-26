@@ -47,11 +47,7 @@ Installation and Setup
 
     $ docker run --name <db name> -it -p <host port>:<container port> -d mongo
 
-<<<<<<< HEAD
-* About DB setup, refer to `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_.
-=======
 * About DB setup, refer to :ref:`config`.
->>>>>>> main
 
 Golang
 '''''''''''''''''''''''''''''''''''''''''''''''''''
