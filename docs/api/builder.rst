@@ -110,7 +110,7 @@ Get Operation Fact Template
 * ``token`` is a *base64* encoded value.
 * Use the ``_hint`` item as it is.
 
-| Check `Key Command <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/key.html>`_ for the details of key registration of accounts related to ``keys``.
+| Check :ref:`key command` for the details of key registration of accounts related to ``keys``.
 
 ---------------------------------------------------
 Build Operation Message
@@ -451,6 +451,8 @@ Broadcast Message to Network
         }
     }
 
+.. _confirm success:
+
 ---------------------------------------------------
 Confirming the Success of the Operation
 ---------------------------------------------------
@@ -470,7 +472,7 @@ Confirming the Success of the Operation
     
     1. *insufficient balance of sender* when sending money
     2. *incorrect signature*
-    3. *creation-account amount less than new-account-min-balance*
+    3. *create-account amount less than new-account-min-balance*
     4. etc...
 
 | You can check the reason for failure in ``_embedded.reason.msg`` in the response message.

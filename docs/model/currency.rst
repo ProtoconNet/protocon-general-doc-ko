@@ -27,14 +27,22 @@ Feature of Mitum Currency
 * Mitum Currency can issue new currency and related policy can be customized.
 * Currency-related policy can be updated at any time as needed.
 * Mitum Currency has no compensation for block generation and there is also no inflation.
+<<<<<<< HEAD
 * The node configuration for the Mitum Currency network follows the node operation policy of the Mitum blockchain, and details can be found at `Build Multi Nodes Network <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/run.html#build-multi-nodes-network>`_.
+=======
+* The node configuration for the Mitum Currency network follows the node operation policy of the Mitum blockchain, and details can be found at :ref:`build network`.
+>>>>>>> main
 
 ---------------------------------------------------
 Digest Service
 ---------------------------------------------------
 
 * **Digest Service** is an internal service that stores block data stored by Mitum separately to serve as *HTTP-based API*.
+<<<<<<< HEAD
 * For more information on Digest Service, please refer to `REST API <https://protocon-general-doc.readthedocs.io/en/stable/docs/api/intro.html>`_.
+=======
+* For more information on Digest Service, please refer to :ref:`rest api`.
+>>>>>>> main
 
 ---------------------------------------------------
 Seal and Operation
@@ -129,6 +137,8 @@ Fact and token
 
 | In addition, facts and tokens can be usefully used in models that deal with various data as well as remittance.
 
+.. _seal:
+
 Seal
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -153,7 +163,13 @@ Stored in Block
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | The operation transmitted to the Blockchain network changes the state of the account if it is normal and is finally saved in the block.
+<<<<<<< HEAD
 | Whether the operation is confirmed and saved in the block can be checked through `REST API <https://protocon-general-doc.readthedocs.io/en/stable/docs/api/intro.html>`_.
+=======
+| Whether the operation is confirmed and saved in the block can be checked through :ref:`rest api`.
+
+.. _block data:
+>>>>>>> main
 
 ---------------------------------------------------
 Block Data
@@ -256,7 +272,11 @@ How to update BlockDataMap for external Storage
 | Here we will do this using the node’s *deploy key*.
 | This *deploy key* of the node is a key that can be used instead of the private key of the node.
 
+<<<<<<< HEAD
 | See ``deploy key`` command in `Deploy Command <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/deploy.html>`_ for how to create a deploy key.
+=======
+| See ``deploy key`` command in :ref:`deploy command` for how to create a deploy key.
+>>>>>>> main
 
 | The process of **moving block data** and **updating blockdatamap** is as follows.
 
@@ -420,4 +440,4 @@ Support Operations
 | transfer                           | Transfer amount of tokens          | 
 +------------------------------------+------------------------------------+
 
-| Refer to `Seal Command <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/seal.html>`_ to check how to create those operations by commands.
+| Refer to :ref:`seal command` to check how to create those operations by commands.

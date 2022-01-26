@@ -8,14 +8,24 @@ Run
 
     * A node can find out the addresses of all nodes by using the node discovery protocol.
     * *Digest API* is included in Mitum Currency, so API service is provided by default.
+<<<<<<< HEAD
     * Please check `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_ for Digest setting.
+=======
+    * Please check :ref:`config` for Digest setting.
+>>>>>>> main
     * If Digest is not set, data for API service must be processed separately.
 
 ---------------------------------------------------
 Running the Standalone Node
 ---------------------------------------------------
 
+<<<<<<< HEAD
 | Before running a node, please prepare tutorial.yml by refering to `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_.
+=======
+| Before running a node, please prepare tutorial.yml by refering to :ref:`config`.
+
+.. _node init:
+>>>>>>> main
 
 node init
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -42,6 +52,8 @@ node init
     If already saved block data is found, an error ``environment already exists: block=0`` occurs. To reset the error and ignore it, run it by adding the ``--force`` option.    
     
     ``$ ./mc --log-level info init ./tutorial.yml --force``
+
+.. _node run:
 
 node run
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -142,7 +154,7 @@ Lookup using Digest API
 
 | Account information can also be checked through *Digest API*.
 
-| The api address according to the digest setting `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_ is https://localhost:54320.
+| The api address according to the digest setting :ref:`config` is https://localhost:54320.
 
 | Check genesis account through account information.
 
@@ -177,6 +189,8 @@ Lookup using Digest API
             "previous_height": -2
         }
     }
+
+.. _build network:
 
 ---------------------------------------------------
 Build Multi Nodes Network

@@ -195,7 +195,7 @@ Create Operation Fact
     String senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca"; // sender's account address; replace with your address
     CreateAccountsFact fact = generator.currency().newCreateAccountsFact(senderAddress, new CreateAccountsItem[]{ item });  // newCreateAccountsFact(sender address, item list)
 
-| If you want to create fact with multiple items, put them all in item list as an array of ``Generator.currency().newCreateAccountsFact(sender's address, item list)``
+| If you want to create fact with multiple items, put them all in item list of ``Generator.currency().newCreateAccountsFact(sender's address, item list)`` as an array.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''

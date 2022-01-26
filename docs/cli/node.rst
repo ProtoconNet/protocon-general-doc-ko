@@ -17,7 +17,11 @@ init
 
 | By ``init`` command, **initialize the node** with the node design file containing the node configuration.
 
+<<<<<<< HEAD
 | See `node init <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/run.html#node-init>`_ for a detailed explanation of ``init`` command.
+=======
+| See :ref:`node init` for a detailed explanation of ``init`` command.
+>>>>>>> main
 
 .. code-block:: shell
 
@@ -29,7 +33,7 @@ run
 
 | By ``run`` command, **run the node** with the node design file containing the node configuration.
 
-| See `node run <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/run.html#node-run>`_ for a detailed explanation of ``run`` command.
+| See :ref:`node run` for a detailed explanation of ``run`` command.
 
 .. code-block:: shell
 
@@ -41,7 +45,7 @@ start-handover
 
 | By ``start-handover`` command, **replace the running node** with another node.
 
-| See `Node Handover <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/handover.html>`_ for a detailed explanation of ``start-handover`` command.
+| See :ref:`node handover` for a detailed explanation of ``start-handover`` command.
 
 .. code-block:: shell
 

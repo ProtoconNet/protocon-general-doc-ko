@@ -1,3 +1,5 @@
+.. _key command:
+
 ===================================================
 Key Command
 ===================================================
@@ -86,7 +88,9 @@ address
     $ ./mc key address 100 21Sn1owHXRx336aaerU1WbbKjiZXMcrJsnxBHP9etNx6zmpu,50 utzCefA1Szmmt3rAwqW5yEhxK1x3hG3Y3yThEK3gZmv3mpu,50
     37x8YoAGA93B3HmDVNterRf1NTgz9tfN1gQn4jYuBYCHmca
 
-| **However, you can't get correct address if the keys of the account have updated by key-updater command.** Refer to `key-updater <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/seal.html#key-updater>`_. 
+| **However, you can't get correct address if the keys of the account have updated by key-updater command.** Refer to :ref:`key updater`. 
+
+.. _multi sig:
 
 Multi Sig Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''

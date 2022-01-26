@@ -187,7 +187,7 @@ Create Operation Fact
     senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca" # sender's account address; replace with your address
     createAccountsFact = currencyGenerator.createCreateAccountsFact(senderAddress, [createAccountsItem]) # createCreateAccountsFact(sender's address, item list)
 
-| If you want to create fact with multiple items, put them all in item list as an array of ``Generator.currency.createCreateAccountsFact(sender's address, item list)``
+| If you want to create fact with multiple items, put them all in item list of ``Generator.currency.createCreateAccountsFact(sender's address, item list)``  as an array.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''

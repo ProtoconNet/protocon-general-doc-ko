@@ -47,7 +47,11 @@ Installation and Setup
 
     $ docker run --name <db name> -it -p <host port>:<container port> -d mongo
 
+<<<<<<< HEAD
 * About DB setup, refer to `Configuration <https://protocon-general-doc.readthedocs.io/en/stable/docs/run/config.html>`_.
+=======
+* About DB setup, refer to :ref:`config`.
+>>>>>>> main
 
 Golang
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -83,4 +87,4 @@ Installation
     $ ./mc version
     v0.0.1
 
-| To see all instructions of Mitum Currency, refer to `CLI <https://protocon-general-doc.readthedocs.io/en/stable/docs/cli/intro.html>`_.
+| To see all instructions of Mitum Currency, refer to :ref:`cli`.
