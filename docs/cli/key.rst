@@ -4,9 +4,9 @@
 Key Command
 ===================================================
 
-| ``key``는 키페어 생성, keys로부터 계정 주소 연산, 서명을 지원합니다.
+| ``key`` 는 키페어 생성, keys로부터 계정 주소 연산, 서명을 지원합니다.
 
-| ``key``의 하위 명령어는 다음과 같습니다.
+| ``key`` 의 하위 명령어는 다음과 같습니다.
 
 * ``new``
 * ``address``
@@ -16,14 +16,14 @@ Key Command
 
     Keypair
     
-    * *개인키*와 *공개키*는 키페어 생성에 의해 만들어집니다.
-    * 생성된 키페어는 *게정 생성*, 노드의 *키페어 등록*, operation과 seal의 *서명 생성*에 사용됩니다.
+    * 개인키와 공개키는 키페어 생성에 의해 만들어집니다.
+    * 생성된 키페어는 게정 생성, 노드의 키페어 등록, operation과 seal의 서명 생성에 사용됩니다.
 
 ---------------------------------------------------
 new
 ---------------------------------------------------
 
-| ``new``를 사용해 **새로운 키페어를 생성**합니다.
+| ``new`` 를 사용해 새로운 키페어를 생성합니다.
 
 Random Keypair
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -67,7 +67,7 @@ address
 
 | ``address`` 명령어로 keys로부터 주소를 계산합니다.
 
-| 계정의 (public key, weight) 쌍과 threshold를 준비해야 합니다. 아래의 *Multi Sig Account*를 참고하세요.
+| 계정의 (public key, weight) 쌍과 threshold를 준비해야 합니다. 아래의 Multi Sig Account를 참고하세요.
 
 .. code-block:: shell
 
@@ -88,17 +88,17 @@ address
     $ ./mc key address 100 21Sn1owHXRx336aaerU1WbbKjiZXMcrJsnxBHP9etNx6zmpu,50 utzCefA1Szmmt3rAwqW5yEhxK1x3hG3Y3yThEK3gZmv3mpu,50
     37x8YoAGA93B3HmDVNterRf1NTgz9tfN1gQn4jYuBYCHmca
 
-| **하지만, key-updater 명령어로 계정의 key, weight, threshold 구성이 달라진 경우에는 올바른 계정 주소를 얻을 수 없습니다.** :ref:`key updater`를 참고하세요. 
+| 하지만, key-updater 명령어로 계정의 key, weight, threshold 구성이 달라진 경우에는 올바른 계정 주소를 얻을 수 없습니다. :ref:`key updater` 를 참고하세요. 
 
 .. _multi sig:
 
 Multi Sig Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* Mitum Currency에서 계정은 *currency*와 *balance*를 가진 데이터 구조체입니다.
-* 계정은 *address*라는 고유값을 가지고 있으며 이 값을 통해 식별할 수 있습니다.
-* 사용자의 *Account authentication*을 위해 공개키를 등록하세요.
-* Mitum Currency 계정은 **multi signature**가 가능하므로 *multiple public keys*를 가질 수 있습니다. 
+* Mitum Currency에서 계정은 currency와 balance를 가진 데이터 구조체입니다.
+* 계정은 address라는 고유값을 가지고 있으며 이 값을 통해 식별할 수 있습니다.
+* 사용자의 Account authentication을 위해 공개키를 등록하세요.
+* Mitum Currency 계정은 multi signature가 가능하므로 multiple public keys를 가질 수 있습니다. 
 
 | 예를 들어, 다음 조건의 계정이 유효합니다.
 
@@ -116,11 +116,11 @@ Multi Sig Account
 
     각 계정이 따라야 할 조건은 다음과 같습니다.
 
-    * ``threshold``의 범위는 1 <= threshold <= 100입니다.
-    * 각 ``weight``의 범위는 1 <= weight <= 100입니다.
-    * 계정의 모든 ``weight``의 합은 ``threshold`` 이상이어야 합니다.
+    * ``threshold`` 의 범위는 1 <= threshold <= 100입니다.
+    * 각 ``weight`` 의 범위는 1 <= weight <= 100입니다.
+    * 계정의 모든 ``weight`` 의 합은 ``threshold`` 이상이어야 합니다.
     * 각 공개키는 ``mpu`` 접미사가 붙은 BTC compressed public key여야 합니다.
-    * 주소값에는 ``mca``가 접미사로 따라옵니다.
+    * 주소값에는 ``mca`` 가 접미사로 따라옵니다.
 
     다음은 유효한 계정의 예시입니다.
 
@@ -144,7 +144,7 @@ Multi Sig Account
     * threshold: 50
     * keys: {key: rd89Gx…, weight: 20}, {key: skRdC6…, weight: 20}, {key: mymMwq…, weight: 10}
 
-| 같은 공개키 조합이라도 ``weight``나 ``threshold``의 조합이 다르면 다른 계정 주소를 가질 수 있습니다.
+| 같은 공개키 조합이라도 ``weight`` 나 ``threshold`` 의 조합이 다르면 다른 계정 주소를 가질 수 있습니다.
 
 ---------------------------------------------------
 sign

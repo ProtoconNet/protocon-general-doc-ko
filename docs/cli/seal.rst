@@ -4,9 +4,9 @@
 Seal Command
 ===================================================
 
-| ``seal``는 seal에 포함된 다양한 operation들을 실행하는데 도움을 주는 명령어입니다.
+| ``seal`` 은 seal에 포함된 다양한 operation들을 실행하는데 도움을 주는 명령어입니다.
 
-| **operation**과 관련된 명령어는 다음과 같습니다.
+| operation과 관련된 명령어는 다음과 같습니다.
 
 * ``create-account``
 * ``transfer``
@@ -15,9 +15,9 @@ Seal Command
 * ``currency-policy-updater``
 * ``suffrage-inflation``
 
-| ``seal``는 서명을 만들고 seal을 전송하도록 지원합니다.
+| ``seal``은 서명을 만들고 seal을 전송하도록 지원합니다.
 
-| **signature generation**와 **transmission**와 관련된 명령어는 다음과 같습니다.
+| signature generation과 transmission에 관련된 명령어는 다음과 같습니다.
 
 * ``send``
 * ``sign``
@@ -25,13 +25,13 @@ Seal Command
 
 | operation이 제대로 처리되었는지는 api를 통해 확인할 수 있습니다.
 
-| 더 많은 정보는 :ref:`confirm success`를 참고하세요.
+| 더 많은 정보는 :ref:`confirm success` 를 참고하세요.
 
 ---------------------------------------------------
 create-account
 ---------------------------------------------------
 
-| ``create-account`` 계정을 생성하세요.
+| ``create-account`` 로 계정을 생성하세요.
 
 .. code-block:: shell
 
@@ -41,11 +41,11 @@ create-account
 
 | **EXAMPLE**
 
-| ``ac0``와 ``ac1`` 두 계정을 생성하는 과정을 예제로 설명합니다.
+| ``ac0`` 와 ``ac1`` 두 계정을 생성하는 과정을 예제로 설명합니다.
 
-| 키페어를 생성하는 방법은 :ref:`key command`을 참고하세요.
+| 키페어를 생성하는 방법은 :ref:`key command` 을 참고하세요.
 
-| ``ac0``를 생성하는 operation은 다음과 같습니다.
+| ``ac0`` 를 생성하는 operation은 다음과 같습니다.
 
 1. **Create Single Sig Account**
 
@@ -135,12 +135,12 @@ create-account
 .. note::
 
     * Mitum Currency에서 한 계정에 의해 서명된 다수의 operation은 한 블록에서 처리될 수 없습니다.
-    * 예를 들어 ``ac0``에서 각각 ``ac1``, ``ac2``로 5 amount를 전송하는 두 별개의 operation은 한 번에 처리될 수 없습니다.
+    * 예를 들어 ``ac0`` 에서 각각 ``ac1``, ``ac2`` 로 5 amount를 전송하는 두 별개의 operation은 한 번에 처리될 수 없습니다.
     * 이 경우 처음 도착한 operation만이 처리되며 나머지는 무시됩니다.
 
-| sender가 두 계정 ``ac0``와 ``ac1``을 하나의 seal로 한 번에 생성하려 한다고 가정해보세요. 그러면 sender는 ``ac0``와 ``ac1`` 각각에 대한 item을 생성하여 operation에 추가해야 합니다.
+| sender가 두 계정 ``ac0`` 와 ``ac1`` 을 하나의 seal로 한 번에 생성하려 한다고 가정해보세요. 그러면 sender는 ``ac0`` 와 ``ac1`` 각각에 대한 item을 생성하여 operation에 추가해야 합니다.
 
-| 즉, sender는 두 게정을 생성하는 오직 하나의 operation을 생성하고 seal에 담아 전송해야 합니다. 이 seal은 성공적으로 처리될 것입니다. **sender가 같은 여러 개의 operation을 생성할 필요가 없습니다.**
+| 즉, sender는 두 게정을 생성하는 오직 하나의 operation을 생성하고 seal에 담아 전송해야 합니다. 이 seal은 성공적으로 처리될 것입니다. sender가 같은 여러 개의 operation을 생성할 필요가 없습니다.
 
 .. code-block:: none
 
@@ -262,7 +262,7 @@ create-account
     "2021-06-10T15:01:13.083634Z INF trying to send seal module=command-send-seal"
     "2021-06-10T15:01:13.171266Z INF sent seal module=command-send-seal"
 
-| operation이 블록에 저장되었는지는 operation의 ``fact.hash``를 digest API에 요청해 확인할 수 있습니다.
+| operation이 블록에 저장되었는지는 operation의 ``fact.hash`` 를 digest API에 요청해 확인할 수 있습니다.
 
 .. code-block:: shell
 
@@ -391,7 +391,7 @@ transfer
 
 | **EXAMPLE**
 
-| 다음은 10 *MCC* token을 ``ac0``에서 ``ac1``로 전송하는 예제입니다.
+| 다음은 10 *MCC* token을 ``ac0`` 에서 ``ac1`` 로 전송하는 예제입니다.
 
 .. code-block:: shell
 
@@ -462,7 +462,7 @@ transfer
 key-updater
 ---------------------------------------------------
 
-| ``key-updater``로 계정 keys를 업데이트하세요.
+| ``key-updater`` 로 계정 keys를 업데이트하세요.
 
 | 새로운 공개키로 계정 keys를 업데이트하여도 주소는 변경되지 않습니다.
 
@@ -472,11 +472,11 @@ key-updater
 
 * KEY: <pub key, weight>
 
-| 계정 keys에 대한 더 자세한 정보는 :ref:`multi sig`를 참고하세요.
+| 계정 keys에 대한 더 자세한 정보는 :ref:`multi sig` 를 참고하세요.
 
 | **EXAMPLE**
 
-| 다음은 ``key-updater``의 예제입니다. 예제에서는 ``ac0``의 keys를 교체하려고 하고 있습니다.
+| 다음은 ``key-updater`` 의 예제입니다. 예제에서는 ``ac0`` 의 keys를 교체하려고 하고 있습니다.
 
 .. code-block:: none
 
@@ -581,7 +581,7 @@ key-updater
 currency-register
 ---------------------------------------------------
 
-| ``currency-register``를 사용해 새로운 currency 토큰을 등록하세요.
+| ``currency-register`` 를 사용해 새로운 currency 토큰을 등록하세요.
 
 .. code-block:: shell
 
@@ -591,21 +591,21 @@ currency-register
 
 * ``genesis account``: 새로운 currency 등록과 함께 발행될 토큰이 입금될 계정
 * ``genesis amount``: 새롭게 발행될 토큰의 양
-* ``–policy-new-account-min-balance=<amount>``을 설정해야 합니다.
+* ``–policy-new-account-min-balance=<amount>`` 을 설정해야 합니다.
 * ``feeer``: feeer는 세 정책 중 선택될 수 있습니다; {nil, fixed, ratio}.
 
-    * ``nil``는 수수료를 지급하지 않습니다.
-    * ``fixed``는 고정 수수료를 지급합니다.
-    * ``ratio``operation amount의 일정 비율로 책정한 수수료를 지급합니다.
+    * ``nil`` - 수수료를 지급하지 않습니다.
+    * ``fixed`` - 고정 수수료를 지급합니다.
+    * ``ratio`` - operation amount의 일정 비율로 책정한 수수료를 지급합니다.
 
-    * 수수료 정책이 fixed인 경우, ``–feeer-fixed-receiver=<fee receiver account address>``와 ``–feeer-fixed-amount=<fee amount>``를 설정합니다.
-    * 수수료 정책이 ratio인 경우, ``–feeer-ratio-receiver=<fee receiver account address>``와 ``–feeer-ratio-ratio=<fee ratio, multifly by operation amount>``, ``–feeer-ratio-min=<minimum fee>``, ``–feeer-ratio-max=<maximum fee>``을 설정합니다.
+    * 수수료 정책이 fixed인 경우, ``–feeer-fixed-receiver=<fee receiver account address>``, ``–feeer-fixed-amount=<fee amount>`` 를 설정합니다.
+    * 수수료 정책이 ratio인 경우, ``–feeer-ratio-receiver=<fee receiver account address>``, ``–feeer-ratio-ratio=<fee ratio, multifly by operation amount>``, ``–feeer-ratio-min=<minimum fee>``, ``–feeer-ratio-max=<maximum fee>`` 을 설정합니다.
 
-| 새로운 currency를 등록할 때, **합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야** operation이 처리됩니다.
+| 새로운 currency를 등록할 때, 합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야 operation이 처리됩니다.
 
 | **EXAMPLE**
 
-| 새로운 currency *MCC2*를 다음과 같은 조건에 따라 등록한다고 가정해봅시다.
+| 새로운 currency MCC2를 다음과 같은 조건에 따라 등록한다고 가정해봅시다.
 
 .. code-block:: none
 
@@ -643,9 +643,9 @@ currency-register
         | ./mc seal sign-fact $N3_PRV --network-id="$NETWORK_ID" --seal=- \
         | ./mc seal send --network-id="$NETWORK_ID" $AC1_PRV --seal=-
 
-| 각 currency는 예금만 가능한 *zero account*를 가지고 있습니다. *zero account*는 **token을 태우는데** 사용됩니다. *zero account*는 공개키가 등록되어있지 않기 때문에 예금만 가능합니다.
+| 각 currency는 예금만 가능한 zero account를 가지고 있습니다. zero account는 token을 태우는데 사용됩니다. zero account는 공개키가 등록되어있지 않기 때문에 예금만 가능합니다.
 
-| *zero account*의 주소는 모두 ``<currency id>-Xmca`` 형식을 가지고 있습니다. 예를 들어, PEN의 *zero account* 주소는 ``PEN-Xmca``입니다.
+| zero account의 주소는 모두 ``<currency id>-Xmca`` 형식을 가지고 있습니다. 예를 들어, PEN의 zero account의 주소는 ``PEN-Xmca`` 입니다.
 
 .. code-block:: shell
 
@@ -709,7 +709,7 @@ currency-policy-updater
 
 | 우선 API를 통해 등록된 currency의 정보를 확인하세요.
 
-| 정책 업데이트 시, **합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야** operation이 처리됩니다.
+| 정책 업데이트 시, 합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야 operation이 처리됩니다.
 
 .. code-block:: shell
 
@@ -753,11 +753,11 @@ currency-policy-updater
         }
     }
 
-| ``currency-policy-updater`` 통해 업데이트할 수 있는 정책은 **fee-related policy**와 계정 생성 시의 **minimum balance value**입니다.
+| ``currency-policy-updater`` 통해 업데이트할 수 있는 정책은 fee-related policy와 계정 생성 시의 minimum balance value입니다.
 
 | **EXAMPLE**
 
-| 다음 조건에 따라 *MCC2*의 정책을 업데이트한다고 가정해봅시다.
+| 다음 조건에 따라 MCC2의 정책을 업데이트한다고 가정해봅시다.
 
 .. code-block:: none
 
@@ -848,7 +848,7 @@ currency-policy-updater
 suffrage-inflation
 ---------------------------------------------------
 
-| ``suffrage-inflation``를 사용해 존재하는 currency 토큰에 인플레이션을 발생시킵니다.
+| ``suffrage-inflation`` 를 사용해 존재하는 currency 토큰에 인플레이션을 발생시킵니다.
 
 .. code-block:: shell
 
@@ -867,11 +867,11 @@ suffrage-inflation
 
 * 추가로 발행되는 토큰을 입금할 ``receiver-account``.
 
-| currency에 인플레이션을 일으킬 때, **합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야** operation이 처리됩니다.
+| currency에 인플레이션을 일으킬 때, 합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야 operation이 처리됩니다.
 
 | **EXAMPLE**
 
-| 우리는 다음 조건에 따라 ``MCC``에 인플레이션을 일으키고자 합니다.
+| 우리는 다음 조건에 따라 MCC에 인플레이션을 일으키고자 합니다.
 
 .. code-block:: none
 
@@ -916,13 +916,13 @@ send
 
     $ ./mc seal send  <sender privatekey> --network-id=<network id> --seal=<data file path> --node=<node https url>
 
-| Mitum Currency에서 생성된 operation들은 **seal 단위로 전송**됩니다.
+| Mitum Currency에서 생성된 operation들은 seal 단위로 전송됩니다.
 
-| seal을 전송하기 위해 서명이 필요합니다. 서명 생성 시 필요한 키페어와 관련된 것은 :ref:`seal`를 참고하세요.
+| seal을 전송하기 위해 서명이 필요합니다. 서명 생성 시 필요한 키페어와 관련된 것은 :ref:`seal` 를 참고하세요.
 
 | **EXAMPLE**
 
-| ``data.json``은 json으로 작성된 seal 파일입니다.
+| data.json은 json으로 작성된 seal 파일입니다.
 
 .. code-block:: shell
 
@@ -1001,7 +1001,7 @@ send
 sign
 ---------------------------------------------------
 
-| ``sign``으로 seal에 서명하세요.
+| ``sign`` 으로 seal에 서명하세요.
 
 .. code-block:: shell
 
@@ -1069,7 +1069,7 @@ sign
         ]
     }
 
-| 이 json 파일과 함께 ``seal sign``를 실행하세요.
+| 이 json 파일과 함께 ``seal sign`` 을 실행하세요.
 
 | 그러면 새로운 seal 서명이 추가된 seal을 얻을 수 있습니다. 
 
@@ -1135,7 +1135,7 @@ sign
 sign-fact
 ---------------------------------------------------
 
-| ``sign-fact``를 사용해 opeation fact에 서명을 추가하세요.
+| ``sign-fact`` 를 사용해 opeation fact에 서명을 추가하세요.
 
 | 이 명령어는 operation을 가진 seal에 fact 서명을 추가하기 위해 사용됩니다. operation을 가진 seal 파일을 넘겨주어야 합니다.
 

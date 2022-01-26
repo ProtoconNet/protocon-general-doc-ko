@@ -2,13 +2,13 @@
 Using Operation Builder
 ===================================================
 
-| **Digest API**는 operation 메시지 작성을 도와주는 **Operation Builder**를 가지고 있습니다. **Operation Builder**를 사용하면 SDK 없이 operation 메시지를 만들 수 있습니다.
+| Digest API는 operation 메시지 작성을 도와주는 Operation Builder를 가지고 있습니다. Operation Builder를 사용하면 SDK 없이 operation 메시지를 만들 수 있습니다.
 
 ---------------------------------------------------
 Get Operation Fact Template
 ---------------------------------------------------
 
-| *Operation Fact Template*을 요청해 각 operation 타입에 따른 템플릿을 받을 수 있습니다. 템플릿의 필드값을 수정 해 fact 메시지를 만들 수 있습니다.
+| Operation Fact Template을 요청해 각 operation 타입에 따른 템플릿을 받을 수 있습니다. 템플릿의 필드값을 수정 해 fact 메시지를 만들 수 있습니다.
 
 +---------------+-----------------------------------------------+
 | METHOD        | GET                                           |
@@ -69,7 +69,7 @@ Get Operation Fact Template
         }
     }
 
-* 응답 템플릿 내용 중 ``_embedded`` 객체는 *fact*를 나타냅니다. fact의 내용을 편집해 *Build Operation Message*에 사용하세요.
+* 응답 템플릿 내용 중 ``_embedded`` 객체는 fact를 나타냅니다. fact의 내용을 편집해 Build Operation Message에 사용하세요.
 
 | **create-accounts FACT EXAMPLE**
 
@@ -106,11 +106,11 @@ Get Operation Fact Template
         ]
     }
 
-* ``hash``값은 builder에 의해 자동적으로 완성됩니다. 그러므로 따로 편집할 필요가 없습니다.
-* ``token``는 *base64*로 인코딩된 문자열을 사용합니다.
-* ``_hint``는 그대로 사용하세요.
+* ``hash`` 값은 builder에 의해 자동적으로 완성됩니다. 그러므로 따로 편집할 필요가 없습니다.
+* ``token`` 는 base64로 인코딩된 문자열을 사용합니다.
+* ``_hint`` 는 그대로 사용하세요.
 
-| ``keys``와 key 등록에 대한 자세한 내용은 :ref:`key command`를 참고하세요.
+| ``keys`` 와 key 등록에 대한 자세한 내용은 :ref:`key command` 를 참고하세요.
 
 ---------------------------------------------------
 Build Operation Message
@@ -190,21 +190,21 @@ Build Operation Message
         }
     }
 
-| 응답 데이터의 ``fact.hash`` 값을 확인하세요. ``fact.hash`` 값은 *fact_sign*을 생성하기 위해 사용됩니다.
+| 응답 데이터의 ``fact.hash`` 값을 확인하세요. ``fact.hash`` 값은 fact_sign을 생성하기 위해 사용됩니다.
 
-| ``fact_signs``의 한 *fact_sign*에서, 
+| ``fact_signs`` 의 한 fact_sign에서, 
 
-* ``signer``는 서명을 생성하는데 사용된 키페어의 public key입니다.
-* ``signature``는 ``signer``에 의해 만들어진 서명입니다.
-* ``signed_at``는 서명 생성 시각입니다.
+* ``signer`` 는 서명을 생성하는데 사용된 키페어의 public key입니다.
+* ``signature`` 는 ``signer`` 에 의해 만들어진 서명입니다.
+* ``signed_at`` 는 서명 생성 시각입니다.
 
 ---------------------------------------------------
 Sign Operation Message
 ---------------------------------------------------
 
-| *signature*는 *fact*의 ``hash`` 값을 사용해 만들어지며 이에 대한 *fact_sign*가 ``fact_signs``에 추가됩니다.
+| signature는 fact의 ``hash`` 값을 사용해 만들어지며 이에 대한 fact_sign가 ``fact_signs`` 에 추가됩니다.
 
-| 생성된 fact 메시지는 json 형식으로 request body에 전달되며 *operation hash*가 추가된 완성된 operation 메시지를 돌려받습니다.
+| 생성된 fact 메시지는 json 형식으로 request body에 전달되며 operation hash가 추가된 완성된 operation 메시지를 돌려받습니다.
 
 +---------------+-----------------------------------------------+
 | METHOD        | POST                                          |
@@ -320,12 +320,12 @@ Sign Operation Message
 Broadcast Message to Network
 ---------------------------------------------------
 
-| request body를 통해 *Operation*나 *Seal* 메시지를 전송하면 네트워크에 이를 브로드캐스팅 할 수 있습니다.
+| request body를 통해 Operation나 Seal 메시지를 전송하면 네트워크에 이를 브로드캐스팅 할 수 있습니다.
 
-| 이때, seal의 *signer*는 digest 노드가 됩니다.
+| 이때, seal의 signer는 digest 노드가 됩니다.
 
-* **operation**를 전송한 경우, digest 노드가 서명한 새로운 seal이 생성됩니다.
-* **seal**을 전송한 경우, digest 노드가 seal에 서명합니다.
+* operation를 전송한 경우, digest 노드가 서명한 새로운 seal이 생성됩니다.
+* seal을 전송한 경우, digest 노드가 seal에 서명합니다.
 
 +---------------+-----------------------------------------------+
 | METHOD        | POST                                          |
@@ -457,7 +457,7 @@ Broadcast Message to Network
 Confirming the Success of the Operation
 ---------------------------------------------------
 
-| operation이 성공적으로 처리되었는지 api에 *fact hash*값을 요청하여 확인할 수 있습니다.
+| operation이 성공적으로 처리되었는지 api에 fact hash값을 요청하여 확인할 수 있습니다.
 
 +---------------+-----------------------------------------------+
 | METHOD        | GET                                           |
@@ -465,17 +465,17 @@ Confirming the Success of the Operation
 | PATH          | /block/operation/{operation_fact_hash}        |
 +---------------+-----------------------------------------------+
 
-* 만약 응답 메시지에서 ``_embedded.in_state``가 *true*라면, operation은 블록에 저장됩니다.
-* 만약``_embedded.in_state``가 false라면, operation은 블록에 저장되지 않습니다.
+* 만약 응답 메시지에서 ``_embedded.in_state`` 가 true라면, operation은 블록에 저장됩니다.
+* 만약 ``_embedded.in_state`` 가 false라면, operation은 블록에 저장되지 않습니다.
 
-* 만약 **operation이 실패한 경우**, 원인은 다음과 같을 수 있습니다.
+* 만약 operation이 실패한 경우, 원인은 다음과 같을 수 있습니다.
     
-    1. 토크느 전송 시 *sender의 불충분한 잔액*
-    2. *부정확한 signature*
-    3. *create-account의 amount가 currency의 new-account-min-balance보다 낮을 경우*
+    1. 토크느 전송 시 sender의 불충분한 잔액
+    2. 부정확한 signature
+    3. create-account의 amount가 currency의 new-account-min-balance보다 낮을 경우
     4. 기타 등등...
 
-| 실패한 이유는 ``_embedded.reason.msg``에서 찾을 수 있습니다.
+| 실패한 이유는 ``_embedded.reason.msg`` 에서 찾을 수 있습니다.
 
 | **RESPONSE EXAMPLE**
 
