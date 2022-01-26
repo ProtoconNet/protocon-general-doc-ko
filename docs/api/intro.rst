@@ -4,22 +4,22 @@
 REST API
 ===================================================
 
-| **Digest API** is a service that allows nodes to search blockchain data.
-| It can be used in applications such as wallet and blockchain explorer.
+| **Digest API**는 노드가 블록체인 데이터를 탐색할 수 있도록 합니다.
+| 지갑이나 블록체인 탐색기와 같은 응용 프로그램에 사용할 수 있습니다.
 
-* API is provided through *HTTP/2 network protocol*.
-* Response message follows `HAL <https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-08>`_ and is delivered in *JSON* format.
-* API data storage can be set in :ref:`config` of Mitum Currency.
-* Mitum's main storage can be used, or a separate database is also possible.
-* *TLS certificates* required for *HTTP/2* will randomly generate self signed certificates if the service host is localhost unless the path of the file is set separately.
+* API는 *HTTP/2 network protocol*를 통해 제공됩니다.
+* 응답 메시지는 `HAL <https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-08>`을 따르며 *JSON* 형식으로 전달됩니다.
+* API 데이터 스토리지는 Mitum Currency의 :ref:`config`에서 설정할 수 있습니다.
+* Mitum의 메인 스토리지가 사용되거나 별도의 데이터베이스를 사용할 수도 있습니다.
+* 서비스 호스트가 로컬호스트이거나 별도의 파일이 설정되지 않은 경우 *HTTP/2*에 의해 요구되는 *TLS certificates*는 무작위의 자체 서명 인증서를 생성합니다.
 
-| If an operation is not included in the block due to a specific problem, the cause can be checked through the response.
+| 어떤 문제로 operation이 블록에 저장되지 않은 경우 응답에 의해 이유를 확인할 수 있습니다.
 
 ---------------------------------------------------
 Summary
 ---------------------------------------------------
 
-This is the summary of REST API for Mitum Currency.
+| 다음은 Mitum Currency의 REST API 요약입니다.
 
 +----------------------------------------+-----------------------+------------------------------------+
 | REQUEST URL                            | METHOD                | RESPONSE                           |
@@ -63,6 +63,6 @@ This is the summary of REST API for Mitum Currency.
 | /currency/{currency_id}                | GET                   | Currency by currency id            |
 +----------------------------------------+-----------------------+------------------------------------+
 
-| If necessary, refer to `Mitum Currency Digest API Docs <https://rapidoc.test.protocon.network/>`_ for details.
+| 자세한 내용은 `Mitum Currency Digest API Docs <https://rapidoc.test.protocon.network/>`_를 참고하세요.
 
-| This document doesn't provide any information of APIs for Mitum Blocksign. See `Mitum Blocksign Digest API Docs <https://rapidoc.blocksign.protocon.network>`_ for Mitum Blocksign. 
+| 이 문서는 Mitum Blocksign API에 대한 아무런 정보도 제공하지 않습니다. `Mitum Blocksign Digest API Docs <https://rapidoc.blocksign.protocon.network>`_를 확인하세요. 

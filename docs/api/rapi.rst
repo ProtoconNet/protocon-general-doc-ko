@@ -2,7 +2,7 @@
 API List
 ===================================================
 
-| This is the page of the explanation for each API Path.
+| 이 페이지는 각 API 경로에 대해 설명합니다.
 
-| For details, visit `Mitum Currency Digest API Docs <https://rapidoc.test.protocon.network/>`_.
+| 자세한 내용은 `Mitum Currency Digest API Docs <https://rapidoc.test.protocon.network/>`_을 방문하세요.
 

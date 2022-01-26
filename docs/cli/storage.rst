@@ -2,9 +2,9 @@
 Storage Command
 ===================================================
 
-| ``storage`` command helps **download**, **verifie**, and **restore** block data.
+| ``storage`` 명령어는 블록 데이터의 **내려받기**, **검증**, **복구**를 도와줍니다.
 
-| The subcommands related to ``storage`` command are as follows.
+| ``storage``의 하위 명령어는 다음과 같습니다.
 
 * ``download``
 * ``verify-blockdata``
@@ -18,7 +18,7 @@ Storage Command
 download
 --------------------------------------------------
 
-| By ``download`` command, download block data of specific blockheight.
+| ``download``를 통해 특정 block height의 블록 데이터를 내려받으세요.
 
 .. code-block:: shell
 
@@ -51,7 +51,7 @@ download
 map
 ''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| By ``download map`` command, download blockdata map.
+| ``download map``을 사용해 blockdata map을 내려받으세요.
 
 | See :ref:`block data` for details.
 
@@ -124,7 +124,7 @@ map
 verify-blockdata
 --------------------------------------------------
 
-| By ``verify-blockdata`` command, verify blockdata in local storage.
+| ``verify-blockdata``을 사용해 로컬 스토리지의 블록 데이터를 검증하세요.
 
 .. code-block:: shell
 
@@ -163,7 +163,7 @@ verify-blockdata
 verify-database
 --------------------------------------------------
 
-| By ``verify-database`` command, the database is verified by comparing it with the block data.
+| ``verify-database`` 명령어는 블록데이터와의 비교를 통해 database를 검증합니다.
 
 .. code-block:: shell
 
@@ -198,7 +198,7 @@ verify-database
 clean
 --------------------------------------------------
 
-| By ``clean`` command, clean blockdata and database.
+| ``clean`` 명령어는 블록데이터와 데이터베이스를 정리합니다.
 
 .. code-block:: shell
 
@@ -214,7 +214,7 @@ clean
 clean-by-height
 --------------------------------------------------
 
-| By ``clean-by-height`` command, clean blockdata and database above a specific height.
+| ``clean-by-height``는 특정 height 위로 블록데이터와 데이터베이스를 정리합니다.
 
 .. code-block:: shell
 
@@ -230,14 +230,14 @@ clean-by-height
 restore
 --------------------------------------------------
 
-| By ``restore`` command, restore the entire database from the downloaded blockdata.
+| ``restore`` 명령어로 내려받은 블록데이터로부터 전체 데이터베이스를 복구하세요.
 
-| When you use ``restore`` command, not only data for blockdata but also data used for digest API are created. Check if the ``network id`` in the settings of the yml file is the same as the ``network id`` of the downloaded node.
+| ``restore`` 사용 시, 블록데이터 뿐만 아니라 digest API에 사용되는 데이터도 생성됩니다. yml 파일 설정의 ``network id``이 내려받은 노드의 ``network id``와 같은지 확인하세요.
 
-* Multiple blockdata can be recovered simultaneously with the ``–concurrency`` option.
-* If you want to delete and restore the existing mongodb data, use ``–clean``.
-* Use ``–dryrun`` to only check blockdata without actually recovering it.
-* If you specify a specific blockdata directory with the ``–one`` option, you can recover them one by one.
+* ``–concurrency`` 옵션으로 여러 개의 블록 데이터가 동시에 복구될 수 있습니다.
+* 존재하는 mongodb 데이터를 삭제하고 복구하고 싶다면 ``–clean``을 사용하세요.
+* 실제 복구하지 않고 오직 blockdata를 확인하려면 ``–dryrun``를 사용하세요.
+* ``–one`` 옵션으로 특정 blockdata 디렉토리를 특정하면, 그것들을 하나씩 복구할 수 있습니다.
 
 .. code-block:: shell
 
@@ -259,9 +259,9 @@ restore
 set-blockdatamaps
 --------------------------------------------------
 
-| By ``set-blockdatamaps`` command, update multiple BlockDataMaps.
+| ``set-blockdatamaps``는 여러 BlockDataMap을 업데이트합니다.
 
-| See :ref:`block data` for details.
+| 자세한 내용은 :ref:`block data`를 참고하세요.
 
 .. code-block:: shell
 

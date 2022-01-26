@@ -4,9 +4,9 @@
 Command Line Interface
 ===================================================
 
-| In this part, we will introduce you what commands Mitum Currency provides and how to use them.
+| 이 장에서 Mitum Currency가 제공하는 명령어들과 그 사용 방법을 소개합니다.
 
-| There are seven major commands it supports,
+| 제공하는 주요 명령어는 다음과 같습니다.
 
 * ``version``
 * ``node``
@@ -16,15 +16,15 @@ Command Line Interface
 * ``deploy``
 * ``quic-client``
 
-| You may be familiar with ``node`` command if you have already been to ``Run`` page.
+| ``Run`` 페이지를 거쳐왔다면 이미 ``node`` 명령어는 익숙할 것입니다.
 
-| It is easy to play ``version`` and ``quic-client``. They are described in ``Others``. Other commands will be explained one by one.
+| ``version``와 ``quic-client``를 사용하는 방법은 간단합니다. 이는 ``Others``에 서술하였습니다. 다른 명령어들은 하나씩 설명합니다.
 
 ---------------------------------------------------
 Summary
 ---------------------------------------------------
 
-| This is the all commands that Mitum Currency provides.
+| 다음은 Mitum Currency가 제공하는 모든 명령어입니다.
 
 .. code-block:: shell
 

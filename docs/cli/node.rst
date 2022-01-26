@@ -2,9 +2,9 @@
 Node Command
 ===================================================
 
-| ``node`` command initializes node and runs node.
+| ``node``는 노드를 초기화하고 운용합니다.
 
-| The subcommands of the ``node`` command are as follows.
+| ``node``의 하위 명령어는 다음과 같습니다.
 
 * ``init``
 * ``run``
@@ -15,9 +15,9 @@ Node Command
 init
 ---------------------------------------------------
 
-| By ``init`` command, **initialize the node** with the node design file containing the node configuration.
+| ``init`` 명령어로 노드 구성을 가지고 있는 노드 디자인 파일을 사용해 **노드를 초기화**하세요.
 
-| See :ref:`node init` for a detailed explanation of ``init`` command.
+| ``init`` command에 대한 자세한 설명은 :ref:`node init`를 참고하세요.
 
 .. code-block:: shell
 
@@ -27,7 +27,7 @@ init
 run
 ---------------------------------------------------
 
-| By ``run`` command, **run the node** with the node design file containing the node configuration.
+| ``run``을 사용해 노드 구성을 가지고 있는 노드 디자인 파일에 따라 **노드를 운용**하세요.
 
 | See :ref:`node run` for a detailed explanation of ``run`` command.
 
@@ -39,9 +39,9 @@ run
 start-handover
 ---------------------------------------------------
 
-| By ``start-handover`` command, **replace the running node** with another node.
+| ``start-handover`` 명령어로 **운용중인 노드를 다른 노드로 교체**하세요.
 
-| See :ref:`node handover` for a detailed explanation of ``start-handover`` command.
+| ``start-handover``에 대한 자세한 설명은 :ref:`node handover`를 확인하세요.
 
 .. code-block:: shell
 
@@ -51,7 +51,7 @@ start-handover
 info
 ---------------------------------------------------
 
-| By ``info`` command, **get the information of the remote node** with the node's url.
+| ``info`` 명령어로 노드 url을 사용해 **원격 노드 정보를 확인**하세요.
 
 .. code-block:: shell
 

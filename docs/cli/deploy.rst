@@ -4,9 +4,9 @@
 Deploy Command
 ===================================================
 
-| Execute ``deploy key`` command to create and manage the node’s deploy key.
+| 노드의 deploy key를 생성하고 관리하기 위해 ``deploy key``를 사용하세요.
 
-| The subcommands related to ``deploy key`` command are as follows.
+| ``deploy key``의 하위 명령어는 다음과 같습니다.
 
 * ``new``
 * ``keys``
@@ -17,19 +17,19 @@ Deploy Command
 
     **What is deploy key?**
 
-    Updates of nodes (such as changing the BlockDataMap) should be allowed only by the node owner.
-    The node owner uses the key to prove himself when managing the node.
+    (BlockDataMap 변경과 같은)노드의 업데이트는 반드시 노드 소유자에 의해 허용되어야 합니다.
+    노드 소유자는 노드를 관리할 때 자신을 증명하기 위한 key를 사용합니다.
    
-    However, it is dangerous to directly use a node’s private key for node management.
-    So we need a **replaceable and manageable key that can be used for things like node management**.
+    하지만 노드 관리에 노드의 개인키를 직접 사용하는 것은 위험할 수 있습니다.
+    따라서 우리는 **노드 관리 등을 위한 교체 가능하고 관리 가능한 키가 필요합니다**.
     
-    ``deploy key`` is used for this purpose.
+    ``deploy key``는 이런 목적으로 사용됩니다.
 
 ---------------------------------------------------
 new
 ---------------------------------------------------
 
-| By ``new`` command, create and register new deploy key to the node.
+| ``new``를 사용해 새로운 deploy key를 생성하고 노드에 등록하세요.
 
 .. code-block:: shell
 
@@ -53,7 +53,7 @@ new
 keys
 ---------------------------------------------------
 
-| By ``keys`` command,  get the list of registered deploy keys in the node.
+| ``keys``를 사용해 노드에 등록된 deploy key 리스트를 확인하세요.
 
 .. code-block:: shell
 
@@ -76,7 +76,7 @@ keys
 key
 ---------------------------------------------------
 
-| By ``key`` command, check the existence of deploy key in the node.
+| ``key``를 사용해 노드에 deploy key가 존재하는지 확인하세요.
 
 .. code-block:: shell
 
@@ -101,7 +101,7 @@ key
 revoke
 ---------------------------------------------------
 
-| By ``revoke`` command, revoke deploy key from the node.
+| ``revoke``를 사용해 노드에서 deploy key를 취소하세요.
 
 .. code-block:: shell
 

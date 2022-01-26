@@ -8,19 +8,19 @@ Prerequisite
 
 * curl
 
-  * This is a command line tool for interacting with API.
+  * API와 상호작용하기 위한 cli tool입니다.
   * https://curl.se
 
 * jq
 
-  * This is a command line tool for parsing json response.
+  * json 응답을 파싱하기 위한 cli tool입니다.
   * https://stedolan.github.io/jq/
 
 ---------------------------------------------------
 Genesis Account Lookup
 ---------------------------------------------------
 
-1. You can lookup genesis account from local blockdata.
+1. 로컬 blockdata에서 제네시스 계정을 확인할 수 있습니다.
 
 .. code-block:: shell
 
@@ -46,7 +46,7 @@ Genesis Account Lookup
 
 * 99999999999999999977 = 99999999999999999999 - (2 create account: 10 * 2) - (2 fee: 1 * 2)
 
-2. Also you can lookup genesis account from digest api.
+2. digest api로 제네시스 게정을 확인할 수 있습니다.
 
 .. code-block:: shell
 
@@ -87,7 +87,7 @@ Genesis Account Lookup
 
 .. note::
 
-    When you lookup state by address from mongodb, remove the part after ``-`` of address and use it as key.
+    mongodb 주소로 확인하는 경우, 주소의 ``-`` 이후를 삭제하고 이를 키로 사용하세요.
 
     * ``FnuHC5HkFMpr4QABukchEeT63612gGKus3cRK3KAqK7Bmca`` → ``GkswusUGC22R5wmrXWB5yqFm8UN22yHLihZMkMb3z623-mca``
 

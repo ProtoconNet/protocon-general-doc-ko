@@ -2,7 +2,7 @@
 Protocon Network Document
 ===================================================
 
-| Hello! This is the document for Protocon Network.
+| 안녕하세요! 프로토콘 네트워크 문서입니다.
 
 ---------------------------------------------------
 Protocon Network

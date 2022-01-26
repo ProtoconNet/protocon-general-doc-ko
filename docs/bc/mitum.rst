@@ -6,27 +6,27 @@ Mitum Protocol
 What is MITUM?
 ---------------------------------------------------
 
-| **Mitum** is a general privacy blockchain with flexible and resilient way.
+| **Mitum**은 유연하고 탄력적인 범용 프라이버시 블록체인입니다.
 
-| Mitum can be used for various kind of purposes.
+| Mitum은 다양한 목적으로 사용될 수 있습니다/.
 
-* public and private blockchain like cryptocurrency network
-* data-centric blockchain for arbitrary data
-* secure anonymity voting system
+* 암호화폐 네트워크와 같은 public과 private 블록체인
+* 임의의 데이터를 위한 데이터 중심 블록체인
+* 안전한 익명 투표 시스템
 
-| If you want to know more about **MITUM**, visit `Mitum Document <https://mitum-doc.readthedocs.io/en/proto2/index.html>`_.
+| **MITUM**에 대해 더 알고 싶다면, `Mitum Document <https://mitum-doc.readthedocs.io/en/proto2/index.html>`_을 방문하세요.
 
 ---------------------------------------------------
 Mitum Technical SPEC
 ---------------------------------------------------
 
-* Mitum (blockchain core framework) uses *ISAAC+ consensus protocol* based on *PBFT*.
-* The network transport protocol is `quic <https://en.wikipedia.org/wiki/QUIC>`_ (based on udp).
+* Mitum(blockchain core framework)는 *PBFT*에 기초한 *ISAAC+ 합의 프로토콜*을 사용합니다.
+* 네트워크 전송 프로토콜은 `quic <https://en.wikipedia.org/wiki/QUIC>`_(udp 기반)입니다.
 * *Gossip-Based* Node Discovery Protocol.
-* The main storage engine of the blockchain uses *MongoDB* and the local file system is used for block storage.
-* Parallel operation processing
+* 블록체인의 메인 스토리지 엔진은 *MongoDB*를 사용하며 로컬 파일 시스템이 블록 스토리지로 사용됩니다.
+* operation 병렬 처리
 * Main hash algorithm: `Keccak <https://keccak.team>`_ 256, SHA-3
-* Supports multiple hash algorithm: ``Keccak 256``, ``Keccak 512``, ``Raw bytes.``
-* Supports multiple message serialization format: *JSON*, *BSON*
-* Small amount of code.
+* 지원하는 hash algorithm: ``Keccak 256``, ``Keccak 512``, ``Raw bytes.``
+* 지원하는 message serialization format: *JSON*, *BSON*
+* 적은 양의 코드.
 * *JSON logging*

@@ -9,7 +9,7 @@ Others
 version
 ---------------------------------------------------
 
-| Check the version of the installed Mitum Currency by ``version`` command.
+| ``version``을 사용해 Mitum Currency의 버전을 확인하세요.
 
 .. code-block:: shell
 
@@ -26,7 +26,7 @@ version
 quic-client
 ---------------------------------------------------
 
-| Note that the response of ``quic-client`` is same with that when requesting *node info* by API.
+| ``quic-client``의 응답은 API의 *node info* 응답과 형태가 같습니다.
 
 .. code-block:: shell
 

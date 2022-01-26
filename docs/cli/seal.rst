@@ -4,9 +4,9 @@
 Seal Command
 ===================================================
 
-| ``seal`` command help execute various operations contained in the seal.
+| ``seal``는 seal에 포함된 다양한 operation들을 실행하는데 도움을 주는 명령어입니다.
 
-| The subcommands related to **operation** are as follows.
+| **operation**과 관련된 명령어는 다음과 같습니다.
 
 * ``create-account``
 * ``transfer``
@@ -15,23 +15,23 @@ Seal Command
 * ``currency-policy-updater``
 * ``suffrage-inflation``
 
-| ``seal`` command also help create a signature and sends a seal.
+| ``seal``는 서명을 만들고 seal을 전송하도록 지원합니다.
 
-| The subcommands related to **signature generation** and **transmission** are as follows.
+| **signature generation**와 **transmission**와 관련된 명령어는 다음과 같습니다.
 
 * ``send``
 * ``sign``
 * ``sign-fact``
 
-| Whether the operation is successfully processed can be checked through the api.
+| operation이 제대로 처리되었는지는 api를 통해 확인할 수 있습니다.
 
-| For more information, please refer to :ref:`confirm success`.
+| 더 많은 정보는 :ref:`confirm success`를 참고하세요.
 
 ---------------------------------------------------
 create-account
 ---------------------------------------------------
 
-| By ``create-account`` command, create an account.
+| ``create-account`` 계정을 생성하세요.
 
 .. code-block:: shell
 
@@ -41,15 +41,15 @@ create-account
 
 | **EXAMPLE**
 
-| We will proceed with the process of creating two accounts, ``ac0`` and ``ac1`` as an example.
+| ``ac0``와 ``ac1`` 두 계정을 생성하는 과정을 예제로 설명합니다.
 
-| For how to create a keypair, please refer to :ref:`key command`.
+| 키페어를 생성하는 방법은 :ref:`key command`을 참고하세요.
 
-| The operation that creates account ``ac0`` is as follows.
+| ``ac0``를 생성하는 operation은 다음과 같습니다.
 
 1. **Create Single Sig Account**
 
-| Here is the account information that we will create.
+| 생성할 계정의 정보는 다음과 같습니다.
 
 .. code-block:: none
 
@@ -128,19 +128,19 @@ create-account
         ]
     }
 
-| The above json messages are put in the seal and sent to the node.
+| 위 json 메시지가 seal에 담겨 전송됩니다.
 
 2. **Create Multi Sig Account**
 
 .. note::
 
-    * In Mitum Currency, two or more operations signed by one account are not processed in one block.
-    * For example, two respective operations that send 5 amount from ``ac0`` to ``ac1`` and ``ac2`` cannot be processed at the same time.
-    * In this case, only the operation that arrived first is processed and the rest are ignored.
+    * Mitum Currency에서 한 계정에 의해 서명된 다수의 operation은 한 블록에서 처리될 수 없습니다.
+    * 예를 들어 ``ac0``에서 각각 ``ac1``, ``ac2``로 5 amount를 전송하는 두 별개의 operation은 한 번에 처리될 수 없습니다.
+    * 이 경우 처음 도착한 operation만이 처리되며 나머지는 무시됩니다.
 
-| Suppose that the sender is trying to create ``ac0`` and ``ac1`` at the same time by only one seal. Then the sender should include items for each ``ac0`` and ``ac1``.
+| sender가 두 계정 ``ac0``와 ``ac1``을 하나의 seal로 한 번에 생성하려 한다고 가정해보세요. 그러면 sender는 ``ac0``와 ``ac1`` 각각에 대한 item을 생성하여 operation에 추가해야 합니다.
 
-| That means, the sender creates and sends only one operation that creates two account in the seal. It can be processed successfully. **Don't make multiple separate operations which senders are same.**
+| 즉, sender는 두 게정을 생성하는 오직 하나의 operation을 생성하고 seal에 담아 전송해야 합니다. 이 seal은 성공적으로 처리될 것입니다. **sender가 같은 여러 개의 operation을 생성할 필요가 없습니다.**
 
 .. code-block:: none
 
@@ -158,7 +158,7 @@ create-account
     threshold: 100
     initial balance: 50 MCC
 
-| Then,
+| 다음과 같은 명령어를 실행하세요.
 
 .. code-block:: shell
 
@@ -262,7 +262,7 @@ create-account
     "2021-06-10T15:01:13.083634Z INF trying to send seal module=command-send-seal"
     "2021-06-10T15:01:13.171266Z INF sent seal module=command-send-seal"
 
-| Whether the operation block is saved can be checked through the ``fact.hash`` of operation inquiry in the digest API.
+| operation이 블록에 저장되었는지는 operation의 ``fact.hash``를 digest API에 요청해 확인할 수 있습니다.
 
 .. code-block:: shell
 
@@ -383,7 +383,7 @@ create-account
 transfer
 ---------------------------------------------------
 
-| By ``transfer`` command, transfer tokens between accounts.
+| ``transfer`` 명령어를 사용해 계정 사이에 토큰을 전송하세요.
 
 .. code-block:: shell
 
@@ -391,7 +391,7 @@ transfer
 
 | **EXAMPLE**
 
-| This is an example of transferring the currency 10 *MCC* tokens from ``ac0`` to ``ac1``.
+| 다음은 10 *MCC* token을 ``ac0``에서 ``ac1``로 전송하는 예제입니다.
 
 .. code-block:: shell
 
@@ -449,7 +449,7 @@ transfer
         ]
     }
 
-| If you want to send the operation to the network right away,
+| operation을 네트워크로 바로 전송하고 싶다면,
 
 .. code-block:: shell
 
@@ -462,9 +462,9 @@ transfer
 key-updater
 ---------------------------------------------------
 
-| By ``key-updater`` command, update the account keys.
+| ``key-updater``로 계정 keys를 업데이트하세요.
 
-| Updating account keys to new public keys does not change address.
+| 새로운 공개키로 계정 keys를 업데이트하여도 주소는 변경되지 않습니다.
 
 .. code-block:: shell
 
@@ -472,11 +472,11 @@ key-updater
 
 * KEY: <pub key, weight>
 
-For more information about account keys, refer to :ref:`multi sig`.
+| 계정 keys에 대한 더 자세한 정보는 :ref:`multi sig`를 참고하세요.
 
 | **EXAMPLE**
 
-| This is an example of ``key-updater``. The example shows updating keys of ``ac0`` to another one.
+| 다음은 ``key-updater``의 예제입니다. 예제에서는 ``ac0``의 keys를 교체하려고 하고 있습니다.
 
 .. code-block:: none
 
@@ -548,7 +548,7 @@ For more information about account keys, refer to :ref:`multi sig`.
         ]
     }    
 
-| If you want to send the operation right away,
+| operation을 바로 전송하고 싶다면,
 
 .. code-block:: shell
 
@@ -557,7 +557,7 @@ For more information about account keys, refer to :ref:`multi sig`.
         | ./mc seal send --network-id=$NETWORK_ID \
         $AC0_PRV --seal=- --node=$NODE --tls-insecure
 
-| Also, you can check whether the account keys have really changed.
+| 또한, 계정 keys가 정말로 바뀌었는지 확인할 수 있습니다.
 
 .. code-block:: shell
 
@@ -581,31 +581,31 @@ For more information about account keys, refer to :ref:`multi sig`.
 currency-register
 ---------------------------------------------------
 
-| By ``currency-register`` command, register a new currency token.
+| ``currency-register``를 사용해 새로운 currency 토큰을 등록하세요.
 
 .. code-block:: shell
 
     $ ./mc seal currency-register --network-id=NETWORK-ID-FLAG --feeer=STRING <privatekey> <currency-id> <genesis-amount> <genesis-account>
 
-| When registering a new currency, the items that need to be set are as follows.
+| 새로운 currency 등록 시, 설정해야할 요소는 다음과 같습니다.
 
-* ``genesis account``: account where the issued token will be registered with new currency registration
-* ``genesis amount``: amount of newly issued tokens
-* ``–policy-new-account-min-balance=<amount>`` must be set.
-* ``feeer``: The feeer can be selected from three policies; {nil, fixed, ratio}.
+* ``genesis account``: 새로운 currency 등록과 함께 발행될 토큰이 입금될 계정
+* ``genesis amount``: 새롭게 발행될 토큰의 양
+* ``–policy-new-account-min-balance=<amount>``을 설정해야 합니다.
+* ``feeer``: feeer는 세 정책 중 선택될 수 있습니다; {nil, fixed, ratio}.
 
-    * ``nil`` is a case where there is no fee payment.
-    * ``fixed`` is a case where a fixed amount is paid.
-    * ``ratio`` is a case where a payment is made in proportion to the operation amount.
+    * ``nil``는 수수료를 지급하지 않습니다.
+    * ``fixed``는 고정 수수료를 지급합니다.
+    * ``ratio``operation amount의 일정 비율로 책정한 수수료를 지급합니다.
 
-    * If the fee policy is fixed, you must set ``–feeer-fixed-receiver=<fee receiver account address>`` and ``–feeer-fixed-amount=<fee amount>`` accordingly.
-    * If the fee policy is ratio, then ``–feeer-ratio-receiver=<fee receiver account address>`` and ``–feeer-ratio-ratio=<fee ratio, multifly by operation amount>``,`` –feeer-ratio-min=<minimum fee>``,`` –feeer-ratio-max=<maximum fee>`` must be set.
+    * 수수료 정책이 fixed인 경우, ``–feeer-fixed-receiver=<fee receiver account address>``와 ``–feeer-fixed-amount=<fee amount>``를 설정합니다.
+    * 수수료 정책이 ratio인 경우, ``–feeer-ratio-receiver=<fee receiver account address>``와 ``–feeer-ratio-ratio=<fee ratio, multifly by operation amount>``, ``–feeer-ratio-min=<minimum fee>``, ``–feeer-ratio-max=<maximum fee>``을 설정합니다.
 
-| When registering a new currency, **the signature of the suffrage nodes participating in consensus exceeds the consensus threshold (67%) to be executed**.
+| 새로운 currency를 등록할 때, **합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야** operation이 처리됩니다.
 
 | **EXAMPLE**
 
-| Suppose that we are going to register new currency *MCC2* following below conditions.
+| 새로운 currency *MCC2*를 다음과 같은 조건에 따라 등록한다고 가정해봅시다.
 
 .. code-block:: none
 
@@ -618,7 +618,7 @@ currency-register
     seal sender : ac1
     suffrage node : n0, n1, n2, n3
 
-| Then,
+| 다음과 같은 명령어를 통해 등록합니다.
 
 .. code-block:: shell
 
@@ -643,9 +643,9 @@ currency-register
         | ./mc seal sign-fact $N3_PRV --network-id="$NETWORK_ID" --seal=- \
         | ./mc seal send --network-id="$NETWORK_ID" $AC1_PRV --seal=-
 
-| Each currency has a *zero account* for deposit only. The *zero account* can be used to **burn tokens**. The *zero account* is an account that can only deposit token because the public key is not registered.
+| 각 currency는 예금만 가능한 *zero account*를 가지고 있습니다. *zero account*는 **token을 태우는데** 사용됩니다. *zero account*는 공개키가 등록되어있지 않기 때문에 예금만 가능합니다.
 
-| The address of *zero account* has the same format as ``<currency id>-Xmca``. For example, the *zero account* address of PEN currency is ``PEN-Xmca``.
+| *zero account*의 주소는 모두 ``<currency id>-Xmca`` 형식을 가지고 있습니다. 예를 들어, PEN의 *zero account* 주소는 ``PEN-Xmca``입니다.
 
 .. code-block:: shell
 
@@ -701,15 +701,15 @@ currency-register
 currency-policy-updater
 ---------------------------------------------------
 
-| By ``currency-policy-updater`` command, update the policy related to currency.
+| ``currency-policy-updater`` 명령어를 사용하여, currency와 관련된 정책을 업데이트하세요.
 
 .. code-block:: shell
 
     $ ./mc seal currency-policy-updater --network-id=NETWORK-ID-FLAG --feeer=STRING <privatekey> <currency-id>
 
-| First, get the info of the registered currency through API.
+| 우선 API를 통해 등록된 currency의 정보를 확인하세요.
 
-| When updating a currency policy, **the signature of the suffrage nodes participating in consensus exceeds the consensus threshold (67%) to be executed**.
+| 정책 업데이트 시, **합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야** operation이 처리됩니다.
 
 .. code-block:: shell
 
@@ -753,11 +753,11 @@ currency-policy-updater
         }
     }
 
-| The policy that can be changed through ``currency-policy-updater`` is the **fee-related policy** and the **minimum balance value** when creating a new account.
+| ``currency-policy-updater`` 통해 업데이트할 수 있는 정책은 **fee-related policy**와 계정 생성 시의 **minimum balance value**입니다.
 
 | **EXAMPLE**
 
-| Suppose that we are going to update policy for *MCC2* following below conditions.
+| 다음 조건에 따라 *MCC2*의 정책을 업데이트한다고 가정해봅시다.
 
 .. code-block:: none
 
@@ -773,7 +773,7 @@ currency-policy-updater
     
     suffrage node : n0, n1, n2, n3
 
-| Then,
+| 명령어를 실행하면,
 
 .. code-block:: shell
 
@@ -798,7 +798,7 @@ currency-policy-updater
         | ./mc seal sign-fact $N3_PRV --network-id=$NETWORK_ID --seal=- \
         | ./mc seal send --network-id=$NETWORK_ID $AC0_PRV --seal=-
 
-| Check,
+| 결과를 확인하면,
 
 .. code-block:: shell
 
@@ -848,7 +848,7 @@ currency-policy-updater
 suffrage-inflation
 ---------------------------------------------------
 
-| By ``suffrage-inflation`` command, make inflation a existed currency token.
+| ``suffrage-inflation``를 사용해 존재하는 currency 토큰에 인플레이션을 발생시킵니다.
 
 .. code-block:: shell
 
@@ -856,22 +856,22 @@ suffrage-inflation
 
 * ``inflation item``: <receiver-account>,<currency-id>,<inflation-amount>
 
-| There are two processes to register currency in Mitum Currency.
+| Mitum Currency에 currency를 등록하기 위한 두 가지 방법이 있습니다.
 
-* Through initial genesis currency creation 
-* By registering a new currency while the network is alive
+* 초기 genesis currency 생성을 통해 
+* 네트워크가 살아있을 때 새로운 currency를 등록함으로써
 
-| The registered currency has a total supply amount. The Mitum Currency may increase the amount of tokens in addition to the total supply amount.
+| 등록된 currency에는 총 공급량이 있습니다. Mitum Currency는 기존 총 공급량에 일정량의 토큰을 추가할 수 있습니다.
 
-| When generate new amount, the items that need to be set are as follows.
+| 새로운 계정을 생성할 때, 설정해야 할 요소에는 다음과 같은 것들이 있습니다.
 
-* ``receiver-account`` which receives account of additionally generated tokens.
+* 추가로 발행되는 토큰을 입금할 ``receiver-account``.
 
-| When making inflation a currency, **the signature of the suffrage nodes participating in consensus exceeds the consensus threshold (67%) to be executed**.
+| currency에 인플레이션을 일으킬 때, **합의에 참여하는 노드들의 서명이 threshold(67%)를 넘겨야** operation이 처리됩니다.
 
 | **EXAMPLE**
 
-| We are going to make inflation ``MCC`` following below conditions.
+| 우리는 다음 조건에 따라 ``MCC``에 인플레이션을 일으키고자 합니다.
 
 .. code-block:: none
 
@@ -882,7 +882,7 @@ suffrage-inflation
     seal sender : ac1
     suffrage node : n0, n1, n2, n3
 
-| Then,
+| 이를 실행하면,
 
 .. code-block:: shell
 
@@ -910,19 +910,19 @@ suffrage-inflation
 send
 ---------------------------------------------------
 
-| By ``send`` command, send a seal.
+| ``send`` 명령어를 통해 seal을 전송하세요.
 
 .. code-block:: shell
 
     $ ./mc seal send  <sender privatekey> --network-id=<network id> --seal=<data file path> --node=<node https url>
 
-| Operations created in Mitum Currency are **transmitted in units of seals**.
+| Mitum Currency에서 생성된 operation들은 **seal 단위로 전송**됩니다.
 
-| Signature is required to transmit the seal. Refer to :ref:`seal` for the part related to the keypair used for signature creation.
+| seal을 전송하기 위해 서명이 필요합니다. 서명 생성 시 필요한 키페어와 관련된 것은 :ref:`seal`를 참고하세요.
 
 | **EXAMPLE**
 
-| ``data.json`` is a seal file written in json.
+| ``data.json``은 json으로 작성된 seal 파일입니다.
 
 .. code-block:: shell
 
@@ -989,9 +989,9 @@ send
     2021-06-10T09:17:51.240066Z INF trying to send seal module=command-send-seal
     2021-06-10T09:17:51.345243Z INF sent seal module=command-send-seal
 
-| When sending to a local node for testing, an error may occur related to tls authentication.
+| 테스트를 위해 로컬 노드로 전송할 때, tls 인증과 관련한 에러가 발생할 수 있습니다.
 
-In this case, give the option ``–tls-insecure=true`` when sending seals.
+| 이 경우, seal 전송 시 ``–tls-insecure=true`` 옵션을 추가하세요.
 
 .. code-block:: shell
 
@@ -1001,7 +1001,7 @@ In this case, give the option ``–tls-insecure=true`` when sending seals.
 sign
 ---------------------------------------------------
 
-| By ``sign`` command, create a signature for a seal.
+| ``sign``으로 seal에 서명하세요.
 
 .. code-block:: shell
 
@@ -1009,9 +1009,9 @@ sign
 
 | **EXAMPLE**
 
-| Before use ``sign`` command, prepare a file, which content is a seal including operations, saved in json format for signature generation.
+| ``sign`` 사용 전, 서명 생성을 위해 opeation이 들어있는 seal의 json 파일을 준비하세요.
 
-| For example,
+| 예를 들어,
 
 .. code-block:: json
 
@@ -1069,9 +1069,9 @@ sign
         ]
     }
 
-| Run ``seal sign`` with this json file.
+| 이 json 파일과 함께 ``seal sign``를 실행하세요.
 
-| Then you can get a seal with new seal signature such like, 
+| 그러면 새로운 seal 서명이 추가된 seal을 얻을 수 있습니다. 
 
 .. code-block:: shell
 
@@ -1135,11 +1135,11 @@ sign
 sign-fact
 ---------------------------------------------------
 
-| By ``sign-fact`` command, create signature for operation facts.
+| ``sign-fact``를 사용해 opeation fact에 서명을 추가하세요.
 
-| This command is used to add a fact signature to the operation contained in the seal. You must pass the seal data containing the operation to this command.
+| 이 명령어는 operation을 가진 seal에 fact 서명을 추가하기 위해 사용됩니다. operation을 가진 seal 파일을 넘겨주어야 합니다.
 
-| The purpose of use is in the case of an operation created by an account with multisig or when signing of multiple nodes is required such as currency registration.
+| 멀티 시그나 멀티 노드를 사용할 경우 operation fact에 여러 개의 서명을 추가하는 것이 목적입니다.
 
 .. code-block:: shell
 
@@ -1147,7 +1147,7 @@ sign-fact
 
 | **EXAMPLE**
 
-| Here is the example s.t a seal contains a transfer operation for transferring tokens from the multi sig account. It requires two fact signatures, but has only one.
+| 다음은 멀티 시그 계정으로부터 토큰을 전송하는 transfer operation을 담은 seal의 예제입니다. operation은 두 개의 fact_sign을 가져야 하지만 현재는 하나밖에 없습니다.
 
 .. code-block:: json
 
@@ -1194,7 +1194,7 @@ sign-fact
         ]
     }
 
-| After use ``sign-fact`` to add a fact signature, above json becomes,
+| fact_sign 추가 후 위 json은 다음과 같아집니다.
 
 .. code-block:: shell
 
