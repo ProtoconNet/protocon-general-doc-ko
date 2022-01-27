@@ -75,7 +75,7 @@ What If a start-handover is sent to A after the Handover is over?
 
 * *A-sub* 로 교체된 *A* 는 **SYNCING** 상태가 됩니다.
 * handover가 끝난 후, *A* 는 내부적으로 ``start-handover`` 명령 이전의 *A-sub* 의 상태와 같아집니다.
-* ``start-handover`` 명령어가 이 상태의 *A* 에 전달되면, 그 다음, *A*는 *A-sub* 를 교체하려고 시도합니다.
+* ``start-handover`` 명령어가 이 상태의 *A* 에 전달되면, 그 다음, *A* 는 *A-sub* 를 교체하려고 시도합니다.
 
 How can I check that the start-handover is finished?
 -----------------------------------------------------
