@@ -55,7 +55,7 @@ How to Run
 * *A* 가 **CONSENSUS** 상태로 들어간 것을 확인한 후, 위 config를 사용한 ``node run`` 으로 *A-sub* 를 실행합니다.
 * *A-sub* 는 이전 블록 데이터를 수집하여 동기화를 수행하고 **SYNCING** 상태로 진입합니다.
 
-* *A-sub* 가 **SYNCING** 상태가 된 것을 확인하고, *A-sub* 노드에 대해 ``start-handover``를 실행합니다.
+* *A-sub* 가 **SYNCING** 상태가 된 것을 확인하고, *A-sub* 노드에 대해 ``start-handover`` 를 실행합니다.
 
 .. code-block:: shell
 

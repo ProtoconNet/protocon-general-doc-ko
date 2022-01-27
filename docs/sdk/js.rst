@@ -2,16 +2,16 @@
 Javascript
 ===================================================
 
-| This is SDK written in Javascript.
+| 이 페이지는 Javascript로 작성된 SDK에 관한 문서입니다.
 
-| Support models are,
+| 지원하는 모델은 다음과 같습니다
 
 * Mitum Currency
 * Mitum Blocksign
 
-| Note that this document introduces how to create operations only for Mitum Currency.
+| 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
 
-| If you would like to check the way to create operations for Mitum Blocksign and the detail explanation for Mitum Currency, please refer to README of `mitum-js-util <https://github.com/ProtoconNet/mitum-js-util>`_.
+| Mitum Blocksign의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-java-util <https://github.com/ProtoconNet/mitum-js-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
@@ -20,9 +20,9 @@ Get Started
 Prerequisite and Requirements
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| To use **mitum-js-util** and build it, ``npm`` or ``yarn`` should be installed.
+| mitum-js-util을 사용하고 빌드하기 위해 ``npm`` 혹은 ``yarn`` 가 설치되어 있어야 합니다.
 
-| Especially, this package has been developed by,
+| 이 패키지는 다음 환경에서 개발되었습니다.
 
 .. code-block:: shell
 
@@ -32,24 +32,24 @@ Prerequisite and Requirements
     $ node --version
     7.24.0
 
-| ``npm version 16.10.0 or later`` is recommended.
+| ``npm version 16.10.0 or later`` 이 요구됩니다.
 
 Installation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* Using **npm**,
+* npm을 사용하면,
 
 .. code-block:: shell
 
     $ npm install mitumc
 
-* Using **yarn**,
+* yarn을 사용하면,
 
 .. code-block:: shell
 
     $ yarn add mitumc
 
-* Using **Git**,
+* git을 사용하면,
 
 .. code-block:: shell
 
@@ -67,18 +67,18 @@ Installation
 Make Your First Operation
 ---------------------------------------------------
 
-| This tutorial explains how to ``create-account`` by **mitum-js-util**.
+| 이 예제는 **mitum-js-util** 로 ``create-account`` operation을 생성하는 방법에 대해 설명합니다. 
 
-| If you want to check how to create ``key-updater`` and ``transfer`` operation, go **Support Operations** at the end of this section.
+| ``key-updater`` 와 ``transfer`` operation 생성 방법은 이 파트 마지막의 **Support Operations** 에서 확인하세요.
 
 Get Available Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Before start, you must hold the account registered in the network.
+| 시작하기 전에, 네트워크에 등록된 계정을 가지고 있어야 합니다.
 
-| In Mitum Currency, only already existing account can create operations able to be stored in block.
+| Mitum Currency에서는 오직 이미 존재하는 계정만이 블록에 저장될 수 있는 새로운 operation을 만들 수 있습니다.
 
-| An account consists of following factor.
+| 계정은 다음과 같은 요소들로 이루어져있습니다.
 
 .. code-block:: none
 
@@ -91,27 +91,27 @@ Get Available Account
     - The range of threshold should be in 1 <= threshold <= 100
     - The sum of all weights of the account should be over or equal to threshold
 
-| If you haven't have any account yet, ask some other account to create your account first.
-| You can get keypairs for your account in **Details - Get Mitum Keypair** section.
-| Hand your (public key, weight) pairs and threshold to the account holder who helps make your new account.
+| 아직 아무 계정도 가지고 있지 않다면 다른 계정에 당신의 첫 계정을 만들어 달라 요청해야 합니다.
+| **Details - Get Mitum Keypair** 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
+| (public key, weight)쌍과 threshold를 새 계정 생성을 도와줄 계정 보유자에게 전달하세요.
 
-| For signing, private keys corresponding each public key of the account must be remembered. **Don't let not allowed users to know your private key!**
-| Of course, you must know your account address because you should use the address as ``sender``.
+| 서명을 위해 계정의 각 공개키에 상응하는 개인키를 기억하고 있어야 합니다. 다른 사람에게 개인키를 알려주지 마세요!
+| 물론 계정 주소 또한 ``sender`` 로 사용해야 하기 때문에 기억하고 있어야 합니다.
 
-| You are able to create operations with unauthorized account(like fake keys and address) but those operations will be rejected after broadcasting.
+| 등록되지 않은 계정으로도 operation을 생성할 수는 있지만 해당 operation들은 브로드캐스팅 이후 처리 거부될 것입니다.
 
-| Now, go to next part to start to create your first operation!
+| 이제 첫 operation을 만들기 위해 다음 장으로 이동하세요.
 
 Create Generator
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Most of elements and factors for an operation are created by ``Generator``.
-| For Mitum Currency, use ``Generator.currency``.
+| operation의 대부분의 요소는 ``Generator`` 로 생성합니다.
+| Mitum Currency에 대해서는 ``Generator.currency`` 를 사용하세요.
 
-| When declare a ``Generator``, ``network id`` should be provided.
-| ``network id`` is up to each network.
+| ``Generator`` 를 선언할 때, ``network id`` 가 필요합니다.
+| ``network id`` 는 네트워크에 따라 다릅니다.
 
-| Let's suppose that the network id of the network is ``mitum``.
+| 이 페이지에서는 ``mitum`` 을 네트워크 id로 가정합니다.
 
 .. code-block:: javascript
 
@@ -121,22 +121,22 @@ Create Generator
     const generator = new Generator('mitum')
     const currencyGenerator = generator.currency
 
-| For details about ``Generator``, go to **Details - Major Classes** and refer to **Generator**.
+| ``Generator`` 에 대한 더 자세한 내용은 Details - Major Classes 로 이동하여 Generator를 참고하세요.
 
-| In addition, you must have available account on the network.
+| 또한, 네트워크 상에서 사용할 수 있는 등록된 계정을 가지고 있어야 합니다.
 
-| Now, it's done to create operations.
+| 이제 새로운 operation을 만들기 위한 준비가 끝났습니다.
 
 Create Operation Item
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Everything to do by an operation is contained in *operation fact*, not in *operation*.
-| *Fact* have the basic information such that ``sender``, ``token``, etc...
+| operation이 실행해야할 모든 것은 operation이 아닌 operation fact에 들어있습니다.
+| fact는 ``sender``, ``token`` 등의 기본적인 정보를 담고 있습니다.
 
-| Actually, real constructions for the operation are contained in *Item*.
-| That means you must create items for the operation.
+| 사실, 실제 operation의 지시 사항은 그 중에서도 Item에 들어있습니다.
+| 한 마디로, operation을 위해 item들을 먼저 생성해야 한다는 뜻입니다.
 
-| Let's suppose that you want to create an account following below conditions.
+| 아래 조건에 따라 계정을 생성하려 하는 상황이라고 가정해봅시다.
 
 .. code-block:: none
 
@@ -147,9 +147,9 @@ Create Operation Item
     2. The initial balance of the account will be,
         - balance(currency id, amount): (MCC, 10000), (PEN, 20000)
 
-| Since the number of keys contained in the account is 2, new account will be *multi-sig account*.
+| 계정이 가지고 있는 키의 수가 2 개이기 때문에, 새로운 계정은 multi-sig 계정이 될 것입니다.
 
-| If every factor of new account have been decided, create an item!
+| 새 계정에 대한 모든 조건이 결정되었으면 아래와 같이 item을 생성하세요.
 
 .. code-block:: javascript
 
@@ -164,63 +164,63 @@ Create Operation Item
 
     const createAccountsItem = currencyGenerator.createCreateAccountsItem(keys, amounts); // createCreateAccountsItem(keys, amounts)
 
-* First, create each key by ``Generator.currency.key(public key, weight)``.
-* Second, combine all keys with account threshold by ``Generator.currency.createKeys(key list, threshold)``.
-* Third, create each amount by ``Generator.currency.amount(amount, currencyId)``.
-* Forth, combine all amounts by ``Generator.currency.createAmounts(amount list)``.
-* Finally, create an item by ``Generator.currency.createCreateAccountsItem(keys, amounts)
+* 우선, ``Generator.currency.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
+* 다음으로 모든 키와 계정 threshold를 ``Generator.currency.createKeys(key list, threshold)`` 로 결합합니다.
+* 그리고, ``Generator.currency.amount(amount, currencyId)`` 를 사용해 각 amount를 생성합니다..
+* 다음 ``Generator.currency.createAmounts(amount list)`` 로 모든 amount를 결합합니다.
+* 마지막으로, ``Generator.currency.createCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
 
-| Of course you can customize the content of items by following constrains.
+| 물론 각 item의 내용을 다음 조건 하에서 사용자화 할 수 있습니다.
 
 .. code-block:: none
 
-    - `Keys` created by `createKeys` can contain up to 10 key pairs.
-    - `Amounts` created by `createAmounts` can contain up to 10 amount pairs.
-    - Moreover, a `fact` can contain multiple items. The number of items in a fact is up to 10, either.
+    - `createKeys`를 사용하여 생성하는 `Keys`는 key를 10개까지 포함할 수 있습니다.
+    - item 당 최대 10개의 amount를 가질 수 있기 때문에 `createAmounts`의 amount list에는 amount를 10개까지 넣을 수 있습니다.
+    - 게다가, `fact`는 item을 여러 개 포함할 수 있습니다. fact 당 item 개수는 최대 10 개입니다.
 
 Create Operation Fact
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| *Fact* must have not empty ``items``, ``sender``, ``token``, and ``fact hash``.
+| *fact*는 반드시 ``items``, ``sender``, ``token``, ``fact hash`` 를 가져야 합니다.
 
-| Don't worry about ``token`` and ``fact hash`` because they will be filled automatically by SDK.
-| The information you must provide is about ``items`` and ``sender``.
+| ``token`` 와 ``fact hash`` 는 SDK가 자동적으로 생성해주므로 걱정하지 않아도 됩니다.
+| 반드시 제공해야할 정보는 ``items`` 와 ``sender`` 에 대한 것입니다.
 
-| The way to create items has been introduced above section.
+| item을 생성하는 방법은 바로 위에서 설명하였습니다.
 
-| Just be careful that only the account under below conditions can be used as ``sender``.
+| 아래 조건을 만족할 수 있는 계정만 ``sender`` 로 사용할 수 있다는 것을 명심하세요.
 
 .. code-block:: none
 
-    1. The account which has been created already.
-    2. The account which has sufficient balance of currencies in items.
-    3. The account that you(or owners of the account) know its private keys corresponding account public keys.
+    1. 이미 생성되어 등록된 계정.
+    2. item의 각 amount에 대해 충분한 잔액을 보유한 계정.
+    3. 계정의 공개키에 상응하는 개인키(멀티 시그 계정인 경우 모든 개인키들 중 일부)를 알고 있는 계정.
 
-| Then, create *fact*!
+| 그리고 다음과 같이 fact를 생성하세요!
 
 .. code-block:: javascript
 
     const senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca" // sender's account address; replace with your address
     const createAccountsFact = currencyGenerator.createCreateAccountsFact(senderAddress, [createAccountsItem]) // createCreateAccountsFact(sender's address, item list)
 
-| If you want to create fact with multiple items, put them all in item list of ``Generator.currency.createCreateAccountsFact(sender's address, item list)`` as an array.
+| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.currency.createCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Finally, you are in the step to create operation!
+| 드디어 operation을 생성하기 위한 단계에 도달하였습니다!
 
-| Only thing you need to prepare is **sender's private key**. It is used for signing fact.
-| The signature of a private key is included to ``fact_signs`` as a **fact signature**.
-| The sum of weights of all signers in ``fact_signs`` should exceeds or be equal to ``sender``'s threshold.
+| 준비해야 하는 것은 오직 sender의 개인키입니다. 개인키는 fact에 서명하기 위해 필요합니다.
+| 개인키의 서명은 fact 서명으로서 ``fact_signs``에 추가됩니다.
+| ``fact_signs``의 모든 signer의 weight들의 총합이 ``sender`` 의 threshold 이상이어야 합니다.
 
-| **Only the signatures of sender account's keys are available to fact_signs!**
+| fact_sign에는 오직 ``sender`` 의 개인키의 서명만이 유효합니다. 
 
-| There is ``memo`` in operation but it is not necessary. You can enter something if you need, but be careful because that ``memo`` also affect to ``operation hash``.
+| operation에는 ``memo`` 값이 존재하지만 필수적이지는 않습니다. 필요한 내용을 넣어도 괜찮지만 ``memo`` 또한 ``operation hash`` 값에 영향을 미치기 때문에 주의해야 합니다.
 
-| In this example, supposed that ``sender`` is *single-sig account*. That means, only one key exist in the sender's account.
-| If ``sender`` is *multi-sig account*, you may add multiple signatures to ``fact_signs``.
-| What key must sign is decided by the account's threshold and keys' weights.
+| 이 예제에서는 ``sender`` 가 single-sig 계정이라고 가정합니다. 즉, sender의 계정에는 오직 하나의 키 밖에 없습니다.
+| 만약 ``sender`` 가 multi-sig 계정이라면 ``fact_signs`` 에 여러 개의 서명을 추가해야 할 수 있습니다.
+| 어떤 키들이 반드시 서명해야 하는지는 계정의 threshold와 각 key의 weight에 달렸습니다.
 
 .. code-block:: javascript
 
@@ -229,26 +229,26 @@ Create Operation
     const createAccounts = generator.createOperation(createAccountsFact, "") // createOperation(fact, memo)
     createAccounts.addSign(senderPrivateKey); // addSign(private key) add fact signature to fact_signs 
 
-| Use just ``Generator.createOperation(fact, memo)`` for create operations, not ``Generator.currency.createOperation(fact, memo)``.
+| operation을 생성하기 위해 ``Generator.currency.createOperation(fact, memo)`` 가 아닌 ``Generator.createOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
 
-| Be sad, an operation can contain only one fact.
+| 아쉽지만 하나의 operation에는 하나의 fact만 넣을 수 있습니다.
 
 Create Seal
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In fact, ``operation`` itself is enough to create an account.
+| 사실 ``operation`` 자체로도 계정을 생성하는 데는 충분합니다.
 
-| However, sometimes you may need to wrap multiple operations with a seal.
+| 하지만 종종 여러 개의 operation을 seal로 감싸 전송해야 할 일이 있을 수 있습니다. - 여러 개의 각각 다른 계정으로부터 하나의 계정으로 동시에 송금하는 경우 등
 
-| Mentioned above, one seal can contain multiple operations.
+| 위에 언급한대로 하나의 seal은 여러 개의 operation을 가질 수 있습니다.
 
-| The maximum of the number of operations in a seal is decided by the policy of nodes.
-| So check how many operations you can include in a seal before create seals.
+| seal에 넣을 수 있는 operation의 최대 개수는 노드 정책에 따라 다를 수 있습니다.
+| 따라서 seal을 생성하기 전 하나의 seal에 몇 개의 operation을 넣을 수 있는지 확인해야 합니다.
 
-| Anyway, it is simple to create a seal with **mitum-js-util**.
+| 어쨌든 mitum-js-util을 사용해 seal을 생성하는 것은 간단합니다.
 
-| What you have to prepare is *private key* from Mitum key package without any conditions.
-| Any *btc compressed wif* with suffix *mpr* is okay.
+| 준비해야 하는 것은 Mitum 키 패키지로부터 얻은 아무 개인키입니다.
+| *mpr* 타입 접미사가 붙은 어떤 *btc compressed wif* 형식 키라도 가능합니다.
 
 .. code-block:: javascript
 
@@ -257,16 +257,16 @@ Create Seal
     const operations = [createAccounts]
     const seal = generator.createSeal(anyPrivateKey, operations)
 
-| Like ``createOperation``, use ``Generator.createSeal(signer, operation list)``.
+| ``createOperation`` 의 경우와 같이, 단순히 ``Generator.createSeal(signer, operation list)`` 를 사용하세요.
 
-| Put all operations to wrap in *operation list*.
+| 감싸길 원하는 모든 operation을 operation list에 추가하세요.
 
 Support Operations
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| This section will introduce code example for each operation.
+| 이 파트에서는 각 operation에 대한 코드 예제를 제공합니다.
 
-| What Mitum Currency operations **mitum-js-util** supports are,
+| mitum-js-util가 지원하는 Mitum Currency operation은 다음과 같습니다.
 
 * Create Account
 * Key Updater
@@ -275,14 +275,14 @@ Support Operations
 Create Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| The tutorial for ``create-account`` have been already explained but it'll be re-introduced in one code-block.
+| ``create-account`` 의 예제는 이미 설명했으나 여기서 하나의 코드 블록으로 다시 한 번 소개합니다.
 
-| To create new account you have to prepare,
+| 새 계정을 생성하기 위해 다음과 같은 것을 준비해야 합니다.
 
-* The information of new account: account keys as pairs of (public key, weight), threshold, initial balance as pairs of (currency id, amount)
-* Sender's account that has existed already - especially sender's account address and private keys.
+* 새로운 계정의 정보: (public key, weight)쌍과 threshold로 이루어진 계정 keys, (currency id, amount) 쌍으로 이루어진 계정 초기 잔액
+* 이미 존재하는 sender의 계정 - 특히 계정 주소와 개인키를 알아야 합니다.
 
-| Mentioned before, what private keys must sign the fact is up to the threshold and composition of weights.
+| 이전에 설명한대로 어떤 개인키가 서명해야 하는지는 threshold와 weight들의 구성에 달렸습니다.
 
 .. code-block:: javascript
 
@@ -311,14 +311,14 @@ Create Account
     const createAccounts = generator.createOperation(createAccountsFact, "")
     createAccounts.addSign(senderPrivateKey);
 
-| The detailed explanation was omitted. See at the start of 'Make Your First Operation'.
+| 자세한 설명은 생략합니다. 'Make Your First Operation'의 시작 부분을 확인하세요.
 
 Key Updater
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| This operation is literally to update keys of the account.
+| 이 operation은 말 그대로 계정의 키를 업데이트 하기 위한 것입니다.
 
-| For example,
+| 예를 들어,
 
 .. code-block:: none
 
@@ -326,18 +326,18 @@ Key Updater
     - But I want to replace keys of the account with keys: (22ndFZw57ax28ydC3ZxzLJMNX9oMSqAfgauyWhC17pxDpmpu, 50), (22wD5RWsRFAr8mHkYmmyUDzKf6VBNgjHcgc3YhKxCvrZDmpu, 50), threshold: 100
     - Then you can use key-updater operation to reach the goal!
 
-| *Can I change my account from single-sig to multi-sig? or from multi-sig to single-sig?*
+| single-sig 계정을 multi-sig로 바꾸거나 반대로 multi-sig에서 single-sig로 바꿀 수 있을까요?
 
-| Fortunately, of course, you can!
+| 물론 가능합니다!
 
-| To update keys of the account, you have to prepare,
+| 계정 키를 업데이트하기 위해서 다음과 같은 것을 준비해야 합니다.
 
-* The account(target) information you want to change the keys - account address and private keys; what private keys are need is up to threshold and key weights.
-* New keys: pairs of (public key, weights) and threshold
-* Sufficient balance of a currency id to pay some fee.
+* 키를 교체하고자 하는 계정(target)의 정보 - 계정 주소와 개인키; 어떤 개인키가 필요한지는 threshold와 키 weight들에 따라 다를 수 있습니다.
+* 새로운 keys: (public key, weights)쌍들과 threshold
+* 수수료를 지불하려는 currency의 충분한 잔액
 
-| ``create-account`` and ``transfer`` need ``item`` to create an operation but ``key-updater`` don't need any item for it.
-| Just create *fact* right now.
+| ``create-account`` 와 ``transfer`` 는 ``item`` operation 생성을 위해 item을 만들어야 하지만 ``key-updater`` 는 item이 필요하지 않습니다.
+| 바로 fact를 만드세요.
 
 .. code-block:: javascript
 
@@ -359,34 +359,34 @@ Key Updater
     const keyUpdater = generator.createOperation(keyUpdaterFact, "")
     keyUpdater.addSign(targetPrivateKey) // only one signature since the account is single-sig
 
-* **After updating keys of the account, the keys used before becomes useless. You should sign operation with private keys of new keypairs of the account.**
-* **So record new private keys somewhere before send key-updater operation to the network.**
+* 계정의 키를 업데이트한 후에는 이전의 키를 사용할 수 없게 됩니다. 계정의 새로운 키페어의 개인키로 서명해야 합니다.
+* 따라서 네트워크에 key-updater operation을 전송하기 전, 새로운 키들을 기록해두세요.
 
 Transfer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| Finally, you can transfer your tokens to another account.
+| 드디어 다른 계정으로 토큰을 송금할 수 있습니다!
 
-| As other operations, you have to prepare,
+| 다른 operation들과 같이, 다음과 같은 것들을 준비해야 합니다.
 
-* Sender's account information - account address, and private keys
-* Pairs of (currency id, amount) to transfer
+* sender의 계정 정보 - 계정 주소와 개인키
+* 송금할 (currency id, amount) 쌍
 
-| Like ``create-account``, you must create *item* before making *fact*.
+| ``create-account`` 처럼 fact 생성 전 item을 먼저 만들어야 합니다.
 
-| Check whether you hold sufficient balance for each currency id to transfer before sending operation.
+| operation을 전송하기 전 전송하려는 토큰의 잔액이 충분한지 먼저 확인하세요.
 
-| Before start, suppose that you want to transfer,
+| 시작하기 전, 다음과 같이 토큰을 전송하려 한다고 가정해 봅시다.
 
 * 1000000 MCC token
 * 15000 PEN token
 
-| And receiver is,
+| 그리고 receiver는,
 
 * CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca
 
-| Note that up to 10 (currency id, amount) pairs can be included in one item.
-| Moreover, up to 10 item can be included in one item. However, the receiver for each item should be different.
+| 최대 10 (currency id, amount) 쌍이 item 하나에 들어갈 수 있습니다.
+| 또한 최대 10개의 item이 한 fact에 들어갈 수 있습니다. 하지만 각 item의 receiver는 달라야 합니다.
 
 .. code-block:: javascript
 
@@ -410,32 +410,32 @@ Transfer
     const transfers = generator.createOperation(transfersFact, "")
     transfers.addSign(senderPrivateKey) // suppose sender is single-sig    
 
-| There are other operations that **mitum-js-util** supports, like operations of *Mitum Blocksign*, but this document doesn't provide examples of those operations.
-| Refer to `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_ if necessary.
+| Mitum Blocksign 등 mitum-js-util이 지원하는 다른 operation이 더 있지만 이 문서에서는 설명하지 않습니다.
+| 필요하다면 `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_ 를 확인하세요.
 
 ---------------------------------------------------
 Sign
 ---------------------------------------------------
 
-| To allow an operation to store in blocks, whether signatures of the operation satisfy the **condition** should be checked.
+| operation이 정상적으로 블록에 저장되기 위해서는 operation의 서명들이 특정 조건을 만족해야 합니다.
 
-| What you have to care about is,
+| 주의해야할 점은,
 
-* Is every signature is a signature signed by private key of the account?
-* Is the sum of every weight for each signer greater than or equal to the account threshold?
+* 모든 서명이 계정의 개인키의 서명인가요?
+* 각 signer의 weight들을 모두 합한 값이 계정의 threshold 이상인가요?
 
-| Of course, there are other conditions each operation must satisfy but we will focus on **signature** (especially about fact signature) in this section.
+| 물론, 각 operation이 지켜야 할 다른 조건들이 더 있습니다. 하지만 여기서는 (fact)서명에만 집중하겠습니다.
 
-| Let's suppose there is an multi-sig account with 3 keys s.t each weight is 30 and threshold is 50.
+| 각 키의 weight가 30이고 threshold가 50인 멀티 시그 계정이 있다고 가정해봅시다.
 
-| That means, 
+| 즉, 다음과 같습니다. 
 
 * (pub1, 30)
 * (pub2, 30)
 * (pub3, 30)
 * threshold: 50
 
-| When this account want to send an operation, the operation should include at least two fact signatures of different signers.
+| 이 계정이 operation을 전송하길 원할 때, operation은 서로 다른 signer의 최소 2 개의 fact 서명을 가지고 있어야 합니다.
 
 1. CASE1: fact signatures signed by pub1's private key and pub2's private key
 
@@ -461,21 +461,21 @@ Sign
    2. the sum of weights = 90 > threshold = 50
    3. So the operation with these two fact signatures is available
 
-| Therefore, you must add multiple signature to each operation to satisfy the condition. (use ``Operation.addSign(private key)``)
-| Like **CASE4**, it's okay to sign with all private keys as long as the sum of those weights >= threshold.
+| 그러므로 조건을 만족하기 위해 각 operation에 여러 개의 signature를 추가해야 합니다. (``Operation.addSign(private key)`` 를 사용하세요.)
+| CASE4의 경우와 같이 weight들의 총합 >= threshold 조건이 지켜지는 한 모든 개인키로 서명하는 것도 가능합니다.
 
 Add Fact Sign to Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Beside adding a fact signature when create the operation, there is another way to add new fact signature to the operation.
+| operation 생성 시 fact 서명을 추가하는 방법 외에 fact 서명을 추가하는 다른 방법이 하나 더 있습니다.
 
-| To add new signature to the operation, you have to prepare,
+| operation에 새 서명을 추가하기 위해 준비해야 할 것은 다음과 같습니다.
 
-* Private key to sign - it should be that of the sender of the operation.
-* Operation as JS dictionary object, or external JSON file.
+* 서명할 개인키 - 이 개인키는 계정의 키여야 합니다.
+* JS dictionary 객체 혹은 외부 JSON 파일 형태의 operation
 * Network ID
 
-| First, create ``Signer`` with ``network id`` like ``Generator``.
+| 우선 ``Generator`` 처럼 ``network id`` 와 함께 ``Signer`` 를 생성합니다.
 
 .. code-block:: javascript
 
@@ -485,7 +485,7 @@ Add Fact Sign to Operation
     const signKey = "L3CQHoKPJnK61LZhvvvfRouvAjVVabx2RQXHHhPHbBssgcewjgNimpr"
     const signer = new Signer(networkId, signKey)
 
-| Then, sign now!
+| 그리고, 서명하세요!
 
 .. code-block:: javascript
 
@@ -495,10 +495,10 @@ Add Fact Sign to Operation
     const signedFromPath = signer.signOperation(operationJsonPath)
     const signedFromObject = signer.signOperation(operationObject)
 
-| ``signedFromPath`` and ``signedFromObject`` results in operation with same fact signatures.
+| ``signedFromPath`` 과 ``signedFromObject`` 는 결과가 같습니다.
 
-| Note that the result operation is not ``Operation`` object of **mitum-js-util**. It's just a dictionary object.
-| If you want to add multiple signature at once, you must create another different JSON file then re-sign it with other private keys using ``Signer``.
+| 아웃풋인 signed는 mitum-js-util의 ``Operation`` 객체가 아닙니다. 단지 dictionary 객체입니다.
+| 한 번에 여러 개의 서명을 추가하길 원한다면 signed - dictionary object에 다른 개인키로 Signer를 다시 만들어 서명해야 합니다.
 
 ---------------------------------------------------
 Details
@@ -507,30 +507,30 @@ Details
 Get Mitum Keypair
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| We will introduce how to create Mitum keypairs!
+| Mitum 키페어 생성 방법을 소개합니다!
 
-| Before start, we want to let you know something important; About type suffix.
+| 시작 전, 중요한 것을 설명하겠습니다.
 
-| *Address*, *private key*, and *public key* in Mitum have specific type suffixes. They are,
+| Mitum의 계정의 주소, 개인키, 공개키는 각자 특별한 타입 접미사를 가지고 있습니다. 그것은 다음과 같습니다.
 
 * Account Address: ``mca``
 * Private Key: ``mpr``
 * Public Key: ``mpu``
 
-| For example, an single-sig account looks like,
+| 예를 들어, 한 single sign 계정은 다음과 같은 형태를 가집니다.
 
 * Account Address: ``9XyYKpjad2MSPxR4wfQHvdWrZnk9f5s2zc9Rkdy2KT1gmca``
 * Private Key: ``L11mKUECzKouwvXwh3eyECsCnvQx5REureuujGBjRuYXbMswFkMxmpr``
 * Public Key: ``28Hhy6jwkEHx75bNLmG66RQu1LWiZ1vodwRTURtBJhtPWmpu``
 
-| There are three methods to create a keypair.
+| 키페어를 생성하는 세 가지 방법이 있습니다.
 
 Just Create New Keypair
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| **mitum-js-util** will create random keypair for you!
+| mitum-js-util가 무작위의 키페어를 생성해줍니다.
 
-| Use ``getNewKeypair()``.
+| ``getNewKeypair()`` 를 사용하세요.
 
 .. code-block:: javascript
 
@@ -547,7 +547,7 @@ Just Create New Keypair
 Get Keypair From Your Private Key
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| If you already have own private key, create keypair with it!
+| 이미 개인키를 가지고 있다면 해당 키로부터 키페어를 생성할 수 있습니다.
 
 .. code-block:: javascript
 
@@ -564,8 +564,8 @@ Get Keypair From Your Private Key
 Get Keypair from your seed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| You can get keypair from your seed, too. Even if you don't remeber the private key of the keypair, the keypair can be recovered by it's seed.
-| Note that string seed length >= 36.
+| 시드로부터 키페어를 생성할 수도 있습니다. 키페어의 개인키를 기억하지 못하더라도 시드를 통해 복구할 수 있습니다.
+| 문자열 시드 길이는 36 이상이어야 합니다.
 
 .. code-block:: javascript
 
@@ -582,12 +582,11 @@ Get Keypair from your seed
 Get Account Address with Keys
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| You can calcualte address from threshold, and every (public key, weight) pair of the account.
+| 계정 주소를 threshold와 계정의 모든 (public key, weight)쌍을 사용해 알아낼 수 있습니다.
 
-| However, it is not available to get address if keys or threshold of the account have changed.
-| This method is available only for the account that have not changed yet.
+| 하지만 이 방법은 계정의 threshold나 키가 업데이트 되지 않은 경우에만 사용할 수 있습니다.
 
-| The account information for the example is,
+| 예제의 계정 정보는 다음과 같습니다.
 
 * key1: (vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu, 40)
 * key2: (29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu, 30)
@@ -614,14 +613,14 @@ Major Classes
 Generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| ``Generator`` is the class that helps generate operations for Mitum Currency.
+| ``Generator`` 는 Mitum Currency operation 생성을 도와줍니다.
 
-| Before you use ``Generator``, ``network id`` must be set.
+| ``Generator`` 를 사용하기 전 ``network id`` 를 설정해야 합니다.
 
-* For **Mitum Currency**, use ``Generator.currency``.
-* For **Mitum Blocksign**, use ``Generator.blockSign``.
+* Mitum Currency에 대해 ``Generator.currency``를 사용하세요.
+* Mitum Blocksign에 대해 ``Generator.blockSign``를 사용하세요.
 
-| For details of generating operations for **Mitum Blocksign**. refer to `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_.
+| Mitum Blocksign operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_ 을 참고하세요.
 
 .. code-block:: javascript
 
@@ -633,7 +632,7 @@ Generator
     const currencyGenerator = generator.currency
     const blocksignGenerator = generator.blockSign
 
-| All methods of ``Generator`` provides are,
+| ``Generator`` 가 제공하는 모든 메서드는 다음과 같습니다.
 
 .. code-block:: javascript
 
@@ -661,25 +660,25 @@ Generator
 Signer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| ``Signer`` is the class for adding new fact signature to already create operations.
+| ``Signer`` 는 이미 생성된 operation에 새로운 fact 서명을 추가할 때 사용합니다.
 
-| Like ``Generator``, ``network id`` must be set.
+| ``Generator`` 와 같이 ``network id`` 가 설정되어야 합니다.
 
-| You have to prepare *private key* to sign, too.
+| 서명에 사용할 개인키도 준비해야 합니다.
 
-| ``Signer`` provides only one method, that is,
+| ``Signer`` 는 오직 하나의 메서드를 제공합니다.
 
 .. code-block:: javascript
 
     Signer.signOperation(operation)
 
-| To check the exact usage of ``Signer``, go back to **Make Your First Operation - Sign**.
+| ``Signer`` 의 정확한 사용 방법은 'Make Your First Operation - Sign'로 돌아가서 확인하세요.
 
 JSONParser
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| This class is constructed just for convenience.
-| If you would like to use other js package to export ``Operation`` to file or to print it in JSON format, you don't need to use ``JSONParser`` of **mitum-js-util**.
+| 이 클래스는 편의를 위해 개발되었습니다.
+| ``Operation`` 을 내보내거나 JSON 형식으로 출력하기 위해 다른 패키지를 사용하길 원한다면 굳이 mitum-js-util의 ``JSONParser`` 를 사용할 필요는 없습니다.
 
 .. code-block:: javascript
 

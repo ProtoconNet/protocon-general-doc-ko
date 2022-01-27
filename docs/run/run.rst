@@ -192,9 +192,9 @@ Build Multi Nodes Network
 Order of Execution
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-1. 멀티 노드를 실행할 때 genesis block을 생성하는 첫 노드가 설정되어야 합니다. 첫 노드는 ``node init``을 통해 genesis block을 생성합니다. genesis block를 만들지 않는 그 외의 노드들은 ``init``을 실행할 필요가 없습니다.
-2. 첫 노드는 ``init`` 뒤에 ``run``을 실행해 노드를 시작합니다.
-3. 다른 노드들도 ``run``로 노드를 시작합니다.
+1. 멀티 노드를 실행할 때 genesis block을 생성하는 첫 노드가 설정되어야 합니다. 첫 노드는 ``node init`` 을 통해 genesis block을 생성합니다. genesis block를 만들지 않는 그 외의 노드들은 ``init`` 을 실행할 필요가 없습니다.
+2. 첫 노드는 ``init`` 뒤에 ``run`` 을 실행해 노드를 시작합니다.
+3. 다른 노드들도 ``run`` 로 노드를 시작합니다.
 4. 다른 노드들은 *sync* 과정을 통해 첫 노드의 블록을 따라가며 노드들은 *consensus* 과정을 통해 블록을 생성합니다.
 
 | 만약 4 개의 노드가 있고 그 중 n0이 첫 노드라면, 실행 순서는 다음과 같습니다. 모든 4 노드가 suffrage 노드일 때 노드들은 node discovery를 위해 최소 하나의 다른 노드의 publish url을 discovery url로 설정해야 합니다.
@@ -454,7 +454,7 @@ Four Suffrage Nodes and One Sync Node
 | 네 개의 suffrage 노드와 하나의 sync 노드(non-suffrage)를 운영하는 경우,
 
 | 각 노드에 대해 yml configuration 파일을 준비하세요.
-| ``n0``, ``n1``, ``n2``, ``n3`` 는 suffrage 노드이며 ``n4``가 sync 노드입니다.
+| ``n0``, ``n1``, ``n2``, ``n3`` 는 suffrage 노드이며 ``n4`` 가 sync 노드입니다.
 
 
 .. image:: ../images/run.buildnet/4_suffrage_nodes_1_sync_node.png

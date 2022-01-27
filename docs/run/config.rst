@@ -20,8 +20,8 @@ address
 genesis-operations
 ---------------------------------------------------
 
-| ``genesis-operation``은 네트워크 초기화 시 실행되는 제네시스 operation에 대한 설정입니다.
-| ``genesis-operation``은 최초로 생성되는 블록의 내용을 담고 있습니다.
+| ``genesis-operation`` 은 네트워크 초기화 시 실행되는 제네시스 operation에 대한 설정입니다.
+| ``genesis-operation`` 은 최초로 생성되는 블록의 내용을 담고 있습니다.
 
 | currency 모델에서는 메인 currency와 제네시스 계정의 정보가 설정되어야 합니다.
 
