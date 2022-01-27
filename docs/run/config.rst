@@ -4,13 +4,13 @@
 Configuration
 ===================================================
 
-| The configuration for node setting is written in *YAML*.
+| 노드 설정을 위한 구성은 YAML으로 작성됩니다.
 
 ---------------------------------------------------
 address
 ---------------------------------------------------
 
-| Address of local node(alias for url address)
+| 로컬 노드의 주소 (url 주소 별칭)
 
 .. code-block:: none
 
@@ -20,19 +20,19 @@ address
 genesis-operations
 ---------------------------------------------------
 
-| ``genesis-operation`` is a setting for the genesis operation that is executed when the network is initialized.
-| ``genesis-operation`` contains the contents of the block that is initially created.
+| ``genesis-operation``은 네트워크 초기화 시 실행되는 제네시스 operation에 대한 설정입니다.
+| ``genesis-operation``은 최초로 생성되는 블록의 내용을 담고 있습니다.
 
-| In the currency model, information on the main currency and genesis account must be set.
+| currency 모델에서는 메인 currency와 제네시스 계정의 정보가 설정되어야 합니다.
 
-| It registers the information about,
+| 등록하는 정보는 다음과 같습니다.
 
-* Keys of the *genesis account* (key, weight, threshold)
-* Initial balance
+* *genesis account*의 키 (key, weight, threshold)
+* 최초 잔액
 * Currency ID
-* Fee policy of the currency to be created
+* 생성될 currency의 수수료 정책
 
-| For example,
+| 예시는 다음과 같습니다.
 
 .. code-block:: none
 
@@ -52,9 +52,9 @@ genesis-operations
 network
 ---------------------------------------------------
 
-| Specify the *domain address* or *IP address* of the node used in the network.
-| Address to receive messages from node or client, using *quic* communication protocol.
-| *Self-signed certificates* can be used to set up test node. You can use it for only test and development nodes where security is not a big concern.
+| 네트워크에 사용되는 노드의 *domain address* 혹은 *IP address* 를 설정합니다.
+| network는 quic communication protocol을 사용하여 노드나 클라이언트로부터 메시지를 받기 위한 주소입니다.
+| 테스트 노드를 구성하기 위해 Self-signed certificates가 사용될 수 있습니다. 보안이 크게 문제가 되지 않는 테스트 및 개발 노드에만 사용할 수 있습니다.
 
 .. code-block:: shell
     
@@ -62,7 +62,7 @@ network
 
     $ openssl req -x509 -new -nodes -key mitum.key -sha256 -days 1024 -out mitum.crt
     
-| For example,
+| 예시는 다음과 같습니다.
 
 .. code-block:: none
 
@@ -75,16 +75,16 @@ network
 rate-limit
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Basically, API interface of internet service allows to connect from client without restriction.
-| However, too many requests to service does harm to the performance of service
-| To maintain the service to be stable, ``rate limit`` can be applied to the API service.
+| 기본적으로, 인터넷 서비스의 API 인터페이스는 제한 없이 클라이언트로부터의 연결을 허용합니다.
+| 하지만 서비스에 지나치게 많은 요청이 들어오면 서비스의 성능을 해칠 수 있습니다.
+| 서비스를 안정적으로 유지하기 위해 API 서비스에 ``rate limit`` 가 적용될 수 있습니다.
 
-| See `Rate limiting <https://en.wikipedia.org/wiki/Rate_limiting>`_.
+| `Rate limiting <https://en.wikipedia.org/wiki/Rate_limiting>`_ 에 대해 확인하세요.
 
-| Mitum supports *quic* based API service for communication within nodes, even none-suffrages.
-| Mitum Currency additionally supports *http2* based API service, called digest.
+| Mitum은 none-suffrage 노드들을 포함한 노드들 간의 통신을 위해 *quic* 기반 API 인터페이스를 제공합니다.
+| 또한, Mitum Currency는 digest라 불리는 *http2* 기반 API 서비스를 제공합니다.
 
-| ``rate-limit`` applied to these API services.
+| ``rate-limit`` 가 이런 API 서비스에 적용됩니다.
 
 .. code-block:: none
 
@@ -106,39 +106,39 @@ rate-limit
             127.0.0.1/24:
                 preset: suffrage
 
-* ``cache``: cache for requests. At this time, supports “memory:” and “redis://<redis server>”
+* ``cache``: 요청에 대한 캐시. 이때, “memory:”와 “redis://<redis server>”를 지원합니다.
 
   * **memory**: memory cache
   * **redis://<redis server>**: cached in redis server
 
-* ``preset``: pre defined rate limit settings.
+* ``preset``: 사전 정의된 rate limit 설정.
 
-    * For Mitum, ``suffrage`` and ``world`` presets are already defined. See `launch/config/ratelimit.go <https://github.com/spikeekips/mitum/blob/master/launch/config/ratelimit.go>`_ in the source code.
-    * You can make your own rate limit setting like bad-nodes.
+    * Mitum에대한 ``suffrage`` 와 ``world`` 프리셋은 이미 정의되어 있습니다. `launch/config/ratelimit.go <https://github.com/spikeekips/mitum/blob/master/launch/config/ratelimit.go>`_ 소스코드에서 확인하세요.
+    * bad-nodes와 같은 자신만의 rate limit 설정을 만들수도 있습니다.
 
 * Rules:
 
-    * **Rate-limit Settings** for a specific IP
-    * Rules consist of *IP address* (or IP address range), ``preset`` and detailed ``rate-limit`` settings.
-    * The IP address can be a single value or a range of IP addresses expressed in *CIDR* notation.
+    * 특정 IP에 대한 Rate-limit 설정
+    * 규칙은 *IP address* (또는 IP address 범위), ``preset`` 그리고 자세한 ``rate-limit`` 설정으로 구성되어 있습니다.
+    * IP 주소는 단일 값이나 *CIDR* 표기법으로 표현된 IP 주소의 범위일 수 있습니다.
       * example : 3.3.3.3, 4.4.4.4/24, 127.0.0.1/24
-    * Rate limit can be set through ``preset`` and additional ``limits``.
-    * ``preset`` can be pre-defined preset like ``suffrage``, ``world`` or user-defined preset like ``bad-nodes``.
-    * Additional limit such as ``blockdata: 5/m`` can be added to the ``preset``.
-    * Rules will be checked by the defined order. The upper rule will be checked first.
+    * Rate limit는 ``preset`` 과 추가적인 ``limits`` 으로 설정될 수 있습니다.
+    * ``preset``는 ``suffrage``, ``world`` 와 같은 사전 정의된 프리셋이나 ``bad-nodes`` 와 같은 사용자화 프리셋일 수 있습니다.
+    * ``blockdata: 5/m`` 과 같은 추가적인 limit이 ``preset`` 에 추가될 수 있습니다.
+    * 규칙은 정의된 순서대로 확인됩니다. 상위 규칙이 먼저 확인됩니다.
 
 * Detailed limit:
 
-    * The name of the API interface for Mitum, such as new-seal, used to set the limit can be found in RateLimitHandleMap (launch/config/ratelimit.go).
-    * The name of the API interface for Mitum-currency can be found in RateLimitHandlerMap (digest/handler.go).
-    * new-seal: 3/2m means new-seal interface allows 3 requests per 2 minutes to the specified IP or IP range.
-    * See the manner of time duration.
+    * limit 설정에 사용되는 new-seal과 같은 Mitum API 인터페이스의 이름은 RateLimitHandleMap(launch/config/ratelimit.go)에서 확인할 수 있습니다..
+    * Mitum Currency API 인터페이스의 이름은 RateLimitHandlerMap(digest/handler.go)에서 확인할 수 있습니다.
+    * new-seal: 3/2m은 new-seal 인터페이스가 특정 IP, IP 주소 범위에 대해 2분에 3 요청을 허용한다는 뜻입니다.
+    * time duration의 방법을 확인하세요.
 
-* Without any rules, by default no rate limit.
+* 다른 규칙이 설정되지 않으면 기본적으로 rate limit이 없습니다.
 
-| A limit value less than zero means unlimited.
+| 0보다 작은 late limit은 unlimited를 뜻합니다.
 
-| For example,
+| 다음 예시입니다,
 
 .. code-block:: none
 
@@ -146,7 +146,7 @@ rate-limit
     preset: bad-nodes
     blockdata: -1/m
 
-| The zero limit value means that the request is blocked.
+| 0 limit 값은 요청을 차단한다는 뜻입니다.
 
 | For example,
 
@@ -160,10 +160,10 @@ rate-limit
 network-id
 ---------------------------------------------------
 
-| ``network id`` acts like an identifier that **identifies a network**.
-| All nodes on the same network have the same ``network id`` value.
+| ``network id`` 는 네트워크를 식별하는 식별자의 역할을 합니다.
+| 같은 네트워크의 모든 노드들은 같은 ``network id`` 값을 가집니다.
 
-| For example,
+| 다음은 예시입니다.
 
 .. code-block:: none
 
@@ -173,24 +173,24 @@ network-id
 keypair
 ---------------------------------------------------
 
-| Enter the **node's private key**.
+| 노드의 개인키를 기입하세요.
 
-| For example,
+| 예시입니다.
 
 .. code-block:: none
 
     privatekey: Kxt22aSeFzJiDQagrvfXPWbEbrTSPsRxbYm9BhNbNJTsrbPbFnPAmpr
 
-| See :ref:`key command` to learn how to create a key pair.
+| 키페어 생성 방법은 :ref:`key command` 을 참고하세요.
 
 ---------------------------------------------------
 storage
 ---------------------------------------------------
 
-| Specify the *file system path* and *mongodb database address* of blockchain data storage.
-| If blockdata setting is missing, *blockdata > path* is set to a folder called *blockdata* in the current path by default.
+| 블록체인 데이터 스토리지의 파일 시스템 경로와 mongodb 데이터베이스 주소를 설정하세요.
+| 블록 데이터 설정이 없으면, ``blockdata > path`` 가 현재 경로의 blockdata라고 불리는 폴더로 기본 설정됩니다.
 
-| For example, 
+| 다음은 예시입니다. 
 
 .. code-block:: none
 
@@ -200,7 +200,7 @@ storage
     database:
         uri: mongodb://127.0.0.1:27017/mc
 
-| ``port number`` should be same with that when running docker.
+| ``port number`` 는 docker를 실행할 때의 것과 같아야합니다.
 
 ---------------------------------------------------
 suffrage
@@ -209,10 +209,10 @@ suffrage
 nodes
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Set addresses for suffrage nodes participating in consensus.
+| 합의에 참여하는 suffrage 노드의 주소를 설정하세요.
 
-| The alias name of the local node is ``n0sas``.
-| If ``n0``, ``n1``, ``n2``, ``n3`` nodes are included in the suffrage nodes, it can be set as follows.
+| 로컬 노드의 별칭은 ``n0sas`` 입니다.
+| 만약 ``n0``, ``n1``, ``n2``, ``n3`` 노드가 suffrage 노드로 추가되면 설정은 다음과 같아집니다.
 
 .. code-block:: none
 
@@ -223,14 +223,14 @@ nodes
             - n2sas
             - n3sas
 
-| If the ``n0`` node, which is a local node, is not included in the suffrage nodes, the local node becomes a *None-suffrage* node and serves only as a *syncing node*.
+| 만약 로컬 노드인 ``n0`` 가 suffrage 노드로 추가되지 않으면 로컬 노드는 *None-suffrage* 노드가 되며 *syncing node* 로서만 운용되게 됩니다.
 
-* The *Syncing node* does not participate in consensus and only syncs the generated block data.
-* The *None-suffrage* node handles only the seal containing the operation.
-* The *None-suffrage* node does not process ballots and proposals related to voting between nodes.
-* When the *None-suffrage* node stores the operation seal, it broadcasts the seal to the suffrage nodes.
+* *Syncing node* 는 합의에 참여하지 않으며 오직 블록 데이터를 동기화하기만 합니다.
+* *None-suffrage* 노드는 operation을 담은 seal만 다룹니다.
+* *None-suffrage* 노드는 노드 사이의 voting과 관련된 ballot과 proposal을 처리하지 않습니다.
+* *None-suffrage* 노드가 operation seal을 저장할 때, 이를 suffrage 노드에 브로드캐스팅합니다.
 
-| If the *None-suffrage* node does not add other nodes to the suffrage node, or does not configure other suffrage nodes, operation seal cannot be processed.
+| 만약 *None-suffrage* 노드가 다른 노드들을 suffrage 노드에 추가하지 않으면, 혹은 다른 suffrage 노드를 구성하지 않으면 operation seal이 처리될 수 없습니다.
 
 .. code-block:: none
 
@@ -244,10 +244,10 @@ nodes
 sync-interval
 ---------------------------------------------------
 
-| *None-suffrage* node periodically syncs block data.
+| *None-suffrage* 노드는 주기적으로 블록데이터를 동기화합니다.
 
-| The default interval is 10 seconds.
-| You can change the interval value through the ``sync-interval`` setting.
+| 기본 주기는 10초입니다.
+| ``sync-interval`` 설정을 통해 주기를 변경할 수 있습니다.
 
 .. code-block:: none
 
@@ -257,16 +257,16 @@ sync-interval
 nodes
 ---------------------------------------------------
 
-| Write the ``address`` (alias for the address), ``public key``, and ``url`` (ip address) of known nodes in the blockchain network.
+| 블록체인 네트워크의 알려진 노드들의 ``address``, ``public key``, ``url`` 를 입력합니다.
 
-* If not written, it operates as a **standalone node**.
-* If the node is a suffrage node and the node discovery function is used, the ``url`` of the node is not required.
-* However, if the node is not a suffrage node, the ``url``s of the suffrage nodes must be included.
+* 작성하지 않으면 **standalone node** 로서 운용되게 됩니다.
+* 노드가 suffrage 노드이거나 node discovery 기능이 사용되면, 노드의 ``url`` 는 필요하지 않습니다.
+* 하지만 노드가 suffrage 노드가 아닌 경우 suffrage 노드들의 ``url`` 입력되어야 합니다.
 
-| Mitum nodes use *CA signed certificate* (public certificate) by default.
+| Mitum 노드들은 기본적으로 *CA signed certificate* (public certificate)를 사용합니다.
 
-* If certificate related settings are not made in *Network config*, the node uses *self-signed certificate*.
-* If other Mitum nodes use self-signed certificate, ``tls-insecure: true`` should be set to all the nodes which use self-signed certificate.
+* 만약 설정과 관련된 certificate가 *Network config* 에 설정되지 않으면 노드는 *self-signed certificate* 를 사용합니다.
+* 다른 Mitum 노드들이 self-signed certificate를 사용하면, self-signed certificate를 사용하는 모든 노드들에 ``tls-insecure: true`` 가 설정되어야 합니다.
 
 .. code-block:: none
 
@@ -305,7 +305,7 @@ nodes
 digest
 ---------------------------------------------------
 
-| Specify the *mongodb address* that stores the data to be provided by the *API* and the *IP address* of the API access.
+| API 접근 시의 *API* 및 *IP address* 에서 제공하는 데이터를 저장하는 *mongodb address* 를 지정하세요.
 
 .. code-block:: none
 
@@ -320,7 +320,7 @@ digest
 tutorial.yml
 ---------------------------------------------------
 
-| This is an example of **standalone** node configuration.
+| 다음은 **standalone** 노드 구성의 한 예제입니다.
 
 .. code-block:: none
 

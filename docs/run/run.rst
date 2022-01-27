@@ -2,27 +2,27 @@
 Run
 ===================================================
 
-| Here we will explain the process for running the node.
+| 노드 운용 과정을 설명합니다.
 
 .. note::
 
-    * A node can find out the addresses of all nodes by using the node discovery protocol.
-    * *Digest API* is included in Mitum Currency, so API service is provided by default.
-    * Please check :ref:`config` for Digest setting.
-    * If Digest is not set, data for API service must be processed separately.
+    * 노드는 node discovery 프로토콜을 사용해 모든 노드의 주소를 알아낼 수 있습니다.
+    * Mitum Currency에 Digest API가 추가되어 있습니다. 따라서 API 서비스가 기본적으로 제공됩니다.
+    * Digest 설정을 위해 :ref:`config` 를 참고하세요.
+    * Digest가 설정되지 않으면 API 서비스를 위한 데이터가 별도로 처리됩니다.
 
 ---------------------------------------------------
 Running the Standalone Node
 ---------------------------------------------------
 
-| Before running a node, please prepare tutorial.yml by refering to :ref:`config`.
+| 노드를 운용하기 전에 :ref:`config` 를 참고해 tutorial.yml를 준비해주세요.
 
 .. _node init:
 
 node init
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| First, the *genesis block* and *genesis account* must be created. The main currency is issued through the creation of the *genesis block* and stored in the balance of the *genesis account*.
+| 우선, genesis block과 genesis account가 생성되어야 합니다. 메인 currency는 genesis block과 함께 발행되며 genesis account의 잔액으로 저장됩니다.
 
 * tutorial.yml : config file
 
@@ -41,7 +41,7 @@ node init
 
 .. note::
 
-    If already saved block data is found, an error ``environment already exists: block=0`` occurs. To reset the error and ignore it, run it by adding the ``--force`` option.    
+    만약 이미 저장된 블록이 확인되면 ``environment already exists: block=0`` 에러가 발생합니다. 이 에러를 초기화하고 무시하려면 ``--force`` 옵션과 함께 실행하세요.    
     
     ``$ ./mc --log-level info init ./tutorial.yml --force``
 
@@ -50,7 +50,7 @@ node init
 node run
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| When the node is run, the blockchain’s storage status and consensus participation status are changed to *SYNC*, *JOIN*, and *CONSENSUS* modes, and block creation starts.
+| 노드가 실행되면 블록체인 스토리지 상태와 합의 참여 상태가 SYNC, JOIN, CONSENSUS 모드로 변경되며 블록 생성이 시작됩니다.
 
 .. code-block:: shell
 
@@ -64,30 +64,31 @@ node run
     2021-06-10T05:14:11.894638049Z INF new block stored block={"hash":"CC57VpSKPozBRABPnznyMk6QY4GHn7CiSH4zSZBs8Rri","height":1,"round":0} elapsed=17.970959 module=basic-consensus-state proposal_hash=DJBgmoAJ4ef7h7iF6E3gTQ83AjWxbGDGQrmDSiQMrfya voteproof_id=BAg2HCNfBenFebuCM4P4HkDfF1off8FCBcSejdK1j7w6
     2021-06-10T05:14:11.907600049Z INF block digested block=1 module=digester
 
-| If the node is a suffrage node, the addresses of other live suffrage nodes can be found using the *Node discovery protocol*. The node discovery feature is only supported when the node is a suffrage node.
+| 만약 노드가 suffrage 노드라면 다른 살아있는 suffrage 노드의 주소들을 Node discovery 프로토콜로 알아낼 수 있습니다. node discovery 특성은 노드가 suffrage 노드일 때만 제공됩니다.
 
-* When the suffrage node starts up, it is possible to determine the network information of all suffrage nodes without publish url information of all suffrage nodes.
+* suffrage 노드가 시작되면 publish url 정보를 제외한 모든 suffrage 노드들의 네트워크 정보를 결정하는 것이 가능합니다.
 * For node discovery, a node must set the address of one or more suffrage nodes it knows to a discovery url at startup.
+* node discovery를 위해 노드는 시작 시 discovery url에 하나 이상의 suffrage 노드의 주소를 설정해야 합니다.
 
-| To specify the discovery url, use the ``–discovery`` command line option.
+| discovery url을 설정하기 위해 ``–discovery`` 명령줄 옵션을 사용하세요.
 
 .. code-block:: shell
     
     $ ./mc node run n0.yml --discovery "https://n1#insecure" --discovery "https://n2#insecure"
 
-* Even if a node does not set the discovery url by itself, if another suffrage node designates this node as a discovery node, the publish url of other nodes is known by the gossip protocol. If the nodes specified by discovery are not running, it keeps trying until it succeeds.
-* Again, node discovery only works with suffrage nodes. For nodes not included in the suffrage node list, the urls of other suffrage nodes are still specified in the node settings.
-* If you set the log level to info, you can easily check the information of the newly created block.
+* 노드가 discovery url을 스스로 설정하지 않더라도 다른 suffrage 노드가 이 노드를 discovery 노드로 지정하면 다른 노드들의 publish url은 gossip protocol에 의해 알려집니다. 만약 discovery로 지정된 노드들이 discovery 운용중이지 않다면, 성공할때까지 시도합니다.
+* 또한 node discovery는 suffrage 노드와만 작동합니다. suffrage 노드 리스트에 추가되지 않은 노드들은 다른 suffrage 노드들의 url들을 노드 설정에 지정합니다.
+* 만약 log level를 info로 설정하면 쉽게 새롭게 생성되는 블록의 정보를 확인할 수 있습니다.
 
-| ``–log`` command line option can collect logs to the specific files.
+| ``–log`` 명령줄 옵션은 특정 파일들에 로그를 수집할 수 있습니다.
 
-| Mitum dumps huge debugging log messages, including *quic* (http) request message like this,
+| Mitum은 다음과 같은 *quic* (http) 요청 메시지를 포함한 방대한 디버깅 로그 메시지를 덤프합니다.
 
 .. code-block:: json
     
     "l":"debug","module":"http2-server","ip":"127.0.0.1","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15","req_id":"c30q3kqciaejf9nj79c0","status":200,"size":2038,"duration":0.541625,"content-length":0,"content-type":"","headers":{"Accept-Language":["en-us"],"Connection":["keep-alive"],"Upgrade-Insecure-Requests":["1"]},"host":"127.0.0.1:54320","method":"GET","proto":"HTTP/1.1","remote":"127.0.0.1:55617","url":"/","t":"2021-06-10T05:23:31.030086621Z","caller":"/Users/soonkukkang/go/pkg/mod/github.com/spikeekips/mitum@v0.0.0-20210609043008-298f37780037/network/http.go:61","m":"request"
 
-| ``–network-log`` command line option can collect these request messages to the specific files.
+| ``–network-log`` 명령줄 옵션은 특정 파일들에 이 요청 메시지들을 수집할 수 있습니다.
 
 .. code-block:: shell
 
@@ -100,15 +101,15 @@ node run
 
 | Multiple file can be set to ``–network-log`` and ``–log``.
 
-| In mitum Currency, ``–network-log`` option will also collect the requests log from *digest API* (http2)
-| ``–network-log`` option is only available in ``node run`` command.
+| Mitum Currency에서, ``–network-log`` 옵션은 digest API(http2)로부터 요청 로그를 수집할 것입니다.
+| ``–network-log`` 옵션은 오직 ``node run`` 명령어와 함께 사용될 수 있습니다.
 
 Lookup Genesis Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| You can check *genesis account* information through block files saved in the file system.
+| 파일 시스템에 저장된 블록을 통해 genesis account 정보를 확인할 수 있습니다.
 
-| For example,
+| 다음은 예시입니다.
 
 .. code-block:: shell
 
@@ -139,16 +140,16 @@ Lookup Genesis Account
         "balance:99999999999999999999"
     ]
 
-* *height*, *address* of genesis account at ``0``, ``CoXPgSxcad3fRAbp2JBEeGcYGEQ7dQhdZGWXLbTHpwuGmca`` is saved in block.
+* height ``0`` 의 genesis account 주소, ``CoXPgSxcad3fRAbp2JBeeGcYGEQ7dQhdZGWXLTHPwuGmca`` 가 블록에 저장됩니다.
 
 Lookup using Digest API
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Account information can also be checked through *Digest API*.
+| Digest API를 통해 계정 정보를 확인할 수 있습니다.
 
-| The api address according to the digest setting :ref:`config` is https://localhost:54320.
+| digets 설정 :ref:`config` 에 따른 api 주소는 https://localhost:54320 입니다.
 
-| Check genesis account through account information.
+| account 정보를 통해 genesis account를 확인하세요.
 
 .. code-block:: shell
 
@@ -191,12 +192,12 @@ Build Multi Nodes Network
 Order of Execution
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-1. When executing a multi node, the first node that creates the *genesis block* must be determined. The first node creates the *genesis block* through the ``node init`` command. Nodes other than the one that creates the *genesis block* do not need to execute the ``init`` command.
-2. The first node executes the node through the ``run`` command after ``init``.
-3. Other nodes also execute each node through the ``run`` command.
-4. Other nodes follow the block of the first node through the *sync* process, and the nodes create blocks through the *consensus* process.
+1. 멀티 노드를 실행할 때 genesis block을 생성하는 첫 노드가 설정되어야 합니다. 첫 노드는 ``node init``을 통해 genesis block을 생성합니다. genesis block를 만들지 않는 그 외의 노드들은 ``init``을 실행할 필요가 없습니다.
+2. 첫 노드는 ``init`` 뒤에 ``run``을 실행해 노드를 시작합니다.
+3. 다른 노드들도 ``run``로 노드를 시작합니다.
+4. 다른 노드들은 *sync* 과정을 통해 첫 노드의 블록을 따라가며 노드들은 *consensus* 과정을 통해 블록을 생성합니다.
 
-| If there are 4 nodes and n0 node is the first node, the execution order is as follows. If all four nodes are suffrage nodes, nodes must set at least one other node *publish url* as the *discovery url* for node discovery.
+| 만약 4 개의 노드가 있고 그 중 n0이 첫 노드라면, 실행 순서는 다음과 같습니다. 모든 4 노드가 suffrage 노드일 때 노드들은 node discovery를 위해 최소 하나의 다른 노드의 publish url을 discovery url로 설정해야 합니다.
 
 .. code-block:: shell
 
@@ -221,7 +222,7 @@ Order of Execution
 
 .. note::
 
-    If running in the same network, nodes should have the same value for the next item in the configuration file.
+    같은 네트워크에서 운용된다면 노드들은 구성 파일의 다음 요소에 대해 같은 값을 가져야 합니다.
 
     * ``genesis-operations``
     * ``network-id``
@@ -229,10 +230,10 @@ Order of Execution
 Four Suffrage Nodes
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| Let's suppose we are in case of operating suffrage 4 nodes.
+| 우리가 네 개의 suffrage 노드들을 운영하려는 상황이라고 가정해봅시다.
 
-| First, prepare **a separate yml configuration file for each node**.
-| ``n0``, ``n1``, ``n2``, ``n3`` are all suffrage nodes.
+| 우선, 각 노드마다 yml 구성 파일을 준비하세요.
+| ``n0``, ``n1``, ``n2``, ``n3`` 가 모두 suffrage 노드입니다.
 
 
 .. image:: ../images/run.buildnet/4_suffrage_nodes.png
@@ -240,7 +241,7 @@ Four Suffrage Nodes
     :scale: 50 
     :alt: Four Suffrage Nodes
 
-| Depending on the configuration of the node, it is necessary to configure the nodes participating in consensus.
+| 노드의 구성에 따라 합의에 참여하는 노드를 구성하는 게 필요합니다.
 
 .. code-block:: none
 
@@ -267,7 +268,7 @@ Four Suffrage Nodes
         publickey: vAydAnFCHoYV6VDUhgToWaiVEtn5V4SXEFpSJVcTtRxbmpu
         tls-insecure: true
 
-| The following one is an example of the full yml configuration for all nodes.
+| 다음은 모든 노드의 전체 yml 구성의 예제입니다.
 
 .. code-block:: none
 
@@ -450,10 +451,10 @@ Four Suffrage Nodes
 Four Suffrage Nodes and One Sync Node
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| In case of operating four suffrage nodes and one sync node(non-suffrage node),
+| 네 개의 suffrage 노드와 하나의 sync 노드(non-suffrage)를 운영하는 경우,
 
-| Prepare a separate yml configuration file for each node.
-| ``n0``, ``n1``, ``n2``, ``n3`` are suffrage nodes and ``n4`` is the sync node.
+| 각 노드에 대해 yml configuration 파일을 준비하세요.
+| ``n0``, ``n1``, ``n2``, ``n3`` 는 suffrage 노드이며 ``n4``가 sync 노드입니다.
 
 
 .. image:: ../images/run.buildnet/4_suffrage_nodes_1_sync_node.png
@@ -462,7 +463,7 @@ Four Suffrage Nodes and One Sync Node
     :alt: Four Suffrage Nodes
 
 
-| Only ``suffrage`` and ``nodes`` part of configuration of suffrage nodes(n0, n1, n2, n3) are like,
+| suffrage 노드들(n0, n1, n2, n3) 구성의 ``suffrage`` 와 ``nodes`` 는 다음과 같습니다.
 
 .. code-block:: none
 
@@ -487,7 +488,7 @@ Four Suffrage Nodes and One Sync Node
           publickey: vAydAnFCHoYV6VDUhgToWaiVEtn5V4SXEFpSJVcTtRxbmpu
           tls-insecure: true
 
-| Only ``suffrage`` and ``nodes`` part of configuration of sync node(n4) are like,
+|  sync 노드(n4) 구성의 ``suffrage`` 와 ``nodes`` 은 다음과 같습니다.
 
 .. code-block:: none
 
@@ -508,7 +509,7 @@ Four Suffrage Nodes and One Sync Node
           url: https://127.0.0.1:54351
           tls-insecure: true
 
-| The following one is an example of the full yml configuration for all nodes.
+| 다음은 모든 노드의 전체 yml의 예제입니다.
 
 .. code-block:: none
 
@@ -735,7 +736,7 @@ Four Suffrage Nodes and One Sync Node
 Node Discovery Scenario
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| This is an example of a scenario for *Node Discovery*.
+| 다음은 Node Discovery 시나리오의 한 예제입니다.
 
 .. code-block:: none
 
