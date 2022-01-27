@@ -11,7 +11,7 @@ Javascript
 
 | 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
 
-| Mitum Blocksign의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-java-util <https://github.com/ProtoconNet/mitum-js-util>`_ 을 참고해주세요.
+| Mitum Blocksign의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-js-util <https://github.com/ProtoconNet/mitum-js-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
