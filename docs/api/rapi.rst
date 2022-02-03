@@ -13,7 +13,7 @@ Node Info
 /
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the node information of the network. 
+* 네트워크의 노드 정보를 반환합니다. 
 
 +-------+--------+
 | PATH  | METHOD |
@@ -142,7 +142,7 @@ Block
 /block/manifests  
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all block manifests of the network.
+* 네트워크의 모든 블록 manifest를 반환합니다.
 
 +--------------------+--------+
 | PATH               | METHOD |
@@ -234,7 +234,7 @@ Block
 
 * 404 (No more manifests)
 
-| If there are no more manifests, it returns ``404``.
+| 더 이상 manifest가 없을 경우, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -259,7 +259,7 @@ Block
 /block/{height}  
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the block information of the block by *block height*.
+* *block height* 로 검색한 블록의 블록 정보를 반환합니다.
 
 +--------------------+--------+
 | PATH               | METHOD |
@@ -313,7 +313,7 @@ Block
 
 * 400 (block not found)
 
-| If the height you request with is wrong, it returns ``400``.
+| 요청한 block height가 잘못된 경우, ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -338,7 +338,7 @@ Block
 /block/{height}/manifest
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the block manifest of the block by *block height*.
+* *block height* 로 검색한 블록의 블록 manifest를 반환합니다.
 
 +-----------------------------+--------+
 | PATH                        | METHOD |
@@ -401,7 +401,7 @@ Block
 
 * 400 (manifest not found)
 
-| If the height you request with is wrong, it returns ``400``.
+| 요청한 block height가 잘못되었을 경우, ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -427,7 +427,7 @@ Block
 /block/{height}/operations
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all operations of the block by *block height*.
+* *block height* 로 검색한 블록의 모든 operation을 반환합니다.
 
 +-----------------------------+--------+
 | PATH                        | METHOD |
@@ -532,7 +532,7 @@ Block
 
 * 404 (operations not found)
 
-| If there are no more operations or there aren't any operations, it returns ``404``.
+| 더 이상 operation이 없거나 operation이 아예 존재하지 않는 경우, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -557,7 +557,7 @@ Block
 /block/{block_hash}
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the block information of the block by *block hash*.
+* *block hash* 로 검색한 블록의 블록 정보를 반환합니다.
 
 +-----------------------------+--------+
 | PATH                        | METHOD |
@@ -602,7 +602,7 @@ Block
 
 * 400 (block not found)
 
-| If the block hash is wrong, it returns ``400``.
+| block hash가 잘못되었을 경우, ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -627,7 +627,7 @@ Block
 /block/{block_hash}/manifest
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the block manifest of the block by *block hash*.
+* *block hash* 로 검색한 블록의 블록 manifest를 반환합니다.
 
 +-------------------------------+--------+
 | PATH                          | METHOD |
@@ -690,7 +690,7 @@ Block
 
 * 404 (manifest not found)
 
-| If the block hash is wrong, it returns ``404``.
+| block hash가 잘못되었을 경우, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -715,7 +715,7 @@ Block
 /block/operations
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all operations of the network.
+* 네트워크의 모든 operation들을 반환합니다.
 
 +-----------------------------+--------+
 | PATH                        | METHOD |
@@ -837,7 +837,7 @@ Block
 
 * 404 (operations not found)
 
-| If there aren't any operations, it returns ``404``.
+| operation이 존재하지 않을 경우, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -862,7 +862,7 @@ Block
 /block/operation/{fact_hash}
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the operation information of the operation by *fact hash*.
+* *fact hash* 로 검색한 operation의 operation 정보를 반환합니다.
 
 +-------------------------------+--------+
 | PATH                          | METHOD |
@@ -927,7 +927,7 @@ Block
 
 * 400 (operation not found)
 
-| If the fact hash is wrong, it returns ``400``.
+| fact hash가 잘못되었을 경우, ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -956,7 +956,7 @@ Account
 /account/{address}
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the latest state of the account by *account address*.
+* *account address* 로 검색한 계정의 최종 상태를 반환합니다.
 
 +-----------------------------+--------+
 | PATH                        | METHOD |
@@ -1027,7 +1027,7 @@ Account
 
 * 404 (account not found)
 
-| It the account address is wrong, it returns ``404``.
+| 계정 주소가 잘못되었을 경우, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -1052,7 +1052,7 @@ Account
 /account/{address}/operations
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all operations related to the account by *account address*.
+* *account address* 로 검색한 계정과 관련된 모든 operation들을 반환합니다.
 
 +-------------------------------+--------+
 | PATH                          | METHOD |
@@ -1163,7 +1163,7 @@ Account
 
 * 404 (operations not found)
 
-| If there are no more operations or there aren't any operations for the account, it returns ``404``.
+| 더 이상 operation이 없거나 operation이 아예 존재하지 않을 경우, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -1188,7 +1188,7 @@ Account
 /accounts?publickey={public_key} 
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all accounts which keys contains the *public key* as a key.
+* *public key* 를 하나의 key로서 keys에 포함한 모든 계정들을 반환합니다.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
@@ -1267,7 +1267,7 @@ Account
 
 * 400 (accounts not found)
 
-| If there are no more accounts or there aren't any accounts for the public key, it returns ``400``.
+| public key가 잘못된 형식일 경우, ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -1296,7 +1296,7 @@ Builder
 /builder/operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all available operation types.
+* 모든 유효한 operation 타입을 반환합니다.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
@@ -1350,7 +1350,7 @@ Builder
 /builder/operation/fact/template/{fact}
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the fact template for the requested operation type.
+* 요청한 operation 타입의 fact 템플릿을 반환합니다.
 
 +-----------------------------------------+--------+
 | PATH                                    | METHOD |
@@ -1358,7 +1358,7 @@ Builder
 | /builder/operation/fact/template/{fact} | GET    |
 +-----------------------------------------+--------+
 
-* Available types for ``{fact}`` can be found by ``/builder/operation``.
+* ``{fact}`` 에 사용 가능한 타입은 ``/builder/operation`` 에서 확인할 수 있습니다.
 
 | **Response Example**
 
@@ -1417,7 +1417,7 @@ Builder
 
 * 404 (unknown operation)
 
-| If the ``{fact}`` you requests is wrong, it returns ``404``.
+| 만약 요청한 ``{fact}`` 가 잘못되었다면, ``404`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -1442,9 +1442,9 @@ Builder
 /builder/operation/fact 
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the operation message with a fake fact_sign and an operation hash.
-* It automatically fills ``hash`` of fact with a correct fact hash.
-* Use a valid fact message as a request json.
+* 가짜 fact_sign와 operation hash를 포함한 operation 메시지를 반환합니다.
+* fact ``hash`` 는 옳은 값으로 계산되어 채워집니다.
+* 요청 시 유효한 fact 메시지를 사용하세요.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
@@ -1454,8 +1454,8 @@ Builder
 
 | **Request Example**
 
-* A request json must be a fact message.
-* It is available not to fill the ``hash`` field.
+* 요청 시의 json은 fact 메시지여야 합니다.
+* fact의 ``hash`` 값을 채울 필요는 없습니다.
 
 .. code-block:: json
 
@@ -1558,7 +1558,7 @@ Builder
 
 * 400 (problems in request)
 
-| If the fact message you request with is wrong or not available, it returns ``400``.
+| 만약 요청한 fact 메시지가 잘못되었거나 유효하지 않은 경우, ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -1583,9 +1583,9 @@ Builder
 /builder/operation/sign
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the operation message with new operation hash.
-* It automatically fills ``hash`` of the operation with a newly generated operation hash.
-* So the request operation message is available even though it doesn't have operation hash.
+* 새로운 operation hash를 가진 operation 메시지를 반환합니다.
+* 새롭게 만들어진 operation hash가 operation ``hash`` 값으로 채워집니다.
+* 요청 시의 operation 메시지는 operation hash 값이 비워져있어도 유효합니다.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
@@ -1595,8 +1595,8 @@ Builder
 
 | **Request Example**
 
-* A request json must be an operation message.
-* It is available not to fill the ``hash`` field. (But fact hash must be correct.)
+* 요청 시의 json은 operation 메시지여야 합니다.
+* ``hash`` 필드는 채우지 않아도 됩니다. (하지만 fact hash는 맞는 값으로 채워져있어야 합니다.)
 
 .. code-block:: json
 
@@ -1705,7 +1705,7 @@ Builder
 
 * 400 (problems in request)
 
-| If there is a problem with the request(for example, invalid operation message), it returns ``400``.
+| 요청에 문제가 있다면(예를 들어, 유효하지 않은 operation 메시지 등), ``400`` 를 반환합니다.
 
 .. code-block:: json
 
@@ -1730,9 +1730,9 @@ Builder
 /builder/send 
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It broadcasts a seal or an operation to the network.
-* If it successes to broadcast, it will returns ``200`` with the complete seal json.
-* However, the success broadcasting doesn't asure the success of processing the operation.
+* seal이나 operation을 네트워크에 반환합니다.
+* 브로드캐스팅에 성공한 경우, 완성된 seal json과 함께 ``200`` 을 반환합니다.
+* 하지만, 브로드캐스팅의 성공이 operation 처리의 성공을 보장하지는 않습니다.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
@@ -1742,9 +1742,9 @@ Builder
 
 | **Request Example**
 
-* This API allows to broadcast both operations and seals.
-* If you request with an operation, it makes new seal containing the operation then broadcasts it.
-* If you request with a seal, it newly signs to the seal and broadcasts it.
+* 이 API는 operation과 seal을 모두 브로드캐스팅 할 수 있습니다.
+* operation으로 요청할 경우, operation을 포함한 새로운 seal을 만들어 브로드캐스팅합니다.
+* seal로 요청할 경우, 새롭게 seal에 서명한 뒤 브로드캐스팅합니다.
 
 * operation
 
@@ -1914,7 +1914,7 @@ Builder
 
 * 400 (problems in request)
 
-| If there is a problem with your request(for example, wrong operation or seal), it returns ``400``.
+| 요청에 문제가 있는 경우(예를 들어, 잘못된 operastion, seal 등), ``400`` 을 반환합니다.
 
 .. code-block:: json
 
@@ -1943,7 +1943,7 @@ Currency
 /currency
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns all currency id's in the network.
+* 네트워크의 모든 currency id들을 반환합니다.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
@@ -1988,7 +1988,7 @@ Currency
 /currency/{currency_id}
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* It returns the currency information of the currency by *currency id*.
+* *currency id* 로 검색한 currency의 currency 정보를 반환합니다.
 
 +----------------------------------+--------+
 | PATH                             | METHOD |
