@@ -8,10 +8,11 @@ Java
 
 * Mitum Currency
 * Mitum Blocksign
+* Mitum Blockcity
 
 | 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
 
-| Mitum Blocksign의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-java-util <https://github.com/ProtoconNet/mitum-java-util>`_ 을 참고해주세요.
+| Mitum Blocksign, Mitum Blockcity의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-java-util <https://github.com/ProtoconNet/mitum-java-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
@@ -41,13 +42,13 @@ Installation
 
 | 레포지토리에서 `Download <https://github.com/ProtoconNet/mitum-java-util/tree/main/release>`_ 하세요.
 
-| 현재 최신 버전은 ``mitum-java-util-1.3.0.jar`` 입니다.
+| 현재 최신 버전은 ``mitum-java-util-2.2.4-jdk17.jar`` 입니다.
 
 | *Gradle*을 사용하세요.
 
 .. code-block:: shell
 
-    implementation files('./lib/mitum-java-util-1.3.0.jar')
+    implementation files('./lib/mitum-java-util-2.2.4-jdk17.jar')
 
 ---------------------------------------------------
 Make Your First Operation
@@ -611,8 +612,9 @@ Generator
 
 * Mitum Currency에 대해 ``Generator.currency()``를 사용하세요.
 * Mitum Blocksign에 대해 ``Generator.blockSign()``를 사용하세요.
+* Mitum Blockcity에 대해 ``Generator.blockCity()``를 사용하세요.
 
-| Mitum Blocksign operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-java-util/blob/main/README.md>`_ 을 참고하세요.
+| Mitum Blocksign, Blockcity operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-java-util/blob/main/README.md>`_ 을 참고하세요.
 
 .. code-block:: java
 
@@ -624,6 +626,7 @@ Generator
 
     CurrencyGenerator cgn = generator.currency(); // org.mitumc.sdk.operation.currency.CurrencyGenerator;
     BlockSignGenerator bgn = generator.blockSign(); // org.mitumc.sdk.operation.blocksign.BlockSignGenerator;
+    BlockCityGenerator bcgn = generator.blockCity(); // org.mitumc.sdk.operastion.blockcity.BlockCityGenerator;
 
 | ``Generator`` 가 제공하는 모든 메서드는 다음과 같습니다.
 
@@ -649,6 +652,22 @@ Generator
     Generator.blockSign().newBlockSignFact(String sender, CreateDocumentsItem[] items);
     Generator.blockSign().newBlockSignFact(String sender, SignDocumentsItem[] items);
     Generator.blockSign().newBlockSignFact(String sender, TransferDocumentsItem[] items);
+
+    /* For Mitum BlockCity */
+    Generator.blockCity().candidate(String address, String nickname String manifest, int count);
+    Generator.blockCity().info(String docType, String documentId);
+    Generator.blockCity().userStatistics(int hp, int strength, int agility, int dexterity, int charisma, int intelligence, int vital);
+
+    Generator.blockCity().document(Info info, String owner, int gold, int bankGold, UserStatistics statistics);
+    Generator.blockCity().document(Info info, String owner, String address, String area, String renter, String account, String rentDate, int period);
+    Generator.blockCity().document(Info info, String owner, int round, String endTime, Candidate[] candidates, String bossName, String account, String office);
+    Generator.blockCity().document(Info info, String owner, String name, String account, String date, String usage, String app);
+
+    Generator.blockCity().getCreateDocumentsItem(T document, String currencyId);
+    Generator.blockCity().getUpdateDocumentsItem(T document, String currencyId);
+
+    Generator.blockCity().getCreateDocumentsFact(String sender, BlockCityItem<T>[] items);
+    Generator.blockCity().getUpdateDocumentsFact(String sender, BlockCityItem<T>[] items);
 
     /* Common */
     Generator.newOperation(OperationFact fact);
