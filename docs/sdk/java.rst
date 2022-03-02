@@ -43,7 +43,7 @@ Installation
 
 | 현재 최신 버전은 ``mitum-java-util-3.0.0-jdk17.jar`` 입니다.
 
-| *Gradle*을 사용하세요.
+| *Gradle* 을 사용하세요.
 
 .. code-block:: shell
 
