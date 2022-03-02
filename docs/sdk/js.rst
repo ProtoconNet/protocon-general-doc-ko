@@ -167,7 +167,7 @@ Create Operation Item
 * 우선, ``Generator.mc.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
 * 다음으로 모든 키와 계정 threshold를 ``Generator.mc.keys(key list, threshold)`` 로 결합합니다.
 * 그리고, ``Generator.mc.amount(amount, currencyId)`` 를 사용해 각 amount를 생성합니다..
-* 다음 ``Generator.mc.getAmounts(amount list)`` 로 모든 amount를 결합합니다.
+* 다음 ``Generator.mc.amounts(amount list)`` 로 모든 amount를 결합합니다.
 * 마지막으로, ``Generator.mc.getCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
 
 | 물론 각 item의 내용을 다음 조건 하에서 사용자화 할 수 있습니다.
@@ -181,7 +181,7 @@ Create Operation Item
 Create Operation Fact
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
-| *fact*는 반드시 ``items``, ``sender``, ``token``, ``fact hash`` 를 가져야 합니다.
+| *fact* 는 반드시 ``items``, ``sender``, ``token``, ``fact hash`` 를 가져야 합니다.
 
 | ``token`` 와 ``fact hash`` 는 SDK가 자동적으로 생성해주므로 걱정하지 않아도 됩니다.
 | 반드시 제공해야할 정보는 ``items`` 와 ``sender`` 에 대한 것입니다.
@@ -211,8 +211,8 @@ Create Operation
 | 드디어 operation을 생성하기 위한 단계에 도달하였습니다!
 
 | 준비해야 하는 것은 오직 sender의 개인키입니다. 개인키는 fact에 서명하기 위해 필요합니다.
-| 개인키의 서명은 fact 서명으로서 ``fact_signs``에 추가됩니다.
-| ``fact_signs``의 모든 signer의 weight들의 총합이 ``sender`` 의 threshold 이상이어야 합니다.
+| 개인키의 서명은 fact 서명으로서 ``fact_signs`` 에 추가됩니다.
+| ``fact_signs`` 의 모든 signer의 weight들의 총합이 ``sender`` 의 threshold 이상이어야 합니다.
 
 | fact_sign에는 오직 ``sender`` 의 개인키의 서명만이 유효합니다. 
 
@@ -617,8 +617,8 @@ Generator
 
 | ``Generator`` 를 사용하기 전 ``network id`` 를 설정해야 합니다.
 
-* Mitum Currency에 대해 ``Generator.mc``를 사용하세요.
-* Mitum Document 대해 ``Generator.md``를 사용하세요.
+* Mitum Currency에 대해 ``Generator.mc`` 를 사용하세요.
+* Mitum Document 대해 ``Generator.md`` 를 사용하세요.
 
 | Mitum Document operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_ 을 참고하세요.
 
