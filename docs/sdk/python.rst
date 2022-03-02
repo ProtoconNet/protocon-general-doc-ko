@@ -7,12 +7,11 @@ Python
 | 지원하는 모델은 다음과 같습니다
 
 * Mitum Currency
-* Mitum Blocksign
-* Mitum Blockcity
+* Mitum Document
 
 | 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
 
-| Mitum Blocksign, Blockcity의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-py-util <https://github.com/ProtoconNet/mitum-py-util>`_ 을 참고해주세요.
+| Mitum Document의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-py-util <https://github.com/ProtoconNet/mitum-py-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
@@ -92,7 +91,7 @@ Create Generator
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | operation의 대부분의 요소는 ``Generator`` 로 생성합니다.
-| Mitum Currency에 대해서는 ``Generator.currency`` 를 사용하세요.
+| Mitum Currency에 대해서는 ``Generator.mc`` 를 사용하세요.
 
 | ``Generator`` 를 선언할 때, ``network id`` 가 필요합니다.
 | ``network id`` 는 네트워크에 따라 다릅니다.
@@ -105,7 +104,7 @@ Create Generator
 
     networkId = 'mitum'
     generator = Generator('mitum')
-    currencyGenerator = generator.currency
+    currencyGenerator = generator.mc
 
 | ``Generator`` 에 대한 더 자세한 내용은 Details - Major Classes 로 이동하여 Generator를 참고하세요.
 
@@ -141,26 +140,26 @@ Create Operation Item
 
     key1 = currencyGenerator.key("kpYjRwq6gQrjvzeqQ91MNiCcR9Beb9sD67SuhQ6frPGwmpu", 50) # key(public key, weight)
     key2 = currencyGenerator.key("pWoFhRP3C7ocebSRPxTPfeaJZpnyKpEkxQqi6fAD4SHompu", 50)
-    keys = currencyGenerator.createKeys([key1, key2], 100) # createKeys(keyList, threshold)
+    keys = currencyGenerator.keys([key1, key2], 100) # keys(keyList, threshold)
 
     amount1 = currencyGenerator.amount(10000, 'MCC') # amount(amount, currency id)
     amount1 = currencyGenerator.amount(20000, 'PEN')
-    amounts = currencyGenerator.createAmounts([amount]) # createAmounts(amountList)
+    amounts = currencyGenerator.amounts([amount]) # amounts(amountList)
 
-    createAccountsItem = currencyGenerator.createCreateAccountsItem(keys, amounts)
+    createAccountsItem = currencyGenerator.getCreateAccountsItem(keys, amounts)
 
-* 우선, ``Generator.currency.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
-* 다음으로 모든 키와 계정 threshold를 ``Generator.currency.createKeys(key list, threshold)`` 로 결합합니다.
-* 그리고, ``Generator.currency.amount(amount, currencyId)`` 를 사용해 각 amount를 생성합니다..
-* 다음 ``Generator.currency.createAmounts(amount list)`` 로 모든 amount를 결합합니다.
-* 마지막으로, ``Generator.currency.createCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
+* 우선, ``Generator.mc.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
+* 다음으로 모든 키와 계정 threshold를 ``Generator.mc.keys(key list, threshold)`` 로 결합합니다.
+* 그리고, ``Generator.mc.amount(amount, currencyId)`` 를 사용해 각 amount를 생성합니다..
+* 다음 ``Generator.mc.amounts(amount list)`` 로 모든 amount를 결합합니다.
+* 마지막으로, ``Generator.mc.getCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
 
 | 물론 각 item의 내용을 다음 조건 하에서 사용자화 할 수 있습니다.
 
 .. code-block:: none
 
-    - `createKeys`를 사용하여 생성하는 `Keys`는 key를 10개까지 포함할 수 있습니다.
-    - item 당 최대 10개의 amount를 가질 수 있기 때문에 `createAmounts`의 amount list에는 amount를 10개까지 넣을 수 있습니다.
+    - `keys`를 사용하여 생성하는 `Keys`는 key를 10개까지 포함할 수 있습니다.
+    - item 당 최대 10개의 amount를 가질 수 있기 때문에 `amounts`의 amount list에는 amount를 10개까지 넣을 수 있습니다.
     - 게다가, `fact`는 item을 여러 개 포함할 수 있습니다. fact 당 item 개수는 최대 10 개입니다.
 
 Create Operation Fact
@@ -186,9 +185,9 @@ Create Operation Fact
 .. code-block:: python
 
     senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca" # sender's account address; replace with your address
-    createAccountsFact = currencyGenerator.createCreateAccountsFact(senderAddress, [createAccountsItem]) # createCreateAccountsFact(sender's address, item list)
+    createAccountsFact = currencyGenerator.getCreateAccountsFact(senderAddress, [createAccountsItem]) # getCreateAccountsFact(sender's address, item list)
 
-| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.currency.createCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
+| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.mc.getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -211,10 +210,10 @@ Create Operation
 
     senderPrivateKey = "KxD8T82nfwsUmQu3iMXENm93YTTatGFp1AYDPqTo5e6ycvY1xNXpmpr" # sender's private key; replace with your private key
     
-    createAccounts = generator.createOperation(createAccountsFact, "") # createOperation(fact, memo)
+    createAccounts = generator.getOperation(createAccountsFact, "") # getOperation(fact, memo)
     createAccounts.addFactSign(senderPrivateKey); # addFactSign(private key) add fact signature to fact_signs 
 
-| operation을 생성하기 위해 ``Generator.currency.createOperation(fact, memo)`` 가 아닌 ``Generator.createOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
+| operation을 생성하기 위해 ``Generator.mc.getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
 
 | 아쉽지만 하나의 operation에는 하나의 fact만 넣을 수 있습니다.
 
@@ -240,9 +239,9 @@ Create Seal
     signKey = "L1V19fBjhnxNyfuXLWw6Y5mjFSixzdsZP4obkXEERskGQNwSgdm1mpr"
 
     operations = [createAccounts]
-    seal = generator.createSeal(signKey, operations)
+    seal = generator.getSeal(signKey, operations)
 
-| ``createOperation`` 의 경우와 같이, 단순히 ``Generator.createSeal(signer, operation list)`` 를 사용하세요.
+| ``getOperation`` 의 경우와 같이, 단순히 ``Generator.getSeal(signer, operation list)`` 를 사용하세요.
 
 | 감싸길 원하는 모든 operation을 operation list에 추가하세요.
 
@@ -277,18 +276,18 @@ Create Account
     senderAddress = "5fbQg8K856KfvzPiGhzmBMb6WaL5AsugUnfutgmWECPbmca"
 
     generator = Generator('mitum')
-    gn = generator.currency
+    gn = generator.mc
 
     key = gn.key("2177RF13ZZXpdE1wf7wu5f9CHKaA2zSyLW5dk18ExyJ84mpu", 100)
-    keys = gn.createKeys([key], 100)
+    keys = gn.keys([key], 100)
 
     amount = gn.amount(100, 'MCC')
-    amounts = gn.createAmounts([amount])
+    amounts = gn.amounts([amount])
 
-    createAccountsItem = gn.createCreateAccountsItem(keys, amounts)
-    createAccountsFact = gn.createCreateAccountsFact(srcAddr, [createAccountsItem])
+    createAccountsItem = gn.getCreateAccountsItem(keys, amounts)
+    createAccountsFact = gn.getCreateAccountsFact(srcAddr, [createAccountsItem])
 
-    createAccounts = generator.createOperation(createAccountsFact, "")
+    createAccounts = generator.getOperation(createAccountsFact, "")
     createAccounts.addFactSign(srcPriv)
 
 | 자세한 설명은 생략합니다. 'Make Your First Operation'의 시작 부분을 확인하세요.
@@ -327,15 +326,15 @@ Key Updater
     targetAddress = "JDhSSB3CpRjwM8aF2XX23nTpauv9fLhxTjWsQRm9cJ7umca"
 
     generator = Generator('mitum')
-    gn = generator.currency
+    gn = generator.mc
 
     key1 = gn.key("22ndFZw57ax28ydC3ZxzLJMNX9oMSqAfgauyWhC17pxDpmpu", 50)
     key2 = gn.key("22wD5RWsRFAr8mHkYmmyUDzKf6VBNgjHcgc3YhKxCvrZDmpu", 50)
-    keys = gn.createKeys([key1, key2], 100)
+    keys = gn.keys([key1, key2], 100)
 
-    keyUpdaterFact = gn.createKeyUpdaterFact(targetAddress, keys, "MCC") # createKeyUpdaterFact(target address, new keys, currency id for fee)
+    keyUpdaterFact = gn.getKeyUpdaterFact(targetAddress, keys, "MCC") # getKeyUpdaterFact(target address, new keys, currency id for fee)
 
-    keyUpdater = generator.createOperation(keyUpdaterFact, "")
+    keyUpdater = generator.getOperation(keyUpdaterFact, "")
     keyUpdater.addFactSign(targetPrivateKey)
 
 * 계정의 키를 업데이트한 후에는 이전의 키를 사용할 수 없게 됩니다. 계정의 새로운 키페어의 개인키로 서명해야 합니다.
@@ -372,7 +371,7 @@ Transfer
     from mitumc import Generator
 
     generator = Generator('mitum')
-    gn = generator.currency
+    gn = generator.mc
 
     senderPrivateKey = "KzdeJMr8e2fbquuZwr9SEd9e1ZWGmZEj96NuAwHnz7jnfJ7FqHQBmpr"
     senderAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca"
@@ -380,15 +379,15 @@ Transfer
 
     amount = gn.amount(1000000, 'MCC')
     amount = gn.amount(15000, 'PEN')
-    amounts = gn.createAmounts([amount1, amount2])
+    amounts = gn.amounts([amount1, amount2])
 
-    transfersItem = gn.createTransfersItem(receiverAddress, amounts) # createTransfersItem(receiver address, amounts)
-    transfersFact = gn.createTransfersFact(senderAddress, [transfersItem]) # createTransfersFact(sender addrewss, item list)
+    transfersItem = gn.getTransfersItem(receiverAddress, amounts) # getTransfersItem(receiver address, amounts)
+    transfersFact = gn.getTransfersFact(senderAddress, [transfersItem]) # getTransfersFact(sender addrewss, item list)
 
-    transfers = generator.createOperation(transfersFact, "")
+    transfers = generator.getOperation(transfersFact, "")
     transfers.addFactSign(senderPrivateKey)  
 
-| Mitum Blocksign 등 mitum-py-util이 지원하는 다른 operation이 더 있지만 이 문서에서는 설명하지 않습니다.
+| Mitum Document 등 mitum-py-util이 지원하는 다른 operation이 더 있지만 이 문서에서는 설명하지 않습니다.
 | 필요하다면 `README <https://github.com/ProtoconNet/mitum-py-util/blob/master/README.md>`_ 을 참고하세요.
 
 ---------------------------------------------------
@@ -556,7 +555,7 @@ Get Account Address with Keys
 
     from mitumc import Generator
 
-    gn = Generator('mitum').currency
+    gn = Generator('mitum').mc
 
     pub1 = "vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu"
     pub2 = "29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu"
@@ -566,7 +565,7 @@ Get Account Address with Keys
     key2 = gn.key(pub2, 30)
     key3 = gn.key(pub3, 30)
 
-    keys = gn.createKeys([key1, key2, key3], 100)
+    keys = gn.keys([key1, key2, key3], 100)
     address = keys.address # your address
 
 Major Classes
@@ -579,58 +578,57 @@ Generator
 
 | ``Generator`` 를 사용하기 전 ``network id`` 를 설정해야 합니다.
 
-* Mitum Currency에 대해 ``Generator.currency``를 사용하세요.
-* Mitum Blocksign에 대해 ``Generator.blockSign``를 사용하세요.
-* Mitum Blockcity에 대해 ``Generator.blockCity``를 사용하세요.
+* Mitum Currency에 대해 ``Generator.mc``를 사용하세요.
+* Mitum Document 대해 ``Generator.md``를 사용하세요.
 
-| Mitum Blocksign, Blockcity operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-py-util/blob/master/README.md>`_ 을 참고하세요.
+| Mitum Document operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-py-util/blob/master/README.md>`_ 을 참고하세요.
 
 .. code-block:: python
 
     from mitumc import Generator
 
     generator = Generator('mitum')
-    currencyGenerator = generator.currency
-    blockSignGenerator = generator.blockSign
-    blockCityGenerator = generator.blockCity
+    currencyGenerator = generator.mc
+    documentGenerator = generator.md
 
 | ``Generator`` 가 제공하는 모든 메서드는 다음과 같습니다.
 
 .. code-block:: python
 
     # For Mitum Currency
-    Generator.currency.key(key, weight)
-    Generator.currency.amount(amount, currencyId)
-    Generator.currency.createKeys(keys, threshold)
-    Generator.currency.createAmounts(amounts) 
-    Generator.currency.createCreateAccountsItem(keys, amounts)
-    Generator.currency.createTransfersItem(receiver, amoutns)
-    Generator.currency.createCreateAccountsFact(sender, items)
-    Generator.currency.createKeyUpdaterFact(target, cid, keys)
-    Generator.currency.createTransfersFact(sender, items)
+    Generator.mc.key(key, weight) # 1 <= $weight <= 100
+    Generator.mc.amount(currencyId, amount) 
+    Generator.mc.keys(keys, threshold) # 1 <= $threshold <= 100
+    Generator.mc.amounts(amounts) 
+    Generator.mc.getCreateAccountsItem(keys, amounts)
+    Generator.mc.getTransfersItem(receiver, amounts)
+    Generator.mc.getCreateAccountsFact(sender, items)
+    Generator.mc.getKeyUpdaterFact(target, currencyId, keys)
+    Generator.mc.getTransfersFact(sender, items)
 
-    # For Mitum Blocksign
-    Generator.blockSign.createCreateDocumentsItem(filehash, did, signcode, title, size, cid, signers, signcodes)
-    Generator.blockSign.createSignDocumentsItem(owner, documentid, cid)
-    Generator.blockSign.createTransferDocumentsItem(owner, receiver, documentid, cid)
-    Generator.blockSign.createBlockSignFact(operationType, sender, itemList)
+    # For Mitum Document
+    Generator.md.getCreateDocumentsItem(document, currencyId)
+    Generator.md.getUpdateDocumentsItem(document, currencyId)
+    Generator.md.getCreateDocumentsFact(sender, items)
+    Generator.md.getUpdateDocumentsFact(sender, items)
 
-    # For Mitum Blockcity
-    Generator.blockCity.candidate(address, nickname, manifest, count)
-    Generator.blockCity.info(docType, documentId)
-    Generator.blockCity.userStatistics(hp, strength, agility, dexterity, charisma, intelligence, vital)
-    Generator.blockCity.userDocument(info, owner, gold, bankGold, userStatistics)
-    Generator.blockCity.landDocument(info, owner, address, area, renter, account, rentDate, period)
-    Generator.blockCity.voteDocument(info, owner, round, endVoteTime, candidates, bossName, account, termofoffice)
-    Generator.blockCity.historyDocument(info, owner, name, account, date, usage, application)
-    Generator.blockCity.createDocumentsItem(document, currencyId)
-    Generator.blockCity.updateDocumentsItem(document, currencyId)
-    Generator.blockCity.createCreateDocumentsFact(sender, items)
-    Generator.blockCity.createUpdateDocumentsFact(sender, items)
+    # For Blocksign
+    Generator.md.bs.user(address, signcode, signed)
+    Generator.md.bs.document(documentId, owner, fileHash, creator, title, size, signers)
+    Generator.md.bs.getSignDocumentsItem(documentId, owner, currencyId)
+    Generator.md.bs.getSignDocumentsFact(sender, items)
+
+    # For Blockcity
+    Generator.md.bc.candidate(address, nickname, manifest, count)
+    Generator.md.bc.userStatistics(hp, strength, agility, dexterity, charisma intelligence, vital)
+    Generator.md.bc.userDocument(documentId, owner, gold, bankGold, userStatistics)
+    Generator.md.bc.landDocument(documentId, owner, address, area, renter, account, rentDate, period)
+    Generator.md.bc.voteDocument(documentId, owner, round, endTime, candidates, bossName, account, office)
+    Generator.md.bc.historyDocument(documentId, owner, name, account, date, usage, application)
 
     # Common
-    Generator.createOperation(fact, memo)
-    Generator.createSeal(signKey, operations)
+    Generator.getOperation(fact, memo)
+    Generator.getSeal(signKey, operations)
 
 Signer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -664,12 +662,12 @@ JSONParser
     # ... refer to above `Make Your First Operation`
     # ... suppose you have already made operations - createAccount, keyUpdater, transfer and a seal - seal
 
-    JSONParser.toJSONString(createAccount.dict()) # print operation createAccount in JSON
-    JSONParser.toJSONString(keyUpdater.dict()) # print operation keyUpdater in JSON
-    JSONParser.toJSONString(transfer.dict()) # print operation transfer in JSON
-    JSONParser.toJSONString(seal) # print seal seal in JSON
+    JSONParser.toString(createAccount.dict()) # print operation createAccount in JSON
+    JSONParser.toString(keyUpdater.dict()) # print operation keyUpdater in JSON
+    JSONParser.toString(transfer.dict()) # print operation transfer in JSON
+    JSONParser.toString(seal) # print seal seal in JSON
 
-    JSONParser.generateFile(createAccount.dict(), 'createAccount.json') # generateFile(dict object, file path)
-    JSONParser.generateFile(keyUpdater.dict(), 'keyUpdater.json')
-    JSONParser.generateFile(transfer.dict(), 'transfer.json')
-    JSONParser.generateFile(seal, 'seal.json')
+    JSONParser.toFile(createAccount.dict(), 'createAccount.json') # toFile(dict object, file path)
+    JSONParser.toFile(keyUpdater.dict(), 'keyUpdater.json')
+    JSONParser.toFile(transfer.dict(), 'transfer.json')
+    JSONParser.toFile(seal, 'seal.json')
