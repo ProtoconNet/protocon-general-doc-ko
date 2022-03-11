@@ -12,7 +12,7 @@ Protocon Network
 
 | Protocon의 합의 프로토콜인 ISAAC+는 실제 산업에 사용할 수 있도록 대규모 데이터 처리에 적합하게 설계되었으며, 블록체인 기술을 필요로 하는 모든 영역에 사용될 수 있도록 범용성을 확보했습니다. 이를 토대로 프로토콜 기반의 순수 디지털 경제를 촉진할 것입니다
 
-| Protocon에 대한 자세한 내용을 위해 `Protocon <https://protocon.cafe24.com/en/protocon_en/>`_를 방문하세요.
+| Protocon에 대한 자세한 내용을 위해 `Protocon <https://protocon.cafe24.com/en/protocon_en/>`_ 를 방문하세요.
 
 ---------------------------------------------------
 Contents
