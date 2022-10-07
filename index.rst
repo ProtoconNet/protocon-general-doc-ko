@@ -41,10 +41,10 @@ Contents
    :maxdepth: 1
    :caption: Quick Start
 
-   docs/run/intro
-   docs/run/config
-   docs/run/run
-   docs/run/handover
+   docs/start/intro
+   docs/start/config
+   docs/start/run
+   docs/start/handover
 
 .. toctree::
    :maxdepth: 1

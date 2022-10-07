@@ -22,11 +22,11 @@ Mitum Technical SPEC
 
 * Mitum(blockchain core framework)는 PBFT에 기초한 ISAAC+ 합의 프로토콜을 사용합니다.
 * 네트워크 전송 프로토콜은 `quic <https://en.wikipedia.org/wiki/QUIC>`_ (udp 기반)입니다.
-* *Gossip-Based* Node Discovery Protocol.
-* 블록체인의 메인 스토리지 엔진은 *MongoDB*를 사용하며 로컬 파일 시스템이 블록 스토리지로 사용됩니다.
+* Gossip-Based Node Discovery Protocol.
+* 블록체인의 메인 스토리지 엔진은 MongoDB 를 사용하며 로컬 파일 시스템이 블록 스토리지로 사용됩니다.
 * operation 병렬 처리
 * Main hash algorithm: `Keccak <https://keccak.team>`_ 256, SHA-3
 * 지원하는 hash algorithm: ``Keccak 256``, ``Keccak 512``, ``Raw bytes.``
-* 지원하는 message serialization format: *JSON*, *BSON*
+* 지원하는 message serialization format: JSON, BSON
 * 적은 양의 코드.
-* *JSON logging*
+* JSON logging
