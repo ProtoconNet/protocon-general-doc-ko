@@ -14,7 +14,7 @@ What is MITUM?
 * 임의의 데이터를 위한 데이터 중심 블록체인
 * 안전한 익명 투표 시스템
 
-| MITUM에 대해 더 알고 싶다면, `Mitum Document <https://mitum-doc.readthedocs.io/en/proto2/index.html>`_ 을 방문하세요.
+| MITUM에 대해 더 알고 싶다면, `Mitum Doc <https://mitum-doc.readthedocs.io/en/proto2/index.html>`_ 에 방문하세요.
 
 ---------------------------------------------------
 Mitum Technical SPEC

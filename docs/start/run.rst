@@ -1,3 +1,5 @@
+.. _Run:
+
 ===================================================
 Run
 ===================================================
@@ -7,7 +9,7 @@ Run
 .. note::
 
     * 노드는 node discovery 프로토콜을 사용해 모든 노드의 주소를 알아낼 수 있습니다.
-    * Mitum Currency에 Digest API가 추가되어 있습니다. 따라서 API 서비스가 기본적으로 제공됩니다.
+    * 각 Mitum 모델에는 Digest API가 추가되어 있습니다. 따라서 API 서비스가 기본적으로 제공됩니다.
     * Digest 설정을 위해 :ref:`config` 를 참고하세요.
     * Digest가 설정되지 않으면 API 서비스를 위한 데이터가 별도로 처리됩니다.
 
@@ -15,7 +17,7 @@ Run
 Running the Standalone Node
 ---------------------------------------------------
 
-| 노드를 운용하기 전에 :ref:`config` 를 참고해 tutorial.yml를 준비해주세요.
+| 노드를 운용하기 전에 :ref:`config` 를 참고해 config 파일을 준비해주세요.
 
 .. _node init:
 
@@ -28,7 +30,7 @@ node init
 
 .. code-block:: shell
 
-    $ ./mc node init --log-level info ./tutorial.yml
+    $ ./mitum node init --log-level info <config file>
     2021-06-10T05:13:09.232802Z INF dryrun? dryrun=false module=command-init
     2021-06-10T05:13:09.235942Z INF prepare to run module=command-init
     2021-06-10T05:13:09.236013Z INF prepared module=command-init
@@ -36,14 +38,11 @@ node init
     2021-06-10T05:13:10.786661419Z INF stopped module=command-init
     ...
 
-    $ echo $?
-    0
-
 .. note::
 
     만약 이미 저장된 블록이 확인되면 ``environment already exists: block=0`` 에러가 발생합니다. 이 에러를 초기화하고 무시하려면 ``--force`` 옵션과 함께 실행하세요.    
     
-    ``$ ./mc --log-level info init ./tutorial.yml --force``
+    ``$ ./mitum init <config file> --force``
 
 .. _node run:
 
@@ -54,7 +53,7 @@ node run
 
 .. code-block:: shell
 
-    $ ./mc node run --log-level info ./tutorial.yml
+    $ ./mitum node run --log-level info <config file>
     2021-06-10T05:14:08.225487Z INF dryrun? dryrun=false module=command-run
     2021-06-10T05:14:08.228797Z INF prepare to run module=command-run
     2021-06-10T05:14:08.228869Z INF prepared module=command-run
@@ -63,46 +62,6 @@ node run
     2021-06-10T05:14:09.828967049Z INF trying to start http2 server for digest API bind=https://localhost:54320 module=command-run publish=https://localhost:54320
     2021-06-10T05:14:11.894638049Z INF new block stored block={"hash":"CC57VpSKPozBRABPnznyMk6QY4GHn7CiSH4zSZBs8Rri","height":1,"round":0} elapsed=17.970959 module=basic-consensus-state proposal_hash=DJBgmoAJ4ef7h7iF6E3gTQ83AjWxbGDGQrmDSiQMrfya voteproof_id=BAg2HCNfBenFebuCM4P4HkDfF1off8FCBcSejdK1j7w6
     2021-06-10T05:14:11.907600049Z INF block digested block=1 module=digester
-
-| 만약 노드가 suffrage 노드라면 다른 살아있는 suffrage 노드의 주소들을 Node discovery 프로토콜로 알아낼 수 있습니다. node discovery 특성은 노드가 suffrage 노드일 때만 제공됩니다.
-
-* suffrage 노드가 시작되면 publish url 정보를 제외한 모든 suffrage 노드들의 네트워크 정보를 결정하는 것이 가능합니다.
-* For node discovery, a node must set the address of one or more suffrage nodes it knows to a discovery url at startup.
-* node discovery를 위해 노드는 시작 시 discovery url에 하나 이상의 suffrage 노드의 주소를 설정해야 합니다.
-
-| discovery url을 설정하기 위해 ``–discovery`` 명령줄 옵션을 사용하세요.
-
-.. code-block:: shell
-    
-    $ ./mc node run n0.yml --discovery "https://n1#insecure" --discovery "https://n2#insecure"
-
-* 노드가 discovery url을 스스로 설정하지 않더라도 다른 suffrage 노드가 이 노드를 discovery 노드로 지정하면 다른 노드들의 publish url은 gossip protocol에 의해 알려집니다. 만약 discovery로 지정된 노드들이 discovery 운용중이지 않다면, 성공할때까지 시도합니다.
-* 또한 node discovery는 suffrage 노드와만 작동합니다. suffrage 노드 리스트에 추가되지 않은 노드들은 다른 suffrage 노드들의 url들을 노드 설정에 지정합니다.
-* 만약 log level를 info로 설정하면 쉽게 새롭게 생성되는 블록의 정보를 확인할 수 있습니다.
-
-| ``–log`` 명령줄 옵션은 특정 파일들에 로그를 수집할 수 있습니다.
-
-| Mitum은 다음과 같은 *quic* (http) 요청 메시지를 포함한 방대한 디버깅 로그 메시지를 덤프합니다.
-
-.. code-block:: json
-    
-    "l":"debug","module":"http2-server","ip":"127.0.0.1","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15","req_id":"c30q3kqciaejf9nj79c0","status":200,"size":2038,"duration":0.541625,"content-length":0,"content-type":"","headers":{"Accept-Language":["en-us"],"Connection":["keep-alive"],"Upgrade-Insecure-Requests":["1"]},"host":"127.0.0.1:54320","method":"GET","proto":"HTTP/1.1","remote":"127.0.0.1:55617","url":"/","t":"2021-06-10T05:23:31.030086621Z","caller":"/Users/soonkukkang/go/pkg/mod/github.com/spikeekips/mitum@v0.0.0-20210609043008-298f37780037/network/http.go:61","m":"request"
-
-| ``–network-log`` 명령줄 옵션은 특정 파일들에 이 요청 메시지들을 수집할 수 있습니다.
-
-.. code-block:: shell
-
-    $ ./mc node run \
-        --log-level debug \
-        --log-format json \
-        --log ./mitum.log \
-        --network-log ./mitum-request.log \
-        ./tutorial.yml
-
-| Multiple file can be set to ``–network-log`` and ``–log``.
-
-| Mitum Currency에서, ``–network-log`` 옵션은 digest API(http2)로부터 요청 로그를 수집할 것입니다.
-| ``–network-log`` 옵션은 오직 ``node run`` 명령어와 함께 사용될 수 있습니다.
 
 Lookup Genesis Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -202,23 +161,23 @@ Order of Execution
 .. code-block:: shell
 
     # n0 node
-    $ ./mc node init --log-level info ./n0.yml
-    $ ./mc node run --log-level info ./n0.yml --discovery "https://n1#insecure"
+    $ ./mitum node init <n0 config file>
+    $ ./mitum node run <n0 config file> --discovery <n1 publish url>
 
 .. code-block:: shell
 
     # n1 node
-    $ ./mc node run --log-level info ./n1.yml --discovery "https://n0#insecure"
+    $ ./mitum node run <n1 config file> --discovery <n0 publish url>
 
 .. code-block:: shell
 
     # n2 node
-    $ ./mc node run --log-level info ./n2.yml --discovery "https://n0#insecure"
+    $ ./mitum node run <n2 config file> --discovery <n0 publish url>
 
 .. code-block:: shell
 
     # n3 node
-    $ ./mc node run --log-level info ./n3.yml --discovery "https://n0#insecure"
+    $ ./mitum node run <n3 config file> --discovery <n0 publish url>
 
 .. note::
 
@@ -232,16 +191,18 @@ Four Suffrage Nodes
 
 | 우리가 네 개의 suffrage 노드들을 운영하려는 상황이라고 가정해봅시다.
 
-| 우선, 각 노드마다 yml 구성 파일을 준비하세요.
+| 우선, 각 노드마다 yml config 파일을 준비하세요.
 | ``n0``, ``n1``, ``n2``, ``n3`` 가 모두 suffrage 노드입니다.
 
 
-.. image:: ../images/run.buildnet/4_suffrage_nodes.png
-    :height: 570
+.. image:: ../images/run.buildnet/4_suffrage_nodes.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Four Suffrage Nodes
 
-| 노드의 구성에 따라 합의에 참여하는 노드를 구성하는 게 필요합니다.
+
+| 노드에 따라, 합의에 참여하는 노드를 설정해야 합니다.
 
 .. code-block:: none
 
@@ -453,12 +414,13 @@ Four Suffrage Nodes and One Sync Node
 
 | 네 개의 suffrage 노드와 하나의 sync 노드(non-suffrage)를 운영하는 경우,
 
-| 각 노드에 대해 yml configuration 파일을 준비하세요.
+| 각 노드에 대해 yml config 파일을 준비하세요.
 | ``n0``, ``n1``, ``n2``, ``n3`` 는 suffrage 노드이며 ``n4`` 가 sync 노드입니다.
 
 
-.. image:: ../images/run.buildnet/4_suffrage_nodes_1_sync_node.png
-    :height: 570
+.. image:: ../images/run.buildnet/4_suffrage_nodes_1_sync_node.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Four Suffrage Nodes
 
@@ -498,7 +460,6 @@ Four Suffrage Nodes and One Sync Node
         nodes:
             - n1sas
             - n3sas
-
     nodes:
         - address: n1sas
           publickey: ktJ4Lb6VcmjrbexhDdJBMnXPXfpGWnNijacdxD2SbvRMmpu
@@ -749,8 +710,9 @@ Node Discovery Scenario
     all joined
 
 
-.. image:: ../images/run.buildnet/node_discovery_case0.png
-    :height: 570
+.. image:: ../images/run.buildnet/node_discovery_case0.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Node Discovery Case 0
 
@@ -766,8 +728,9 @@ Node Discovery Scenario
     all joined
 
 
-.. image:: ../images/run.buildnet/node_discovery_case1.png
-    :height: 570
+.. image:: ../images/run.buildnet/node_discovery_case1.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Node Discovery Case 0
 
@@ -783,8 +746,9 @@ Node Discovery Scenario
     all joined
 
 
-.. image:: ../images/run.buildnet/node_discovery_case2.png
-    :height: 570
+.. image:: ../images/run.buildnet/node_discovery_case2.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Node Discovery Case 0
 
@@ -800,8 +764,9 @@ Node Discovery Scenario
     all joined
 
 
-.. image:: ../images/run.buildnet/node_discovery_case3.png
-    :height: 570
+.. image:: ../images/run.buildnet/node_discovery_case3.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Node Discovery Case 0
 
@@ -818,7 +783,8 @@ Node Discovery Scenario
     n0: disconnected
 
 
-.. image:: ../images/run.buildnet/node_discovery_case4.png
-    :height: 570
+.. image:: ../images/run.buildnet/node_discovery_case4.jpeg
+    :width: 1120
+    :height: 630
     :scale: 50 
     :alt: Node Discovery Case 0

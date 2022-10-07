@@ -1290,6 +1290,233 @@ Account
     }
 
 ---------------------------------------------------
+Currency
+---------------------------------------------------
+
+/currency
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* 네트워크의 모든 currency id들을 반환합니다.
+
++----------------------------------+--------+
+| PATH                             | METHOD |
++==================================+========+
+| /currency                        | GET    |
++----------------------------------+--------+
+
+| **Response Example**
+
+* 200
+
+.. code-block:: json
+
+    {
+        "_hint": "mitum-currency-hal-v0.0.1",
+        "hint": "",
+        "_links": {
+            "currency:{currencyid}": {
+                "href": "/currency/{currencyid:.*}",
+                "templated": true
+            },
+            "self": {
+                "href": "/currency"
+            },
+            "currency:PEN": {
+                "href": "/currency/PEN"
+            }
+        }
+    }
+
+* 500
+
+.. code-block:: json
+
+    {
+        "_hint": "mitum-currency-problem-v0.0.1",
+        "title": "....",
+        "type": "https://github.com/spikeekips/mitum-currency/problems/others",
+        "detail": "...."
+    }
+
+/currency/{currency_id}
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* *currency id* 로 검색한 currency의 currency 정보를 반환합니다.
+
++----------------------------------+--------+
+| PATH                             | METHOD |
++==================================+========+
+| /currency/{currency_id}          | GET    |
++----------------------------------+--------+
+
+| **Response Example**
+
+* 200
+
+.. code-block:: json
+
+    {
+        "_hint": "mitum-currency-hal-v0.0.1",
+        "hint": "mitum-currency-currency-design-v0.0.1",
+        "_embedded": {
+            "_hint": "mitum-currency-currency-design-v0.0.1",
+            "amount": {
+                "_hint": "mitum-currency-amount-v0.0.1",
+                "amount": "1000000000000000000000000000",
+                "currency": "PEN"
+            },
+            "genesis_account": "8iRVFAPiHKaeznfN3CmNjtFtjYSPMPKLuL6qkaJz8RLumca",
+            "policy": {
+                "_hint": "mitum-currency-currency-policy-v0.0.1",
+                "new_account_min_balance": "10",
+                "feeer": {
+                    "_hint": "mitum-currency-fixed-feeer-v0.0.1",
+                    "receiver": "8iRVFAPiHKaeznfN3CmNjtFtjYSPMPKLuL6qkaJz8RLumca",
+                    "amount": "1"
+                }
+            },
+            "aggregate": "1000000000000000000000000000"
+        },
+        "_links": {
+            "currency:{currencyid}": {
+                "templated": true,
+                "href": "/currency/{currencyid:.*}"
+            },
+            "block": {
+                "href": "/block/0"
+            },500
+            "operations": {
+                "href": "/block/operation/7rSkwgF6BmLmid13jiBJKaaRtgYXS7rtDBFSuNdUNPeo"
+            },
+            "self": {
+                "href": "/currency/PEN"
+            }
+        }
+    }
+
+* 500
+
+.. code-block:: json
+
+    {
+        "_hint": "mitum-currency-problem-v0.0.1",
+        "title": "....",
+        "type": "https://github.com/spikeekips/mitum-currency/problems/others",
+        "detail": "...."
+    }
+
+---------------------------------------------------
+Document
+---------------------------------------------------
+
+/block/documents
+'''''''''''''''''''''''''''''''''''''''''''''''''''   
+
++----------------------------------------+-----------------------+
+| PATH                                   | METHOD                |
++========================================+=======================+
+| /block/documents                       | GET                   |
++----------------------------------------+-----------------------+
+
+/block/document/{document_id}
+'''''''''''''''''''''''''''''''''''''''''''''''''''   
+
++----------------------------------------+-----------------------+
+| PATH                                   | METHOD                |
++========================================+=======================+
+| /block/document/{document_id}          | GET                   |
++----------------------------------------+-----------------------+
+
+/block/{height}/documents
+'''''''''''''''''''''''''''''''''''''''''''''''''''  
+
++----------------------------------------+-----------------------+
+| PATH                                   | METHOD                |
++========================================+=======================+
+| /block/{height}/documents              | GET                   |
++----------------------------------------+-----------------------+
+
+/account/{address}/documents
+'''''''''''''''''''''''''''''''''''''''''''''''''''  
+
++----------------------------------------+-----------------------+
+| PATH                                   | METHOD                |
++========================================+=======================+
+| /account/{address}/documents           | GET                   |
++----------------------------------------+-----------------------+
+
+---------------------------------------------------
+Feefi
+---------------------------------------------------
+
+/feefi/{pool_id}/pool/{address}
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++----------------------------------------+-----------------------+
+| PATH                                   | METHOD                |
++========================================+=======================+
+| /feefi/{pool_id}/pool/{address}        | GET                   |
++----------------------------------------+-----------------------+
+
+/feefi/{pool_id}/user/{address}
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++----------------------------------------+-----------------------+
+| PATH                                   | METHOD                |
++========================================+=======================+
+| /feefi/{pool_id}/user/{address}        | GET                   |
++----------------------------------------+-----------------------+
+
+---------------------------------------------------
+NFT
+---------------------------------------------------
+
+/account/{address}/nftagent/{collection_symbol}
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++-------------------------------------------------+-----------------------+
+| PATH                                            | METHOD                |
++=================================================+=======================+
+| /account/{address}/nftagent/{collection_symbol} | GET                   |
++-------------------------------------------------+-----------------------+
+
+/account/{address}/nfts
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++-------------------------------------------------+-----------------------+
+| PATH                                            | METHOD                |
++=================================================+=======================+
+| /account/{address}/nfts                         | GET                   |
++-------------------------------------------------+-----------------------+
+
+/nft/collection/{collection_symbol}
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++-------------------------------------------------+-----------------------+
+| PATH                                            | METHOD                |
++=================================================+=======================+
+| /nft/collection/{collection_symbol}             | GET                   |
++-------------------------------------------------+-----------------------+
+
+/nft/collection/{collection_symbol}/nfts
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++-------------------------------------------------+-----------------------+
+| PATH                                            | METHOD                |
++=================================================+=======================+
+| /nft/collection/{collection_symbol}/nfts        | GET                   |
++-------------------------------------------------+-----------------------+
+
+/nft/{nft_id}
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
++-------------------------------------------------+-----------------------+
+| PATH                                            | METHOD                |
++=================================================+=======================+
+| /nft/{nft_id}                                   | GET                   |
++-------------------------------------------------+-----------------------+
+
+---------------------------------------------------
 Builder
 ---------------------------------------------------
 
@@ -1923,122 +2150,6 @@ Builder
     "type": "https://github.com/spikeekips/mitum-currency/problems/others",
     "title": "...",
     "detail": "..."
-    }
-
-* 500
-
-.. code-block:: json
-
-    {
-        "_hint": "mitum-currency-problem-v0.0.1",
-        "title": "....",
-        "type": "https://github.com/spikeekips/mitum-currency/problems/others",
-        "detail": "...."
-    }
-
----------------------------------------------------
-Currency
----------------------------------------------------
-
-/currency
-'''''''''''''''''''''''''''''''''''''''''''''''''''
-
-* 네트워크의 모든 currency id들을 반환합니다.
-
-+----------------------------------+--------+
-| PATH                             | METHOD |
-+==================================+========+
-| /currency                        | GET    |
-+----------------------------------+--------+
-
-| **Response Example**
-
-* 200
-
-.. code-block:: json
-
-    {
-        "_hint": "mitum-currency-hal-v0.0.1",
-        "hint": "",
-        "_links": {
-            "currency:{currencyid}": {
-                "href": "/currency/{currencyid:.*}",
-                "templated": true
-            },
-            "self": {
-                "href": "/currency"
-            },
-            "currency:PEN": {
-                "href": "/currency/PEN"
-            }
-        }
-    }
-
-* 500
-
-.. code-block:: json
-
-    {
-        "_hint": "mitum-currency-problem-v0.0.1",
-        "title": "....",
-        "type": "https://github.com/spikeekips/mitum-currency/problems/others",
-        "detail": "...."
-    }
-
-/currency/{currency_id}
-'''''''''''''''''''''''''''''''''''''''''''''''''''
-
-* *currency id* 로 검색한 currency의 currency 정보를 반환합니다.
-
-+----------------------------------+--------+
-| PATH                             | METHOD |
-+==================================+========+
-| /currency/{currency_id}          | GET    |
-+----------------------------------+--------+
-
-| **Response Example**
-
-* 200
-
-.. code-block:: json
-
-    {
-        "_hint": "mitum-currency-hal-v0.0.1",
-        "hint": "mitum-currency-currency-design-v0.0.1",
-        "_embedded": {
-            "_hint": "mitum-currency-currency-design-v0.0.1",
-            "amount": {
-                "_hint": "mitum-currency-amount-v0.0.1",
-                "amount": "1000000000000000000000000000",
-                "currency": "PEN"
-            },
-            "genesis_account": "8iRVFAPiHKaeznfN3CmNjtFtjYSPMPKLuL6qkaJz8RLumca",
-            "policy": {
-                "_hint": "mitum-currency-currency-policy-v0.0.1",
-                "new_account_min_balance": "10",
-                "feeer": {
-                    "_hint": "mitum-currency-fixed-feeer-v0.0.1",
-                    "receiver": "8iRVFAPiHKaeznfN3CmNjtFtjYSPMPKLuL6qkaJz8RLumca",
-                    "amount": "1"
-                }
-            },
-            "aggregate": "1000000000000000000000000000"
-        },
-        "_links": {
-            "currency:{currencyid}": {
-                "templated": true,
-                "href": "/currency/{currencyid:.*}"
-            },
-            "block": {
-                "href": "/block/0"
-            },500
-            "operations": {
-                "href": "/block/operation/7rSkwgF6BmLmid13jiBJKaaRtgYXS7rtDBFSuNdUNPeo"
-            },
-            "self": {
-                "href": "/currency/PEN"
-            }
-        }
     }
 
 * 500

@@ -1,8 +1,14 @@
-.. _key command:
+.. _key generation:
 
 ===================================================
-Key Command
+Key Generation
 ===================================================
+
+.. _key command:
+
+---------------------------------------------------
+key
+---------------------------------------------------
 
 | ``key`` 는 키페어 생성, keys로부터 계정 주소 연산, 서명을 지원합니다.
 
@@ -19,51 +25,49 @@ Key Command
     * 개인키와 공개키는 키페어 생성에 의해 만들어집니다.
     * 생성된 키페어는 게정 생성, 노드의 키페어 등록, operation과 seal의 서명 생성에 사용됩니다.
 
----------------------------------------------------
 new
----------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | ``new`` 를 사용해 새로운 키페어를 생성합니다.
 
 Random Keypair
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | 시드 없이 키페어를 생성합니다.
 
 .. code-block:: shell
 
-    $ ./mc key new
+    $ ./mitum key new
 
 | **EXAMPLE**
 
 .. code-block:: shell
 
-    $ ./mc key new 
+    $ ./mitum key new 
           hint: mpr
     privatekey: L1ZERchoY53vC5TJQ3WnZEWmg97L2Utw5rgFrCwM7ekTu9zJkZYjmpr
      publickey: 28nFxuC5ETygieSGEYTkewwnCZseB4TNYGMRtxz31bvxzmpu
 
 Keypair from Seed
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | 시드로 키페어를 생성합니다. 문자열 시드의 길이는 36 이상이어야 합니다.
 
 .. code-block:: shell
 
-    $ ./mc key new --seed <string seed>
+    $ ./mitum key new --seed <string seed>
 
 | **EXAMPLE**
 
 .. code-block:: shell
 
-    $ ./mc key new --seed abcdefghijklmnopqrstuvwxyzABCDEFGHIJ
+    $ ./mitum key new --seed abcdefghijklmnopqrstuvwxyzABCDEFGHIJ
           hint: mpr
     privatekey: KypAAGYtVFdTFLS8muPJhwfJBFCFHKSe594yYmKK3FPteh7sie4Dmpr
      publickey: 25BcZrcyiE3TD2BZEqkdDuaYB9zHxpdW82BNn8HkCLTijmpu
 
----------------------------------------------------
 address
----------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | ``address`` 명령어로 keys로부터 주소를 계산합니다.
 
@@ -71,11 +75,11 @@ address
 
 .. code-block:: shell
 
-    $ ./mc key address <threshold> [<publickey>,<weight>]
+    $ ./mitum key address <threshold> [<publickey>,<weight>]
 
 | **EXAMPLE**
 
-| 계정 정보가 아래와 같을 때,
+| 계정 정보가 아래와 같다고 가정합니다.
 
 +---------------+------------------------------------------------------------------+
 | threshold     | 100                                                              |
@@ -85,15 +89,15 @@ address
 
 .. code-block:: shell
 
-    $ ./mc key address 100 21Sn1owHXRx336aaerU1WbbKjiZXMcrJsnxBHP9etNx6zmpu,50 utzCefA1Szmmt3rAwqW5yEhxK1x3hG3Y3yThEK3gZmv3mpu,50
+    $ ./mitum key address 100 21Sn1owHXRx336aaerU1WbbKjiZXMcrJsnxBHP9etNx6zmpu,50 utzCefA1Szmmt3rAwqW5yEhxK1x3hG3Y3yThEK3gZmv3mpu,50
     37x8YoAGA93B3HmDVNterRf1NTgz9tfN1gQn4jYuBYCHmca
 
-| 하지만, key-updater 명령어로 계정의 key, weight, threshold 구성이 달라진 경우에는 올바른 계정 주소를 얻을 수 없습니다. :ref:`key updater` 를 참고하세요. 
+| 하지만, key-updater 명령어로 계정의 key, weight, threshold 구성이 달라진 경우에는 올바른 계정 주소를 얻을 수 없습니다. :ref:`key-updater` 를 참고하세요. 
 
 .. _multi sig:
 
 Multi Sig Account
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Mitum Currency에서 계정은 currency와 balance를 가진 데이터 구조체입니다.
 * 계정은 address라는 고유값을 가지고 있으며 이 값을 통해 식별할 수 있습니다.
@@ -154,13 +158,13 @@ sign
 
 .. code-block:: shell
 
-    $ ./mc key sign <privatekey> <signature base>
+    $ ./mitum key sign <privatekey> <signature base>
 
 | **EXAMPLE**
 
 .. code-block:: shell
 
-    $./mc key sign L5nDx2QtZVBPtJvUQ13cj3bMhC487JdxrwXTdS6JgzTvnSHestCxmpr bWVzc2FnZQ=
+    $./mitum key sign L5nDx2QtZVBPtJvUQ13cj3bMhC487JdxrwXTdS6JgzTvnSHestCxmpr bWVzc2FnZQ=
     381yXZHrm73kGD8z7FAksBjxy49wPRWn3WRdP22befdbFff6WYSdK8rz9TLpFWuEW7rmmphF3rHkrvTPvhVQ5kXNGLmELBwZ
 
 | signature base는 *base64* 인코딩된 문자열이어야 합니다. 

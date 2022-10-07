@@ -4,14 +4,7 @@ Java
 
 | 이 페이지는 Java로 작성된 SDK에 관한 문서입니다.
 
-| 지원하는 모델은 다음과 같습니다
-
-* Mitum Currency
-* Mitum Document - blocksign, blockcity
-
-| 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
-
-| Mitum Document의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-java-util <https://github.com/ProtoconNet/mitum-java-util>`_ 을 참고해주세요.
+| 자세한 내용은 `mitum-java-util <https://github.com/ProtoconNet/mitum-java-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
@@ -32,22 +25,20 @@ Prerequisite and Requirements
     $ javac -version
     javac 17.0.1
 
-| 이 패키지는 다음과 같은 외부 라이브러리를 사용합니다.
-
-* `bitcoinj v0.14.7 <https://bitcoinj.org/>`_
-
 Installation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | 레포지토리에서 `Download <https://github.com/ProtoconNet/mitum-java-util/tree/main/release>`_ 하세요.
 
-| 현재 최신 버전은 ``mitum-java-util-3.0.0-jdk17.jar`` 입니다.
+| 현재 최신 버전은 ``mitum-java-util-4.1.1-jdk17.jar`` 입니다.
 
 | *Gradle* 을 사용하세요.
 
 .. code-block:: shell
 
-    implementation files('./lib/mitum-java-util-3.0.0-jdk17.jar')
+    implementation files('./lib/mitum-java-util-4.1.1-jdk17.jar')
+
+.. _java - Make Your First Operation:
 
 ---------------------------------------------------
 Make Your First Operation
@@ -55,14 +46,14 @@ Make Your First Operation
 
 | 이 예제는 **mitum-java-util** 로 ``create-account`` operation을 생성하는 방법에 대해 설명합니다. 
 
-| ``key-updater`` 와 ``transfer`` operation 생성 방법은 이 파트 마지막의 **Support Operations** 에서 확인하세요.
+| ``key-updater`` 와 ``transfer`` operation 생성 방법은 :ref:`java - support operations` 에서 확인하세요.
 
 Get Available Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | 시작하기 전에, 네트워크에 등록된 계정을 가지고 있어야 합니다.
 
-| Mitum Currency에서는 오직 이미 존재하는 계정만이 블록에 저장될 수 있는 새로운 operation을 만들 수 있습니다.
+| Mitum에서는 오직 이미 존재하는 계정만이 블록에 저장될 수 있는 새로운 operation을 만들 수 있습니다.
 
 | 계정은 다음과 같은 요소들로 이루어져있습니다.
 
@@ -73,12 +64,12 @@ Get Available Account
     - The range of each weight should be in 1 <= weight <= 100
     - If an account have single public key, the account is called 'single-sig account', or it's called 'multi-sig account'
     
-    2. threshold
+    1. threshold
     - The range of threshold should be in 1 <= threshold <= 100
     - The sum of all weights of the account should be over or equal to threshold
 
 | 아직 아무 계정도 가지고 있지 않다면 다른 계정에 당신의 첫 계정을 만들어 달라 요청해야 합니다.
-| **Details - Get Mitum Keypair** 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
+| :ref:`java - Get Mitum Keypair` 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
 | (public key, weight)쌍과 threshold를 새 계정 생성을 도와줄 계정 보유자에게 전달하세요.
 
 | 서명을 위해 계정의 각 공개키에 상응하는 개인키를 기억하고 있어야 합니다. 다른 사람에게 개인키를 알려주지 마세요!
@@ -92,7 +83,7 @@ Create Generator
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | operation의 대부분의 요소는 ``Generator`` 로 생성합니다.
-| Mitum Currency에 대해서는 ``Generator.mc()`` 를 사용하세요.
+| Mitum Currency에 대해서는 ``Generator.currency`` 를 사용하세요.
 
 | ``Generator`` 를 선언할 때, ``network id`` 가 필요합니다.
 | ``network id`` 는 네트워크에 따라 다릅니다.
@@ -103,13 +94,11 @@ Create Generator
 
     /*
     import org.mitumc.sdk.Generator
-    import org.mitumc.sdk.operation.currency.CurrencyGenerator;
     */
     String id = "mitum";
     Generator generator = Generator.get(id);
-    CurrencyGenerator cgn = generator.mc();
 
-| ``Generator`` 에 대한 더 자세한 내용은 Details - Major Classes 로 이동하여 Generator를 참고하세요.
+| ``Generator`` 에 대한 더 자세한 내용은 :ref:`java - Major Classes` 로 이동하여 Generator를 참고하세요.
 
 | 또한, 네트워크 상에서 사용할 수 있는 등록된 계정을 가지고 있어야 합니다.
 
@@ -135,7 +124,7 @@ Create Operation Item
     2. The initial balance of the account will be,
         - balance(currency id, amount): (MCC, 10000), (PEN, 20000)
 
-| 계정이 가지고 있는 키의 수가 2 개이기 때문에, 새로운 계정은 multi-sig 계정이 될 것입니다.
+| 계정이 가지고 있는 키의 수가 2개이기 때문에, 새로운 계정은 multi-sig 계정이 될 것입니다.
 
 | 새 계정에 대한 모든 조건이 결정되었으면 아래와 같이 item을 생성하세요.
 
@@ -143,21 +132,22 @@ Create Operation Item
 
     /*
     import org.mitumc.sdk.key.*;
+    import org.mitumc.sdk.operation.Amount;
     import org.mitumc.sdk.operation.currency.*;
     */
-    Key key1 = generator.mc().key("kpYjRwq6gQrjvzeqQ91MNiCcR9Beb9sD67SuhQ6frPGwmpu", 50); // newKey(public key, weight)
-    Key key2 = generator.mc().key("pWoFhRP3C7ocebSRPxTPfeaJZpnyKpEkxQqi6fAD4SHompu", 50);
-    Keys keys = generator.mc().keys(new Key[]{ key1, key2 }, 100); // newKeys(key list, threshold)
+    Key key1 = Key.get("kpYjRwq6gQrjvzeqQ91MNiCcR9Beb9sD67SuhQ6frPGwmpu", 50);
+    Key key2 = Key.get("pWoFhRP3C7ocebSRPxTPfeaJZpnyKpEkxQqi6fAD4SHompu", 50);
+    Keys keys = Keys.get(new Key[]{ key1, key2 }, 100);
 
-    Amount amount1 = generator.mc().amount("MCC", "10000"); // newAmount(currency id, amount)
-    Amount amount2 = generator.mc().amount("PEN", "20000");
+    Amount amount1 = Amount.get("MCC", "10000");
+    Amount amount2 = Amount.get("PEN", "20000");
 
-    CreateAccountsItem item = generator.mc().getCreateAccountsItem(keys, new Amount[]{ amount1, amount2 }); // newCreateAccountsItem(keys, amount list)
+    CreateAccountsItem item = generator.currency.getCreateAccountsItem(keys, new Amount[]{ amount1, amount2 }); // newCreateAccountsItem(keys, amount list)
 
-* 우선, ``Generator.mc().key(public key, weight)`` 를 사용해 각 key를 생성합니다.
-* 다음으로 모든 키와 계정 threshold를 ``Generator.mc().keys(key list, threshold)`` 로 결합합니다.
-* 그리고, ``Generator.mc().amount(currencyId, amount)`` 를 사용해 각 amount를 생성합니다.
-* 마지막으로, ``Generator.mc().getCreateAccountsItem(keys, amount list)`` 를 사용해 item을 생성하세요.
+* 우선, ``Key.get(public key, weight)`` 를 사용해 각 key를 생성합니다.
+* 다음으로 모든 키와 계정 threshold를 ``Keys.get(key list, threshold)`` 로 결합합니다.
+* 그리고, ``Amount.get(currencyId, amount)`` 를 사용해 각 amount를 생성합니다.
+* 마지막으로, ``Generator.currency.getCreateAccountsItem(keys, amount list)`` 를 사용해 item을 생성하세요.
 
 | 물론 각 item의 내용을 다음 조건 하에서 사용자화 할 수 있습니다.
 
@@ -193,9 +183,9 @@ Create Operation Fact
     import org.mitumc.sdk.operation.currency.*; 
     */
     String senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca"; // sender's account address; replace with your address
-    CreateAccountsFact fact = generator.mc().getCreateAccountsFact(senderAddress, new CreateAccountsItem[]{ item });  // newCreateAccountsFact(sender address, item list)
+    CreateAccountsFact fact = generator.currency.getCreateAccountsFact(senderAddress, new CreateAccountsItem[]{ item });  // newCreateAccountsFact(sender address, item list)
 
-| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.mc().getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
+| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.currency.getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -219,12 +209,12 @@ Create Operation
     /*
     import org.mitumc.sdk.operation.Operation;
     */
-    String senderPrivateKey = "KxD8T82nfwsUmQu3iMXENm93YTTatGFp1AYDPqTo5e6ycvY1xNXpmpr"; // sender's private key; replace with your private key
+    String senderPrivateKey = "KxD8T82nfwsUmQu3iMXENm93YTTatGFp1AYDPqTo5e6ycvY1xNXpmpr";
     
-    Operation operation = generator.getOperation(fact); // getOperation(fact, memo); enter memo if you need
-    operation.addSign(senderPrivateKey); // addSign(private key) add fact signature to fact_signs
+    Operation operation = generator.getOperation(fact);
+    operation.sign(senderPrivateKey);
 
-| operation을 생성하기 위해 ``Generator.mc().getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
+| operation을 생성하기 위해 ``Generator.currency.getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
 
 | 아쉽지만 하나의 operation에는 하나의 fact만 넣을 수 있습니다.
 
@@ -254,16 +244,32 @@ Create Seal
 
 | 감싸길 원하는 모든 operation을 operation list에 추가하세요.
 
+.. _java - support operations:
+
+---------------------------------------------------
 Support Operations
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+---------------------------------------------------
 
 | 이 파트에서는 각 operation에 대한 코드 예제를 제공합니다.
 
-| mitum-java-util가 지원하는 Mitum Currency operation은 다음과 같습니다.
+| mitum-java-util가 지원하는 각 Mitum 모델의 operation은 다음과 같습니다.
 
-* Create Account
-* Key Updater
-* Transfer
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Model                      | Support Operations                                                                            |
++============================+===============================================================================================+
+| Currency                   | create account, key updater, transfer                                                         |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Currency Extension         | create contract account, withdraw                                                             |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Document                   | create document, update document, (sign document)                                             |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Feefi                      | pool register, pool policy updater, pool deposit, pool withdraw                               |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| NFT                        | collection register, collection policy updater, mint, transfer, burn, sign, approve, delegate |
++----------------------------+-----------------------------------------------------------------------------------------------+
+
+Currency
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Create Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -282,7 +288,7 @@ Create Account
     /*
     import org.mitumc.sdk.key.*;
     import org.mitumc.sdk.Generator;
-    import org.mitumc.sdk.operation.Operation;
+    import org.mitumc.sdk.operation.*;
     import org.mitumc.sdk.operation.currency.*;
     */
 
@@ -291,25 +297,25 @@ Create Account
 
     Generator gn = Generator.get("mitum"); // network id: mitum
 
-    Key key = gn.mc().key("knW2wVXH399P9Xg8aVjAGuMkk3uTBZwcSpcy4aR3UjiAmpu", 100);
-    Keys keys = gn.mc().keys(new Key[]{ key }, 100); // becomes single-sig account
+    Key key = Key.get("knW2wVXH399P9Xg8aVjAGuMkk3uTBZwcSpcy4aR3UjiAmpu", 100);
+    Keys keys = Keys.get(new Key[]{ key }, 100); // becomes single-sig account
 
-    Amount amount = gn.mc().amount("MCC", "1000");
-    CreateAccountsItem item = gn.mc().getCreateAccountsItem(keys, new Amount[]{ amount });
+    Amount amount = Amount.get("MCC", "1000");
+    CreateAccountsItem item = gn.currency.getCreateAccountsItem(keys, new Amount[]{ amount });
 
-    CreateAccountsFact fact = gn.mc().getCreateAccountsFact(sourceAddr, new CreateAccountsItem[]{ item });
+    CreateAccountsFact fact = gn.currency.getCreateAccountsFact(senderAddress, new CreateAccountsItem[]{ item });
 
     Operation createAccount = gn.getOperation(fact);
-    createAccount.addSign(senderPrivateKey);
+    createAccount.sign(senderPrivateKey);
 
-| 자세한 설명은 생략합니다. 'Make Your First Operation'의 시작 부분을 확인하세요.
+| 자세한 설명은 생략합니다. :ref:`java - Make Your First Operation` 의 시작 부분을 확인하세요.
 
 Key Updater
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | 이 operation은 말 그대로 계정의 키를 업데이트 하기 위한 것입니다.
 
-| 예를 들어,
+| 예를 들어, 다음과 같이 키를 업데이트할 수 있습니다.
 
 .. code-block:: none
 
@@ -335,7 +341,7 @@ Key Updater
     /*
     import org.mitumc.sdk.key.*;
     import org.mitumc.sdk.Generator;
-    import org.mitumc.sdk.operation.Operation;
+    import org.mitumc.sdk.operation.*;
     import org.mitumc.sdk.operation.currency.*;
     */
 
@@ -344,13 +350,13 @@ Key Updater
     String targetPrivateKey = "KzejtzpPZFdLUXo2hHouamwLoYoPtoffKo5zwoJXsBakKzSvTdbzmpr";
     String targetAddress = "JDhSSB3CpRjwM8aF2XX23nTpauv9fLhxTjWsQRm9cJ7umca";
 
-    Key key1 = gn.mc().key("22ndFZw57ax28ydC3ZxzLJMNX9oMSqAfgauyWhC17pxDpmpu", 50);
-    Key key2 = gn.mc().key("22wD5RWsRFAr8mHkYmmyUDzKf6VBNgjHcgc3YhKxCvrZDmpu", 50);
-    Keys newKeys = gn.mc().keys(new Key[]{ key1, key2 }, 100);
+    Key key1 = Key.get("22ndFZw57ax28ydC3ZxzLJMNX9oMSqAfgauyWhC17pxDpmpu", 50);
+    Key key2 = Key.get("22wD5RWsRFAr8mHkYmmyUDzKf6VBNgjHcgc3YhKxCvrZDmpu", 50);
+    Keys newKeys = Keys.get(new Key[]{ key1, key2 }, 100);
 
-    KeyUpdaterFact fact = gn.mc().getKeyUpdaterFact(sourceAddr, "MCC", newKeys); // getKeyUpdaterFact(target address, currency for fee, new keys)
+    KeyUpdaterFact fact = gn.currency.getKeyUpdaterFact(targetAddress, "MCC", newKeys);
     Operation keyUpdater = gn.getOperation(fact);
-    keyUpdater.addSign(targetPrivateKey);
+    keyUpdater.sign(targetPrivateKey);
 
 * 계정의 키를 업데이트한 후에는 이전의 키를 사용할 수 없게 됩니다. 계정의 새로운 키페어의 개인키로 서명해야 합니다.
 * 따라서 네트워크에 key-updater operation을 전송하기 전, 새로운 키들을 기록해두세요.
@@ -385,7 +391,7 @@ Transfer
 
     /*
     import org.mitumc.sdk.Generator;
-    import org.mitumc.sdk.operation.Operation;
+    import org.mitumc.sdk.operation.*;
     import org.mitumc.sdk.operation.currency.*;
     */
     Generator gn = Generator.get("mitum"); // network id: mitum
@@ -394,17 +400,88 @@ Transfer
     String senderAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca";
     String receiverAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca";
 
-    Amount amount1 = gn.mc().amount("1000000", "MCC")
-    Amount amount2 = gn.mc().amount("15000", "PEN")
+    Amount amount1 = Amount.get("MCC", "100000")
+    Amount amount2 = Amount.get("PEN", "15000")
 
-    TransfersItem item = gn.mc().getTransfersItem(receiverAddress, new Amount[]{ amount1, amount2 }); // getTransfersItem(receiver address, amount list)
-    TransfersFact fact = gn.mc().getTransfersFact(sourceAddr, new TransfersItem[]{ item }); // getTransfersFact(sender address, item list)
+    TransfersItem item = gn.currency.getTransfersItem(receiverAddress, new Amount[]{ amount1, amount2 }); // getTransfersItem(receiver address, amount list)
+    TransfersFact fact = gn.currency.getTransfersFact(senderAddress, new TransfersItem[]{ item }); // getTransfersFact(sender address, item list)
 
     Operation transfer = gn.getOperation(fact);
-    transfer.addSign(senderPrivateKey); // suppose sender is single-sig  
+    transfer.sign(senderPrivateKey); // suppose sender is single-sig  
 
-| Mitum Document 등 mitum-java-util이 지원하는 다른 operation이 더 있지만 이 문서에서는 설명하지 않습니다.
-| 필요하다면 `README <https://github.com/ProtoconNet/mitum-java-util/blob/main/README.md>`_ 를 확인하세요.
+Currency Extension
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Create Contract Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| 이 operation을 전송하여 새로운 컨트랙트 계정을 생성할 수 있습니다.
+
+| create-contract-account operation을 생성하기 위한 과정은 create-account와 동일합니다.
+
+| 컨트랙트 계정과 일반 계정의 차이점은 컨트랙트 계정의 경우 계정 정보에 공개키가 포함되지 않는다는 점입니다.
+
+| 따라서 컨트랙트 계정은 operation 전송자로서 스스로 operation을 전송하거나 시작할 수 없습니다.
+
+| 컨트랙트 계정으로 전송된 토큰은 오직 컨트랙트 계정의 소유자만 인출 가능합니다.
+
+| 다음은 create-contract-account operation을 생성하는 예제이며, 자세한 설명은 생략되었습니다.
+
+.. code-block:: java
+
+    /*
+    import org.mitumc.sdk.key.*;
+    import org.mitumc.sdk.Generator;
+    import org.mitumc.sdk.operation.*;
+    import org.mitumc.sdk.operation.currency.*;
+    import org.mitumc.sdk.operation.currency.extension.*;
+    */
+
+    String senderPrivateKey = "KzafpyGojcN44yme25UMGvZvKWdMuFv1SwEhsZn8iF8szUz16jskmpr";
+    String senderAddress = "FcLfoPNCYjSMnxLPiQJQFGTV15ecHn3xY4J2HNCrqbCfmca";
+
+    Generator gn = Generator.get("mitum"); // network id: mitum
+
+    Key key = Key.get("knW2wVXH399P9Xg8aVjAGuMkk3uTBZwcSpcy4aR3UjiAmpu", 100);
+    Keys keys = Keys.get(new Key[]{ key }, 100); // becomes single-sig account
+
+    Amount amount = Amount.get("MCC", "1000");
+    CreateContractAccountsItem item = gn.currency.extension.getCreateContractAccountsItem(keys, new Amount[]{ amount });
+
+    CreateContractAccountsFact fact = gn.currency.extension.getCreateContractAccountsFact(senderAddress, new CreateContractAccountsItem[]{ item });
+
+    Operation createContractAccount = gn.getOperation(fact);
+    createContractAccount.sign(senderPrivateKey);
+
+Withdraw
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| 컨트랙트 계정에 예치된 토큰은 withdraw operation을 통해 인출할 수 있습니다.
+
+.. code-block:: java
+
+    /*
+    import org.mitumc.sdk.Generator;
+    import org.mitumc.sdk.operation.*;
+    import org.mitumc.sdk.operation.currency.*;
+    import org.mitumc.sdk.operation.currency.extension.*;
+    */
+    Generator gn = Generator.get("mitum"); // network id: mitum
+
+    String senderPrivateKey = "KzdeJMr8e2fbquuZwr9SEd9e1ZWGmZEj96NuAwHnz7jnfJ7FqHQBmpr";
+    String senderAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca";
+    String targetAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca";
+
+    Amount amount1 = Amount.get("MCC", "1000000");
+    Amount amount2 = Amount.get("PEN", "15000");
+
+    WithdrawsItem item = gn.currency.extension.getWithdrawsItem(targetAddress, new Amount[]{ amount1, amount2 }); // getTransfersItem(receiver address, amount list)
+    WithdrawsFact fact = gn.currency.extension.getWithdrawsFact(senderAddress, new WithdrawsItem[]{ item }); // getTransfersFact(sender address, item list)
+
+    Operation withdraws = gn.getOperation(fact);
+    withdraws.sign(senderPrivateKey);
+
+| document, feefi, NFT 모델의 operation을 생성하는 방법은 `README <https://github.com/ProtoconNet/mitum-java-util#readme>`_ 에서 확인할 수 있습니다.
 
 ---------------------------------------------------
 Sign
@@ -412,7 +489,7 @@ Sign
 
 | operation이 정상적으로 블록에 저장되기 위해서는 operation의 서명들이 특정 조건을 만족해야 합니다.
 
-| 주의해야할 점은,
+| 주의해야할 점은 다음과 같습니다.
 
 * 모든 서명이 계정의 개인키의 서명인가요?
 * 각 signer의 weight들을 모두 합한 값이 계정의 threshold 이상인가요?
@@ -454,7 +531,7 @@ Sign
    2. the sum of weights = 90 > threshold = 50
    3. So the operation with these two fact signatures is available
 
-| 그러므로 조건을 만족하기 위해 각 operation에 여러 개의 signature를 추가해야 합니다. (``Operation.addSign(private key)`` 를 사용하세요.)
+| 그러므로 조건을 만족하기 위해 각 operation에 여러 개의 signature를 추가해야 합니다. (``Operation.sign(private key)`` 를 사용하세요.)
 | CASE4의 경우와 같이 weight들의 총합 >= threshold 조건이 지켜지는 한 모든 개인키로 서명하는 것도 가능합니다.
 
 Add Fact Sign to Operation
@@ -494,6 +571,8 @@ Add Fact Sign to Operation
 Details
 ---------------------------------------------------
 
+.. _java - Get Mitum Keypair:
+
 Get Mitum Keypair
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -527,7 +606,7 @@ Just Create New Keypair
     /*
     import org.mitumc.sdk.key.Keypair;
     */
-    Keypair kp = Keypair.create();
+    Keypair kp = Keypair.random();
 
     kp.getPrivateKey(); // returns private key of the keypair
     kp.getPublicKey(); // returns public key of the keypair
@@ -580,19 +659,18 @@ Get Account Address with Keys
 .. code-block:: java
 
     /*
-    import org.mitumc.sdk.Generator
     import org.mitumc.key.Key
     import org.mitumc.key.Keys
     */
-    Generator generator = Generator.get("mitum");
+    Key key1 = Key.get("vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu", 40);
+    Key key2 = Key.get("29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu", 30);
+    Key key3 = Key.get("uJKiGLBeXF3BdaDMzKSqJ4g7L5kAukJJtW3uuMaP1NLumpu", 30);
 
-    Key key1 = generator.mc().key("vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu", 40);
-    Key key2 = generator.mc().key("29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu", 30);
-    Key key3 = generator.mc().key("uJKiGLBeXF3BdaDMzKSqJ4g7L5kAukJJtW3uuMaP1NLumpu", 30);
-
-    Keys keys = generator.mc().keys(new Key[]{ key1, key2, key3 }, 100);
+    Keys keys = Keys.get(new Key[]{ key1, key2, key3 }, 100);
 
     String address = keys.getAddress(); // This is the goal!
+
+.. _java - Major Classes:
 
 Major Classes
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -604,10 +682,11 @@ Generator
 
 | ``Generator`` 를 사용하기 전 ``network id`` 를 설정해야 합니다.
 
-* Mitum Currency에 대해 ``Generator.mc()`` 를 사용하세요.
-* Mitum Document에 대해 ``Generator.md()`` 를 사용하세요.
-
-| Mitum Document operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-java-util/blob/main/README.md>`_ 을 참고하세요.
+* **Mitum Currency**: ``Generator.currency``
+* **Mitum Currency Extension**: ``Generator.currency.extension``
+* **Mitum Document**: ``Generator.document``
+* **Mitum Feefi**: ``Generator.feefi``
+* **Mitum NFT**: ``Generator.nft``
 
 .. code-block:: java
 
@@ -617,47 +696,85 @@ Generator
     String id = "mitum";
     Generator generator = Generator.get(id);
 
-    CurrencyGenerator cgn = generator.mc(); // org.mitumc.sdk.operation.currency.CurrencyGenerator;
-    DocumentGenerator bgn = generator.md(); // org.mitumc.sdk.operation.document.DocumentGenerator; 
+    CurrencyGenerator cgn = generator.currency; // org.mitumc.sdk.operation.currency.CurrencyGenerator;
+    ExtensionGenerator egn = generator.currency.extension; // org.mitumc.sdk.operation.currency.extension.ExtensionGenerator;
+    DocumentGenerator dgn = generator.document; // org.mitumc.sdk.operation.document.DocumentGenerator;
+    FeefiGenerator fgn = generator.feefi; // org.mitumc.sdk.operation.feefi.FeefiGenerator;
+    NFTGenerator ngn = generator.nft; // org.mitumc.sdk.operation.nft.NFTGenerator;
 
 | ``Generator`` 가 제공하는 모든 메서드는 다음과 같습니다.
 
 .. code-block:: java
 
-    /* For Mitum Currency */
-    Generator.mc().key(String key, int weight);
-    Generator.mc().keys(Key[] keys, int threshold); 
-    Generator.mc().amount(String currency, String amount);
-    Generator.mc().getCreateAccountsItem(Keys keys, Amount[] amounts);
-    Generator.mc().getTransfersItem(String receiver, Amount[] amounts);
-    Generator.mc().getCreateAccountsFact(String sender, CreateAccountsItem[] items);
-    Generator.mc().getKeyUpdaterFact(String target, String currencyId, Keys keys);
-    Generator.mc().getTransfersFact(String sender, TransfersItem[] items);
+     /* For Mitum Currency */
+    CreateAccountsItem getCreateAccountsItem(Keys keys, Amount[] amounts);
+    TransfersItem getTransfersItem(String receiver, Amount[] amounts);
+    CreateAccountsFact getCreateAccountsFact(String sender, CreateAccountsItem[] items);
+    KeyUpdaterFact getKeyUpdaterFact(String target, String currency, Keys keys);
+    TransfersFact getTransfersFact(String sender, TransfersItem[] items);
+
+    /* For Mitum Currency Extension */
+    CreateContractAccountsItem getCreateContractAccountsItem(Keys keys, Amount[] amounts);
+    WithdrawsItem getWithdrawsItem(String target, Amount[] amounts);
+    CreateContractAccountsFact getCreateContractAccountsFact(String sender, CreateContractAccountsItem[] items);
+    WithdrawsFact getWithdrawsFact(String sender, WithdrawsItem[] items);   
     
     /* For Mitum Document */
-    Generator.md().getCreateDocumentsItem(Document document, String currencyId);
-    Generator.md().getUpdateDocumentsItem(Document document, String currencyId);
-    Generator.md().getCreateDocumentsFact(String sender, CreateDocumentsItem[] items);
-    Generator.md().getUpdateDocumentsFact(String sender, UpdateDocumentsItem[] items);
+    Generator.document.getCreateDocumentsItem(Document document, String currencyId);
+    Generator.document.getUpdateDocumentsItem(Document document, String currencyId);
+    Generator.document.getCreateDocumentsFact(String sender, CreateDocumentsItem[] items);
+    Generator.document.getUpdateDocumentsFact(String sender, UpdateDocumentsItem[] items);
     
     /* For Blocksign */
-    Generator.md().bs().user(String address, String signCode, boolean signed);
-    Generator.md().bs().document(String documentId, String owner, String fileHash, BlockSignUser creator, String title, String size, BlockSignUser[] signers);
-    Generator.md().bs().getSignDocumentsItem(String documentId, String owner, String currencyId);
-    Generator.md().bs().getSignDocumentsFact(String sender, SignDocumentsItem[] items);DocumentsFact(String sender, BlockCityItem<T>[] items);
+    Generator.document.blocksign.user(String address, String signCode, boolean signed);
+    Generator.document.blocksign.document(String documentId, String owner, String fileHash, BlockSignUser creator, String title, String size, BlockSignUser[] signers);
+    Generator.document.blocksign.getSignDocumentsItem(String documentId, String owner, String currencyId);
+    Generator.document.blocksign.getSignDocumentsFact(String sender, SignDocumentsItem[] items);DocumentsFact(String sender, BlockCityItem<T>[] items);
 
     /* For Blockcity */
-    Generator.md().bc().candidate(String address, String nickname, String manifest, int count);
-    Generator.md().bc().userStatistics(int hp, int strength, int agility, int dexterity, int charisma, int intelligence, int vital);
-    Generator.md().bc().document(String documentId, String owner, int gold, int bankGold, UserStatistics statistics);
-    Generator.md().bc().document(String documentId, String owner, String address, String area, String renter, String account, String rentDate, int period);
-    Generator.md().bc().document(String documentId, String owner, int round, String endTime, Candidate[] candidates, String bossName, String account, String office);
-    Generator.md().bc().document(String documentId, String owner, String name, String account, String date, String usage, String app);
+    Candidate candidate(String address, String nickname, String manifest, int count);
+    UserStatistics userStatistics(int hp, int strength, int agility, int dexterity, int charisma, int intelligence, int vital);
+    Document userDocument(String documentId, String owner, int gold, int bankGold, UserStatistics statistics);
+    Document landDocument(String documentId, String owner, String address, String area, String renter, String account, String rentDate, int period);
+    Document voteDocument(String documentId, String owner, int round, String endTime, Candidate[] candidates, String bossName, String account, String office);
+    Document historyDocument(String documentId, String owner, String name, String account, String date, String usage, String app);
+    
+    /* For Mitum Feefi */
+    PoolRegisterFact getPoolRegisterFact(String sender, String target, Amount initialFee, String incomingCid, String outgoingCid, String currency);
+    PoolPolicyUpdaterFact getPoolPolicyUpdaterFact(String sender, String target, Amount fee, String poolId, String currency);
+    PoolDepositsFact getPoolDepositsFact(String sender, String pool, String poolId, Amount amount);
+    PoolWithdrawFact getPoolWithdrawFact(String sender, String pool, String poolId, Amount[] amounts);
+
+    /* For Mitum NFT */
+    NFTSigner signer(String account, int share, boolean signed);
+    NFTSigners signers(int total, NFTSigner[] signers);
+    CollectionRegisterForm collectionRegisterForm(String target, String symbol, String name, int royalty, String uri, String[] whites);
+    CollectionPolicy collectionPolicy(String name, int royalty, String uri, String[] whites);
+    MintForm mintForm(String hash, String uri, NFTSigners creators, NFTSigners copyrighters);
+
+    MintItem getMintItem(String collection, MintForm form, String currency);
+    NFTTransferItem getTransferItem(String receiver, NFTID nid, String currency);
+    BurnItem getBurnItem(NFTID nid, String currency);
+    NFTSignItem getSignItem(String qualification, NFTID nid, String currency);
+    ApproveItem getApproveItem(String approved, NFTID nid, String currency);
+    DelegateItem getDelegateItem(String collection, String agent, String mode, String currency);
+
+    CollectionRegisterFact getCollectionRegisterFact(String sender, CollectionRegisterForm form, String currency);
+    CollectionPolicyUpdaterFact getCollectionPolicyUpdaterFact(String sender, String collection, CollectionPolicy policy, String currency);
+    MintFact getMintFact(String sender, MintItem[] items);
+    NFTTransferFact getTransferFact(String sender, NFTTransferItem[] items);
+    BurnFact getBurnFact(String sender, BurnItem[] items);
+    NFTSignFact getSignFact(String sender, NFTSignItem[] items);
+    ApproveFact getApproveFact(String sender, ApproveItem[] items);
+    DelegateFact getDelegateFact(String sender, DelegateItem[] items);
 
     /* Common */
-    Generator.getOperation(OperationFact fact);
-    Generator.getOperation(String memo, OperationFact fact);
-    Generator.getSeal(String signKey, Operation[] operations);
+    Operation getOperation(OperationFact fact);
+    Operation getOperation(OperationFact fact, String memo);
+    HashMap<String, Object> getSeal(String signKey, Operation[] operations);
+    HashMap<String, Object> getSeal(String signKey, JsonObject[] operations);
+    HashMap<String, Object> randomKeys();
+    HashMap<String, Object> randomKeys(int numOfKeys);
 
 Signer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -685,6 +802,15 @@ JSONParser
 
 .. code-block:: java
 
+    JsonObject getObjectFromJsonFile(String fpName);
+    JsonObject getObjectFromHashMap(HashMap<String, Object> target);
+    void writeJsonFileFromJsonObject(JsonObject target, String fpName);
+    void writeJsonFileFromHashMap(HashMap target, String fpName);
+    HashMap<String, Object> mergeOperations(JsonObject[] operations);
+    HashMap<String, Object> mergeOperations(HashMap<String, Object>[] operations);
+
+.. code-block:: java
+
     /*
     import org.mitumc.sdk.JSONParser;
     */
@@ -693,7 +819,7 @@ JSONParser
     // ... refer to above `Make Your First Operation`
     // ... suppose you have already made operations - createAccount, keyUpdater, transfer and a seal - seal
 
-    JSONParser.createJSON(createAccount.toDict(), 'createAccount.json'); // createJSON(HashMap, filePath)
-    JSONParser.createJSON(keyUpdater.toDict(), 'keyUpdater.json');
-    JSONParser.createJSON(transfer.toDict(), 'transfer.json');
-    JSONParser.createJSON(seal, 'seal.json');
+    JSONParser.writeJsonFileFromHashMap(createAccount.toDict(), 'createAccount.json'); // writeJsonFileFromHashMap(HashMap, filePath)
+    JSONParser.writeJsonFileFromHashMap(keyUpdater.toDict(), 'keyUpdater.json');
+    JSONParser.writeJsonFileFromHashMap(transfer.toDict(), 'transfer.json');
+    JSONParser.writeJsonFileFromHashMap(seal, 'seal.json');

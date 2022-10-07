@@ -1,12 +1,12 @@
-.. _cli:
+.. _CLI:
 
 ===================================================
 Command Line Interface
 ===================================================
 
-| 이 장에서 Mitum Currency가 제공하는 명령어들과 그 사용 방법을 소개합니다.
+| 이 장에서 Mitum 및 Mitum 모델이 제공하는 명령어들과 그 사용 방법을 소개합니다.
 
-| 제공하는 주요 명령어는 다음과 같습니다.
+| 기본 Mitum 프로그램이 제공하는 주요 명령어는 다음과 같습니다.
 
 * ``version``
 * ``node``
@@ -18,17 +18,28 @@ Command Line Interface
 
 | ``Run`` 페이지를 거쳐왔다면 이미 ``node`` 명령어는 익숙할 것입니다.
 
-| ``version`` 와 ``quic-client`` 를 사용하는 방법은 간단합니다. 이는 ``Others`` 에 서술하였습니다. 다른 명령어들은 하나씩 설명합니다.
+| 각 모델의 operation은 ``seal`` 명령어를 통해 생성할 수 있습니다.
+
+| ``version`` 와 ``quic-client`` 를 사용하는 방법은 간단합니다. 각 명령어에 대해 하나씩 설명합니다.
 
 ---------------------------------------------------
 Summary
 ---------------------------------------------------
 
-| 다음은 Mitum Currency가 제공하는 모든 명령어입니다.
+| 예를 들어, 다음은 Mitum Currency가 제공하는 모든 명령어입니다.
+
+| 특히 아래 명령어들은 Mitum Currency 모델을 확장한 모델에서만 사용가능합니다. 그 외 다른 명령어들은 일반적으로 모든 모델에서 사용가능합니다.
+
+* ``seal create-account``
+* ``seal transfer``
+* ``seal key-updater``
+* ``seal currency-register``
+* ``seal currency-policy-updater``
+* ``seal suffrage-inflation``
 
 .. code-block:: shell
 
-    $ ./mc --help
+    $ ./mitum --help
 
     Usage: mitum-currency <command>
 

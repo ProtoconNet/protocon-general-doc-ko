@@ -4,14 +4,7 @@ Javascript
 
 | 이 페이지는 Javascript로 작성된 SDK에 관한 문서입니다.
 
-| 지원하는 모델은 다음과 같습니다
-
-* Mitum Currency
-* Mitum Document
-
-| 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
-
-| Mitum Document의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-js-util <https://github.com/ProtoconNet/mitum-js-util>`_ 을 참고해주세요.
+| 자세한 내용은 `mitum-js-util <https://github.com/ProtoconNet/mitum-js-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
@@ -31,8 +24,6 @@ Prerequisite and Requirements
 
     $ node --version
     7.24.0
-
-| ``npm version 16.10.0 or later`` 이 요구됩니다.
 
 Installation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -63,20 +54,22 @@ Installation
 
     $ npm link mitumc
 
+.. _js - Make Your First Operation:
+
 ---------------------------------------------------
 Make Your First Operation
 ---------------------------------------------------
 
 | 이 예제는 **mitum-js-util** 로 ``create-account`` operation을 생성하는 방법에 대해 설명합니다. 
 
-| ``key-updater`` 와 ``transfer`` operation 생성 방법은 이 파트 마지막의 **Support Operations** 에서 확인하세요.
+| ``key-updater`` 와 ``transfer`` operation 생성 방법은 :ref:`js - support operations` 에서 확인하세요.
 
 Get Available Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | 시작하기 전에, 네트워크에 등록된 계정을 가지고 있어야 합니다.
 
-| Mitum Currency에서는 오직 이미 존재하는 계정만이 블록에 저장될 수 있는 새로운 operation을 만들 수 있습니다.
+| Mitum에서는 오직 이미 존재하는 계정만이 블록에 저장될 수 있는 새로운 operation을 만들 수 있습니다.
 
 | 계정은 다음과 같은 요소들로 이루어져있습니다.
 
@@ -87,12 +80,12 @@ Get Available Account
     - The range of each weight should be in 1 <= weight <= 100
     - If an account have single public key, the account is called 'single-sig account', or it's called 'multi-sig account'
     
-    2. threshold
+    1. threshold
     - The range of threshold should be in 1 <= threshold <= 100
     - The sum of all weights of the account should be over or equal to threshold
 
 | 아직 아무 계정도 가지고 있지 않다면 다른 계정에 당신의 첫 계정을 만들어 달라 요청해야 합니다.
-| **Details - Get Mitum Keypair** 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
+| :ref:`js - Get Mitum Keypair` 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
 | (public key, weight)쌍과 threshold를 새 계정 생성을 도와줄 계정 보유자에게 전달하세요.
 
 | 서명을 위해 계정의 각 공개키에 상응하는 개인키를 기억하고 있어야 합니다. 다른 사람에게 개인키를 알려주지 마세요!
@@ -106,9 +99,9 @@ Create Generator
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | operation의 대부분의 요소는 ``Generator`` 로 생성합니다.
-| Mitum Currency에 대해서는 ``Generator.mc`` 를 사용하세요.
+| Mitum Currency에 대해서는 ``Generator.currency`` 를 사용하세요.
 
-| ``Generator`` 를 선언할 때, ``network id`` 가 필요합니다.
+| ``Generator`` 를 생성할 때, ``network id`` 가 필요합니다.
 | ``network id`` 는 네트워크에 따라 다릅니다.
 
 | 이 페이지에서는 ``mitum`` 을 네트워크 id로 가정합니다.
@@ -117,11 +110,10 @@ Create Generator
 
     import { Generator } from 'mitumc'
 
-    const networkId = 'mitum'
     const generator = new Generator('mitum')
-    const currencyGenerator = generator.mc
+    const currencyGenerator = generator.currency
 
-| ``Generator`` 에 대한 더 자세한 내용은 Details - Major Classes 로 이동하여 Generator를 참고하세요.
+| ``Generator`` 에 대한 더 자세한 내용은 :ref:`js - Major Classes` 로 이동하여 Generator를 참고하세요.
 
 | 또한, 네트워크 상에서 사용할 수 있는 등록된 계정을 가지고 있어야 합니다.
 
@@ -164,11 +156,11 @@ Create Operation Item
 
     const createAccountsItem = currencyGenerator.getCreateAccountsItem(keys, amounts); // createCreateAccountsItem(keys, amounts)
 
-* 우선, ``Generator.mc.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
-* 다음으로 모든 키와 계정 threshold를 ``Generator.mc.keys(key list, threshold)`` 로 결합합니다.
-* 그리고, ``Generator.mc.amount(currencyId, amount)`` 를 사용해 각 amount를 생성합니다..
-* 다음 ``Generator.mc.amounts(amount list)`` 로 모든 amount를 결합합니다.
-* 마지막으로, ``Generator.mc.getCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
+* 우선, ``Generator.currency.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
+* 다음으로 모든 키와 계정 threshold를 ``Generator.currency.keys(key list, threshold)`` 로 결합합니다.
+* 그리고, ``Generator.currency.amount(currencyId, amount)`` 를 사용해 각 amount를 생성합니다..
+* 다음 ``Generator.currency.amounts(amount list)`` 로 모든 amount를 결합합니다.
+* 마지막으로, ``Generator.currency.getCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
 
 | 물론 각 item의 내용을 다음 조건 하에서 사용자화 할 수 있습니다.
 
@@ -183,7 +175,7 @@ Create Operation Fact
 
 | *fact* 는 반드시 ``items``, ``sender``, ``token``, ``fact hash`` 를 가져야 합니다.
 
-| ``token`` 와 ``fact hash`` 는 SDK가 자동적으로 생성해주므로 걱정하지 않아도 됩니다.
+| ``token`` 과 ``fact hash`` 는 SDK가 자동적으로 생성해주므로 걱정하지 않아도 됩니다.
 | 반드시 제공해야할 정보는 ``items`` 와 ``sender`` 에 대한 것입니다.
 
 | item을 생성하는 방법은 바로 위에서 설명하였습니다.
@@ -203,7 +195,7 @@ Create Operation Fact
     const senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca" // sender's account address; replace with your address
     const createAccountsFact = currencyGenerator.getCreateAccountsFact(senderAddress, [createAccountsItem]) // getCreateAccountsFact(sender's address, item list)
 
-| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.mc.getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
+| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.currency.getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -229,7 +221,7 @@ Create Operation
     const createAccounts = generator.getOperation(createAccountsFact, "") // getOperation(fact, memo)
     createAccounts.addSign(senderPrivateKey); // addSign(private key) add fact signature to fact_signs 
 
-| operation을 생성하기 위해 ``Generator.mc.getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
+| operation을 생성하기 위해 ``Generator.currency.getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
 
 | 아쉽지만 하나의 operation에는 하나의 fact만 넣을 수 있습니다.
 
@@ -247,7 +239,7 @@ Create Seal
 
 | 어쨌든 mitum-js-util을 사용해 seal을 생성하는 것은 간단합니다.
 
-| 준비해야 하는 것은 Mitum 키 패키지로부터 얻은 아무 개인키입니다.
+| 준비해야 하는 것은 Mitum 키 패키지로부터 얻은 개인키입니다.
 | *mpr* 타입 접미사가 붙은 어떤 *btc compressed wif* 형식 키라도 가능합니다.
 
 .. code-block:: javascript
@@ -257,20 +249,36 @@ Create Seal
     const operations = [createAccounts]
     const seal = generator.getSeal(anyPrivateKey, operations)
 
-| ``createOperation`` 의 경우와 같이, 단순히 ``Generator.getSeal(signer, operation list)`` 를 사용하세요.
+| ``getOperation`` 의 경우와 같이, 단순히 ``Generator.getSeal(signer, operation list)`` 을 사용하세요.
 
 | 감싸길 원하는 모든 operation을 operation list에 추가하세요.
 
+.. _js - support operations:
+
+---------------------------------------------------
 Support Operations
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+---------------------------------------------------
 
 | 이 파트에서는 각 operation에 대한 코드 예제를 제공합니다.
 
-| mitum-js-util가 지원하는 Mitum Currency operation은 다음과 같습니다.
+| mitum-js-util가 지원하는 각 Mitum 모델의 operation은 다음과 같습니다.
 
-* Create Account
-* Key Updater
-* Transfer
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Model                      | Support Operations                                                                            |
++============================+===============================================================================================+
+| Currency                   | create account, key updater, transfer                                                         |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Currency Extension         | create contract account, withdraw                                                             |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Document                   | create document, update document, (sign document)                                             |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Feefi                      | pool register, pool policy updater, pool deposit, pool withdraw                               |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| NFT                        | collection register, collection policy updater, mint, transfer, burn, sign, approve, delegate |
++----------------------------+-----------------------------------------------------------------------------------------------+
+
+Currency
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Create Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -288,9 +296,8 @@ Create Account
 
     import { Generator } from 'mitumc'
 
-    const networkId = 'mitum'
     const generator = new Generator('mitum')
-    const currencyGenerator = generator.mc
+    const currencyGenerator = generator.currency
 
     const key1 = currencyGenerator.key("kpYjRwq6gQrjvzeqQ91MNiCcR9Beb9sD67SuhQ6frPGwmpu", 50)
     const key2 = currencyGenerator.key("pWoFhRP3C7ocebSRPxTPfeaJZpnyKpEkxQqi6fAD4SHompu", 50)
@@ -311,14 +318,14 @@ Create Account
     const createAccounts = generator.getOperation(createAccountsFact, "")
     createAccounts.addSign(senderPrivateKey);
 
-| 자세한 설명은 생략합니다. 'Make Your First Operation'의 시작 부분을 확인하세요.
+| 자세한 설명은 생략합니다. :ref:`js - Make Your First Operation` 의 시작 부분을 확인하세요.
 
 Key Updater
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | 이 operation은 말 그대로 계정의 키를 업데이트 하기 위한 것입니다.
 
-| 예를 들어,
+| 예를 들어, 다음과 같은 구성으로 키를 업데이트할 수 있습니다.
 
 .. code-block:: none
 
@@ -343,9 +350,8 @@ Key Updater
 
     import { Generator } from 'mitumc'
 
-    const networkId = 'mitum'
     const generator = new Generator('mitum')
-    const currencyGenerator = generator.mc
+    const currencyGenerator = generator.currency
 
     const targetAddress = "JDhSSB3CpRjwM8aF2XX23nTpauv9fLhxTjWsQRm9cJ7umca"
     const targetPrivateKey = "KzejtzpPZFdLUXo2hHouamwLoYoPtoffKo5zwoJXsBakKzSvTdbzmpr"
@@ -392,9 +398,8 @@ Transfer
 
     import { Generator } from 'mitumc'
 
-    const networkId = 'mitum'
     const generator = new Generator('mitum')
-    const currencyGenerator = generator.mc
+    const currencyGenerator = generator.currency
 
     const senderPrivateKey = "KzdeJMr8e2fbquuZwr9SEd9e1ZWGmZEj96NuAwHnz7jnfJ7FqHQBmpr"
     const senderAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca"
@@ -410,8 +415,78 @@ Transfer
     const transfers = generator.getOperation(transfersFact, "")
     transfers.addSign(senderPrivateKey) // suppose sender is single-sig    
 
-| Mitum Document 등 mitum-js-util이 지원하는 다른 operation이 더 있지만 이 문서에서는 설명하지 않습니다.
-| 필요하다면 `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_ 를 확인하세요.
+Currency Extension
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Create Contract Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| 이 operation을 전송하여 새로운 컨트랙트 계정을 생성할 수 있습니다.
+
+| create-contract-account operation을 생성하기 위한 단계는 create-account와 동일합니다.
+
+| 컨트랙트 계정과 일반 계정의 차이는 컨트랙트 계정의 경우, 계정 정보에 공개키가 없다는 점입니다.
+
+| 때문에, 컨트랙트 계정은 operation 전송자가 되어 operation을 전송하거나 시작할 수 없고 다른 계정으로 스스로 토큰을 전송할 수도 없습니다.
+
+| 컨트랙트 계정의 소유자만이 withdraw operation을 통해 일반 계정으로 토큰을 인출할 수 있습니다.
+
+| 다음 예는 create-contract-account operation을 생성하는 예제이며, 자세한 설명은 생략되었습니다.
+
+.. code-block:: javascript
+
+    import { Generator } from 'mitumc'
+
+    const networkId = 'mitum'
+    const generator = new Generator(networkId)
+    const currencyGenerator = generator.currency
+
+    const key1 = currencyGenerator.key("kpYjRwq6gQrjvzeqQ91MNiCcR9Beb9sD67SuhQ6frPGwmpu", 50)
+    const key2 = currencyGenerator.key("pWoFhRP3C7ocebSRPxTPfeaJZpnyKpEkxQqi6fAD4SHompu", 50)
+    
+    const keys = currencyGenerator.keys([key1, key2], 100)
+
+    const amount1 = currencyGenerator.amount("MCC", "10000")
+    const amount2 = currencyGenerator.amount("PEN", "20000")
+    const amounts = currencyGenerator.amounts([amount1, amount2]);
+
+    const createAccountsItem = currencyGenerator.extension.getCreateContractAccountsItem(keys, amounts);
+
+    const senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca"
+    const createAccountsFact = currencyGenerator.extension.getCreateContractAccountsFact(senderAddress, [createAccountsItem])
+
+    const senderPrivateKey = "KxD8T82nfwsUmQu3iMXENm93YTTatGFp1AYDPqTo5e6ycvY1xNXpmpr"
+    
+    const createContractAccounts = generator.getOperation(createContractAccounts, "")
+    createContractAccounts.addSign(senderPrivateKey);
+
+Withdraw
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| 컨트랙트 계정에 예치된 토큰은 withdraw operation을 통해 컨트랙트 계정의 소유자에게 인출될 수 있습니다.
+
+.. code-block:: javascript
+
+    import { Generator } from 'mitumc';
+    
+    const generator = new Generator('mitum')
+    const currencyGenerator = generator.currency
+
+    const amount = currencyGenerator.amount("MCC", "100");
+    const amounts = currencyGenerator.amounts([amount]);
+
+    const targetAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca";
+    const withdrawsItem = currencyGenerator.extension.getWithdrawsItem(targetAddress,  amounts);
+
+    const senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca";
+    const withdrawsFact = currencyGenerator.extension.getWithdrawsFact(senderAddress, [withdrawsItem])
+   
+    const senderPrivateKey = "KxD8T82nfwsUmQu3iMXENm93YTTatGFp1AYDPqTo5e6ycvY1xNXpmpr";
+
+    const withdraws = generator.getOperation(withdrawsFact, "")
+    withdraws.addSign(senderPrivateKey)
+
+| document, feefi, NFT 모델의 operation을 생성하는 방법은 `README <https://github.com/ProtoconNet/mitum-js-util#readme>`_ 에서 확인할 수 있습니다.
 
 ---------------------------------------------------
 Sign
@@ -503,6 +578,8 @@ Add Fact Sign to Operation
 ---------------------------------------------------
 Details
 ---------------------------------------------------
+
+.. _js - Get Mitum Keypair:
 
 Get Mitum Keypair
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -597,7 +674,7 @@ Get Account Address with Keys
 
     import { Generator } from 'mitumc'
 
-    const gn = new Generator('mitum').mc
+    const gn = new Generator('mitum').currency
 
     const key1 = gn.key("vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu", 40)
     const key2 = gn.key("29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu", 30)
@@ -607,20 +684,23 @@ Get Account Address with Keys
 
     const address = keys.address // this is what you want to get!
 
+.. _js - Major Classes:
+
 Major Classes
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| ``Generator`` 는 Mitum Currency operation 생성을 도와줍니다.
+| ``Generator`` 는 각 Mitum 모델의 operation 생성을 도와줍니다.
 
 | ``Generator`` 를 사용하기 전 ``network id`` 를 설정해야 합니다.
 
-* Mitum Currency에 대해 ``Generator.mc`` 를 사용하세요.
-* Mitum Document 대해 ``Generator.md`` 를 사용하세요.
-
-| Mitum Document operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-js-util/blob/master/README.md>`_ 을 참고하세요.
+* **Mitum Currency**: ``Generator.currency``
+* **Mitum Currency Extension**: ``Generator.currency.extension``
+* **Mitum Document**: ``Generator.document``
+* **Mitum Feefi**: ``Generator.feefi``
+* **Mitum NFT**: ``Generator.nft``
 
 .. code-block:: javascript
 
@@ -629,43 +709,79 @@ Generator
     const networkId = 'mitum'
     const generator = new Generator(networkId)
 
-    const currencyGenerator = generator.mc
-    const documentGenerator = generator.md
+    const currencyGenerator = generator.currency
+    const extensionGenerator = generator.currency.extension
+    const documentGenerator = generator.document
+    const feefiGenerator = generator.feefi
+    const nftGenerator = generator.nft
 
 | ``Generator`` 가 제공하는 모든 메서드는 다음과 같습니다.
 
 .. code-block:: javascript
 
     /* For Mitum Currency */
-    Generator.mc.key(key, weight) // 1 <= $weight <= 100
-    Generator.mc.amount(currencyId, amount) // typeof $amount === "string" 
-    Generator.mc.keys(keys, threshold) // 1 <= $threshold <= 100
-    Generator.mc.amounts(amounts) 
-    Generator.mc.getCreateAccountsItem(keys, amounts)
-    Generator.mc.getTransfersItem(receiver, amounts)
-    Generator.mc.getCreateAccountsFact(sender, items)
-    Generator.mc.getKeyUpdaterFact(target, currencyId, keys)
-    Generator.mc.getTransfersFact(sender, items)    
+    Generator.currency.key(key, weight) // 1 <= $weight <= 100
+    Generator.currency.amount(currencyId, amount) // typeof $amount === "string" 
+    Generator.currency.keys(keys, threshold) // 1 <= $threshold <= 100
+    Generator.currency.amounts(amounts) 
+    Generator.currency.getCreateAccountsItem(keys, amounts)
+    Generator.currency.getTransfersItem(receiver, amounts)
+    Generator.currency.getCreateAccountsFact(sender, items)
+    Generator.currency.getKeyUpdaterFact(target, currencyId, keys)
+    Generator.currency.getTransfersFact(sender, items)    
+
+    /* For Mitum Currency Extension */
+    Generator.currency.extension.getCreateContractAccountsItem(keys, amounts)
+    Generator.currency.extension.getWithdrawsItem(target, amounts)
+    Generator.currency.extension.getCreateContractAccountsFact(sender, items)
+    Generator.currency.extension.getWithdrawsFact(sender, items)
 
     /* For Mitum Document */
-    Generator.md.getCreateDocumentsItem(document, currencyId)
-    Generator.md.getUpdateDocumentsItem(document, currencyId)
-    Generator.md.getCreateDocumentsFact(sender, items)
-    Generator.md.getUpdateDocumentsFact(sender, items)
+    Generator.document.getCreateDocumentsItem(document, currencyId)
+    Generator.document.getUpdateDocumentsItem(document, currencyId)
+    Generator.document.getCreateDocumentsFact(sender, items)
+    Generator.document.getUpdateDocumentsFact(sender, items)
 
     /* For Blocksign*/
-    Generator.md.bs.user(address, signcode, signed)
-    Generator.md.bs.document(documentId, owner, fileHash, creator, title, size, signers)
-    Generator.md.bs.getSignDocumentsItem(documentId, owner, currencyId)
-    Generator.md.bs.getSignDocumentsFact(sender, items)
+    Generator.document.blocksign.user(address, signcode, signed)
+    Generator.document.blocksign.document(documentId, owner, fileHash, creator, title, size, signers)
+    Generator.document.blocksign.getSignDocumentsItem(documentId, owner, currencyId)
+    Generator.document.blocksign.getSignDocumentsFact(sender, items)
 
     /* For Blockcity */
-    Generator.md.bc.candidate(address, nickname, manifest, count)
-    Generator.md.bc.userStatistics(hp, strength, agility, dexterity, charisma intelligence, vital)
-    Generator.md.bc.userDocument(documentId, owner, gold, bankGold, userStatistics)
-    Generator.md.bc.landDocument(documentId, owner, address, area, renter, account, rentDate, period)
-    Generator.md.bc.voteDocument(documentId, owner, round, endTime, candidates, bossName, account, office)
-    Generator.md.bc.historyDocument(documentId, owner, name, account, date, usage, application)
+    Generator.document.blockcity.candidate(address, nickname, manifest, count)
+    Generator.document.blockcity.userStatistics(hp, strength, agility, dexterity, charisma intelligence, vital)
+    Generator.document.blockcity.userDocument(documentId, owner, gold, bankGold, userStatistics)
+    Generator.document.blockcity.landDocument(documentId, owner, address, area, renter, account, rentDate, period)
+    Generator.document.blockcity.voteDocument(documentId, owner, round, endTime, candidates, bossName, account, office)
+    Generator.document.blockcity.historyDocument(documentId, owner, name, account, date, usage, application)
+
+    /* For Feefi */
+    Generator.feefi.getPoolRegisterFact(sender, target, initFee, incomeCid, outlayCid, currencyId)
+    Generator.feefi.getPoolPolicyUpdaterFact(sender, target, fee, incomeCid, outlayCid, currencyId)
+    Generator.feefi.getPoolDepositsFact(sender, pool, incomeCid, outlayCid, amount)
+    Generator.feefi.getPoolWithdrawFact(sender, pool, incomeCid, outlayCid, amounts)
+
+    /* For NFT */
+    Generator.nft.signer(account, share, signed)
+    Generator.nft.signers(total, signers)
+    Generator.nft.collectionRegisterForm(target, symbol, name, royalty, uri, whites)
+    Generator.nft.collectionPolicy(name, royalty, uri, whites) 
+    Generator.nft.mintForm(hash, uri, creators, copyrighters)
+    Generator.nft.getMintItem(collection, form, currencyId)
+    Generator.nft.getTransferItem(receiver, nftId, currencyId)
+    Generator.nft.getBurnItem(nftId, currencyId)
+    Generator.nft.getApproveItem(approved, nftId, currencyId)
+    Generator.nft.getDelegateItem(collection, agent, mode, currencyId)
+    Generator.nft.getSignItem(qualification, nftId, cid)
+    Generator.nft.getCollectionRegisterFact(sender, form, currencyId)
+    Generator.nft.getCollectionPolicyUpdaterFact(sender, collection, policy, cid)
+    Generator.nft.getMintFact(sender, items)
+    Generator.nft.getTransferFact(sender, items)
+    Generator.nft.getBurnFact(sender, items)
+    Generator.nft.getApproveFact(sender, items)
+    Generator.nft.getDelegateFact(sender, items)
+    Generator.nft.getSignFact(sender, items)
 
     /* Common */
     Generator.getOperation(fact, memo)
@@ -692,14 +808,14 @@ JSONParser
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | 이 클래스는 편의를 위해 개발되었습니다.
-| ``Operation`` 을 내보내거나 JSON 형식으로 출력하기 위해 다른 패키지를 사용하길 원한다면 굳이 mitum-js-util의 ``JSONParser`` 를 사용할 필요는 없습니다.
+| ``Operation`` 을 내보내거나 JSON 형식으로 출력하기 위해 다른 패키지를 사용하길 원한다면 반드시 mitum-js-util의 ``JSONParser`` 를 사용할 필요는 없습니다.
 
 .. code-block:: javascript
 
     import { Generator, JSONParser } from 'mitumc'
 
     const generator = new Generator('mitum')
-    const currencyGenerator = generator.mc
+    const currencyGenerator = generator.currency
 
     // ... omitted
     // ... create operations

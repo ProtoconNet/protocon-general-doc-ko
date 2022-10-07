@@ -196,7 +196,7 @@ storage
 
     storage:
     blockdata:
-        path: ./mc-blockfs
+        path: ./mitum-blockfs
     database:
         uri: mongodb://127.0.0.1:27017/mc
 
@@ -330,7 +330,7 @@ tutorial.yml
         database:
             uri: mongodb://127.0.0.1:27017/mc
         blockdata:
-            path: ./mc-blockfs
+            path: ./mitum-blockfs
     network-id: mitum
     network:
         bind: https://0.0.0.0:54321

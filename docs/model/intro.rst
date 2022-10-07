@@ -25,3 +25,32 @@ Blockchain Application Model
 * 멀티 시그
 * 인플레이션
 * 기타...
+
+| 다음 그림은 Mitum 블록체인 코어와 Mitum 모델의 관계를 나타냅니다.
+
+
+.. image:: ../images/model/mitum_blockchain_layer.jpeg
+    :width: 1120
+    :height: 630
+    :scale: 50 
+    :alt: Mitum Blockchain Layer
+
+
+---------------------------------------------------
+Digest Service
+---------------------------------------------------
+
+* Digest Service는 Mitum에 저장된 블록 데이터를 저장하며 HTTP-based API로 서비스되는 내부 서비스입니다.
+* Digest Service에 대한 자세한 내용은 :ref:`rest api` 를 참고해주세요.
+
+---------------------------------------------------
+Mitum-based models
+---------------------------------------------------
+
+* Mitum 모델은 Mitum 메인 체인을 확장한 확장 레이어로서 다양한 서비스를 제공할 수 있는 솔루션입니다.
+
+* :ref:`currency`
+* :ref:`currency extension`
+* :ref:`document`
+* :ref:`feefi`
+* :ref:`nft`

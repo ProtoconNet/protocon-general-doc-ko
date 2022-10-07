@@ -2,16 +2,9 @@
 Python
 ===================================================
 
-| 이 페이지는 Python으로 작성된 SDK에 관한 문서입니다.
+| 이 페이지는 Python으로 작성된 Mitum SDK에 관한 문서입니다.
 
-| 지원하는 모델은 다음과 같습니다
-
-* Mitum Currency
-* Mitum Document
-
-| 이 문서는 Mitum Currency의 operation에 대해서만 소개하고 있습니다.
-
-| Mitum Document의 operation 생성 방법 혹은 Mitum Currency operation 생성에 관한 자세한 내용은 `mitum-py-util <https://github.com/ProtoconNet/mitum-py-util>`_ 을 참고해주세요.
+| 자세한 내용은 `mitum-py-util <https://github.com/ProtoconNet/mitum-py-util>`_ 을 참고해주세요.
 
 ---------------------------------------------------
 Get Started
@@ -26,8 +19,6 @@ Prerequisite and Requirements
 
     $ python --version
     Python 3.9.2
-
-| ``python 3.9 or later`` 이 요구됩니다.
 
 Installation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -48,13 +39,15 @@ Installation
 
     $ pip install -r requirements.txt
 
+.. _python - Make Your First Operation:
+
 ---------------------------------------------------
 Make Your First Operation
 ---------------------------------------------------
 
 | 이 예제는 **mitum-py-util** 로 ``create-account`` operation을 생성하는 방법에 대해 설명합니다. 
 
-| ``key-updater`` 와 ``transfer`` operation 생성 방법은 이 파트 마지막의 **Support Operations** 에서 확인하세요.
+| ``key-updater`` 와 ``transfer`` operation 생성 방법은 :ref:`python - support operations` 에서 확인하세요.
 
 Get Available Account
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -72,12 +65,12 @@ Get Available Account
     - The range of each weight should be in 1 <= weight <= 100
     - If an account have single public key, the account is called 'single-sig account', or it's called 'multi-sig account'
     
-    2. threshold
+    1. threshold
     - The range of threshold should be in 1 <= threshold <= 100
     - The sum of all weights of the account should be over or equal to threshold
 
 | 아직 아무 계정도 가지고 있지 않다면 다른 계정에 당신의 첫 계정을 만들어 달라 요청해야 합니다.
-| **Details - Get Mitum Keypair** 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
+| :ref:`python - Get Mitum Keypair` 파트에서 계정을 위한 키페어를 생성할 수 있습니다.
 | (public key, weight)쌍과 threshold를 새 계정 생성을 도와줄 계정 보유자에게 전달하세요.
 
 | 서명을 위해 계정의 각 공개키에 상응하는 개인키를 기억하고 있어야 합니다. 다른 사람에게 개인키를 알려주지 마세요!
@@ -91,7 +84,7 @@ Create Generator
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | operation의 대부분의 요소는 ``Generator`` 로 생성합니다.
-| Mitum Currency에 대해서는 ``Generator.mc`` 를 사용하세요.
+| Mitum Currency에 대해서는 ``Generator.currency`` 를 사용하세요.
 
 | ``Generator`` 를 선언할 때, ``network id`` 가 필요합니다.
 | ``network id`` 는 네트워크에 따라 다릅니다.
@@ -102,11 +95,10 @@ Create Generator
 
     from mitumc import Generator
 
-    networkId = 'mitum'
     generator = Generator('mitum')
-    currencyGenerator = generator.mc
+    currencyGenerator = generator.currency
 
-| ``Generator`` 에 대한 더 자세한 내용은 Details - Major Classes 로 이동하여 Generator를 참고하세요.
+| ``Generator`` 에 대한 더 자세한 내용은 :ref:`python - Major Classes` 로 이동하여 Generator를 참고하세요.
 
 | 또한, 네트워크 상에서 사용할 수 있는 등록된 계정을 가지고 있어야 합니다.
 
@@ -142,17 +134,17 @@ Create Operation Item
     key2 = currencyGenerator.key("pWoFhRP3C7ocebSRPxTPfeaJZpnyKpEkxQqi6fAD4SHompu", 50)
     keys = currencyGenerator.keys([key1, key2], 100) # keys(keyList, threshold)
 
-    amount1 = currencyGenerator.amount(10000, 'MCC') # amount(amount, currency id)
-    amount1 = currencyGenerator.amount(20000, 'PEN')
+    amount1 = currencyGenerator.amount('MCC', 10000) # amount(currency id, amount)
+    amount1 = currencyGenerator.amount('PEN', 20000)
     amounts = currencyGenerator.amounts([amount]) # amounts(amountList)
 
     createAccountsItem = currencyGenerator.getCreateAccountsItem(keys, amounts)
 
-* 우선, ``Generator.mc.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
-* 다음으로 모든 키와 계정 threshold를 ``Generator.mc.keys(key list, threshold)`` 로 결합합니다.
-* 그리고, ``Generator.mc.amount(amount, currencyId)`` 를 사용해 각 amount를 생성합니다..
-* 다음 ``Generator.mc.amounts(amount list)`` 로 모든 amount를 결합합니다.
-* 마지막으로, ``Generator.mc.getCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
+* 우선, ``Generator.currency.key(public key, weight)`` 를 사용해 각 key를 생성합니다..
+* 다음으로 모든 키와 계정 threshold를 ``Generator.currency.keys(key list, threshold)`` 로 결합합니다.
+* 그리고, ``Generator.currency.amount(currencyId, amount)`` 를 사용해 각 amount를 생성합니다..
+* 다음 ``Generator.currency.amounts(amount list)`` 로 모든 amount를 결합합니다.
+* 마지막으로, ``Generator.currency.getCreateAccountsItem(keys, amounts)`` 를 사용해 item을 생성하세요.
 
 | 물론 각 item의 내용을 다음 조건 하에서 사용자화 할 수 있습니다.
 
@@ -187,7 +179,7 @@ Create Operation Fact
     senderAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca" # sender's account address; replace with your address
     createAccountsFact = currencyGenerator.getCreateAccountsFact(senderAddress, [createAccountsItem]) # getCreateAccountsFact(sender's address, item list)
 
-| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.mc.getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
+| 만약 다수의 item을 가진 fact를 생성하고 싶다면 ``Generator.currency.getCreateAccountsFact(sender's address, item list)`` 의 item list에 item을 모두 넣으세요.
 
 Create Operation
 '''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -213,7 +205,7 @@ Create Operation
     createAccounts = generator.getOperation(createAccountsFact, "") # getOperation(fact, memo)
     createAccounts.addFactSign(senderPrivateKey); # addFactSign(private key) add fact signature to fact_signs 
 
-| operation을 생성하기 위해 ``Generator.mc.getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
+| operation을 생성하기 위해 ``Generator.currency.getOperation(fact, memo)`` 가 아닌 ``Generator.getOperation(fact, memo)`` 을 사용해야 한다는 점에 주의하세요.
 
 | 아쉽지만 하나의 operation에는 하나의 fact만 넣을 수 있습니다.
 
@@ -245,16 +237,32 @@ Create Seal
 
 | 감싸길 원하는 모든 operation을 operation list에 추가하세요.
 
+.. _python - support operations:
+
+---------------------------------------------------
 Support Operations
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+---------------------------------------------------
 
 | 이 파트에서는 각 operation에 대한 코드 예제를 제공합니다.
 
-| mitum-py-util가 지원하는 Mitum Currency operation은 다음과 같습니다.
+| mitum-py-util가 지원하는 각 Mitum 모델의 operation은 다음과 같습니다.
 
-* Create Account
-* Key Updater
-* Transfer
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Model                      | Support Operations                                                                            |
++============================+===============================================================================================+
+| Currency                   | create account, key updater, transfer                                                         |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Currency Extension         | create contract account, withdraw                                                             |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Document                   | create document, update document, (sign document)                                             |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| Feefi                      | pool register, pool policy updater, pool deposit, pool withdraw                               |
++----------------------------+-----------------------------------------------------------------------------------------------+
+| NFT                        | collection register, collection policy updater, mint, transfer, burn, sign, approve, delegate |
++----------------------------+-----------------------------------------------------------------------------------------------+
+
+Currency
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Create Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -276,12 +284,12 @@ Create Account
     senderAddress = "5fbQg8K856KfvzPiGhzmBMb6WaL5AsugUnfutgmWECPbmca"
 
     generator = Generator('mitum')
-    gn = generator.mc
+    gn = generator.currency
 
     key = gn.key("2177RF13ZZXpdE1wf7wu5f9CHKaA2zSyLW5dk18ExyJ84mpu", 100)
     keys = gn.keys([key], 100)
 
-    amount = gn.amount(100, 'MCC')
+    amount = gn.amount('MCC', 100)
     amounts = gn.amounts([amount])
 
     createAccountsItem = gn.getCreateAccountsItem(keys, amounts)
@@ -290,14 +298,14 @@ Create Account
     createAccounts = generator.getOperation(createAccountsFact, "")
     createAccounts.addFactSign(srcPriv)
 
-| 자세한 설명은 생략합니다. 'Make Your First Operation'의 시작 부분을 확인하세요.
+| 자세한 설명은 생략합니다. :ref:`python - Make Your First Operation` 의 시작 부분을 확인하세요.
 
 Key Updater
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| 이 operation은 말 그대로 계정의 키를 업데이트 하기 위한 것입니다.
+| 이 operation은 말 그대로 계정의 키를 업데이트하기 위한 것입니다.
 
-| 예를 들어,
+| 예를 들어, 다음과 같이 키를 업데이트할 수 있습니다.
 
 .. code-block:: none
 
@@ -326,7 +334,7 @@ Key Updater
     targetAddress = "JDhSSB3CpRjwM8aF2XX23nTpauv9fLhxTjWsQRm9cJ7umca"
 
     generator = Generator('mitum')
-    gn = generator.mc
+    gn = generator.currency
 
     key1 = gn.key("22ndFZw57ax28ydC3ZxzLJMNX9oMSqAfgauyWhC17pxDpmpu", 50)
     key2 = gn.key("22wD5RWsRFAr8mHkYmmyUDzKf6VBNgjHcgc3YhKxCvrZDmpu", 50)
@@ -339,7 +347,7 @@ Key Updater
 
 * 계정의 키를 업데이트한 후에는 이전의 키를 사용할 수 없게 됩니다. 계정의 새로운 키페어의 개인키로 서명해야 합니다.
 * 따라서 네트워크에 key-updater operation을 전송하기 전, 새로운 키들을 기록해두세요.
-* 
+
 Transfer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -371,14 +379,14 @@ Transfer
     from mitumc import Generator
 
     generator = Generator('mitum')
-    gn = generator.mc
+    gn = generator.currency
 
     senderPrivateKey = "KzdeJMr8e2fbquuZwr9SEd9e1ZWGmZEj96NuAwHnz7jnfJ7FqHQBmpr"
     senderAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca"
     receiverAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca"
 
-    amount = gn.amount(1000000, 'MCC')
-    amount = gn.amount(15000, 'PEN')
+    amount = gn.amount('MCC', 1000000)
+    amount = gn.amount('PEN', 15000)
     amounts = gn.amounts([amount1, amount2])
 
     transfersItem = gn.getTransfersItem(receiverAddress, amounts) # getTransfersItem(receiver address, amounts)
@@ -387,8 +395,73 @@ Transfer
     transfers = generator.getOperation(transfersFact, "")
     transfers.addFactSign(senderPrivateKey)  
 
-| Mitum Document 등 mitum-py-util이 지원하는 다른 operation이 더 있지만 이 문서에서는 설명하지 않습니다.
-| 필요하다면 `README <https://github.com/ProtoconNet/mitum-py-util/blob/master/README.md>`_ 을 참고하세요.
+Currency Extension
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Create Contract Account
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| 이 operation을 전송하여 컨트랙트 계정을 생성할 수 있습니다.
+
+| create-contract-account operation을 생성하는 과정은 create-account과 동일합니다.
+
+| 컨트랙트 계정과 일반 계정의 차이점은 컨트랙트 계정의 경우 계정 정보에 공개키가 포함되지 않는다는 점입니다.
+
+| 따라서 컨트랙트 계정은 operation의 전송자로서 operation을 전송하거나 시작할 수 없습니다.
+
+| 컨트랙트 계정으로 전송된 토큰들은 오직 컨트랙트 계정의 소유자만이 다시 인출할 수 있습니다.
+
+| 다음은 create-contract-account operation을 생성하는 예이며, 자세한 설명은 생략되었습니다.
+
+.. code-block:: python
+
+    from mitumc import Generator
+
+    senderPrivateKey = "L1V19fBjhnxNyfuXLWw6Y5mjFSixzdsZP4obkXEERskGQNwSgdm1mpr"
+    senderAddress = "5fbQg8K856KfvzPiGhzmBMb6WaL5AsugUnfutgmWECPbmca"
+
+    generator = Generator('mitum')
+    gn = generator.currency
+
+    key = gn.key("2177RF13ZZXpdE1wf7wu5f9CHKaA2zSyLW5dk18ExyJ84mpu", 100)
+    keys = gn.keys([key], 100)
+
+    amount = gn.amount('MCC', 100)
+    amounts = gn.amounts([amount])
+
+    createContractAccountsItem = gn.extension.getCreateContractAccountsItem(keys, amounts)
+    createContractAccountsFact = gn.extension.getCreateContractAccountsFact(srcAddr, [createContractAccountsItem])
+
+    createContractAccounts = generator.getOperation(createContractAccountsFact, "")
+    createContractAccounts.addFactSign(srcPriv)
+
+Withdraw
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| 컨트랙트 계정의 소유자는 withdraw operation을 통해 컨트랙트 계정으로부터 토큰을 인출할 수 있습니다.
+
+.. code-block:: python
+
+    from mitumc import Generator
+
+    generator = Generator('mitum')
+    gn = generator.currency
+
+    senderPrivateKey = "KzdeJMr8e2fbquuZwr9SEd9e1ZWGmZEj96NuAwHnz7jnfJ7FqHQBmpr"
+    senderAddress = "2D5vAb2X3Rs6ZKPjVsK6UHcnGxGfUuXDR1ED1hcvUHqsmca"
+    targetAddress = "CY1pkxsqQK6XMbnK4ssDNbDR2K7mitSwdS27DwBjd3Gcmca"
+
+    amount = gn.amount('MCC', 1000000)
+    amount = gn.amount('PEN', 15000)
+    amounts = gn.amounts([amount1, amount2])
+
+    withdrawsItem = gn.extension.getWithdrawsItem(targetAddress, amounts)
+    withdrawsFact = gn.extension.getWithdrawsFact(senderAddress, [withdrawsItem])
+
+    withdraws = generator.getOperation(withdrawsFact, "")
+    withdraws.addFactSign(senderPrivateKey)  
+
+| document, feefi, NFT 모델의 operation을 생성하는 방법은 `README <https://github.com/ProtoconNet/mitum-py-util#readme>`_ 에서 확인할 수 있습니다.
 
 ---------------------------------------------------
 Sign
@@ -475,6 +548,8 @@ Add Fact Sign to Operation
 Details
 ---------------------------------------------------
 
+.. _python - Get Mitum Keypair:
+
 Get Mitum Keypair
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -555,7 +630,7 @@ Get Account Address with Keys
 
     from mitumc import Generator
 
-    gn = Generator('mitum').mc
+    gn = Generator('mitum').currency
 
     pub1 = "vmk1iprMrs8V1NkA9DsSL3XQNnUW9SmFL5RCVJC24oFYmpu"
     pub2 = "29BQ8gcVfJd5hPZCKj335WSe4cyDe7TGrjam7fTrkYNunmpu"
@@ -568,6 +643,8 @@ Get Account Address with Keys
     keys = gn.keys([key1, key2, key3], 100)
     address = keys.address # your address
 
+.. _python - Major Classes:
+
 Major Classes
 '''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -578,53 +655,90 @@ Generator
 
 | ``Generator`` 를 사용하기 전 ``network id`` 를 설정해야 합니다.
 
-* Mitum Currency에 대해 ``Generator.mc`` 를 사용하세요.
-* Mitum Document 대해 ``Generator.md`` 를 사용하세요.
-
-| Mitum Document operation 생성을 위한 자세한 내용은 `README <https://github.com/ProtoconNet/mitum-py-util/blob/master/README.md>`_ 을 참고하세요.
+* **Mitum Currency**: ``Generator.currency``
+* **Mitum Currency Extension**: ``Generator.currency.extension``
+* **Mitum Document**: ``Generator.document``
+* **Mitum Feefi**: ``Generator.feefi``
+* **Mitum NFT**: ``Generator.nft``
 
 .. code-block:: python
 
     from mitumc import Generator
 
     generator = Generator('mitum')
-    currencyGenerator = generator.mc
-    documentGenerator = generator.md
+    currencyGenerator = generator.currency
+    extensionGenerator = generator.currency.extension
+    documentGenerator = generator.document
+    feefiGenerator = generator.feefi
+    nftGenerator = generator.nft
 
 | ``Generator`` 가 제공하는 모든 메서드는 다음과 같습니다.
 
 .. code-block:: python
 
     # For Mitum Currency
-    Generator.mc.key(key, weight) # 1 <= $weight <= 100
-    Generator.mc.amount(currencyId, amount) 
-    Generator.mc.keys(keys, threshold) # 1 <= $threshold <= 100
-    Generator.mc.amounts(amounts) 
-    Generator.mc.getCreateAccountsItem(keys, amounts)
-    Generator.mc.getTransfersItem(receiver, amounts)
-    Generator.mc.getCreateAccountsFact(sender, items)
-    Generator.mc.getKeyUpdaterFact(target, currencyId, keys)
-    Generator.mc.getTransfersFact(sender, items)
+    Generator.currency.key(key, weight) # 1 <= $weight <= 100
+    Generator.currency.amount(currencyId, amount) 
+    Generator.currency.keys(keys, threshold) # 1 <= $threshold <= 100
+    Generator.currency.amounts(amounts) 
+    Generator.currency.getCreateAccountsItem(keys, amounts)
+    Generator.currency.getTransfersItem(receiver, amounts)
+    Generator.currency.getCreateAccountsFact(sender, items)
+    Generator.currency.getKeyUpdaterFact(target, currencyId, keys)
+    Generator.currency.getTransfersFact(sender, items)
+
+    # For Mitum Currency Extension
+    Generator.currency.extension.getCreateContractAccountsItem(keys, amounts)
+    Generator.currency.extension.getWithdrawsItem(target, amounts)
+    Generator.currency.extension.getCreateContractAccountsFact(sender, items)
+    Generator.currency.extension.getWithdrawsFact(sender, items)
 
     # For Mitum Document
-    Generator.md.getCreateDocumentsItem(document, currencyId)
-    Generator.md.getUpdateDocumentsItem(document, currencyId)
-    Generator.md.getCreateDocumentsFact(sender, items)
-    Generator.md.getUpdateDocumentsFact(sender, items)
+    Generator.document.getCreateDocumentsItem(document, currencyId)
+    Generator.document.getUpdateDocumentsItem(document, currencyId)
+    Generator.document.getCreateDocumentsFact(sender, items)
+    Generator.document.getUpdateDocumentsFact(sender, items)
 
     # For Blocksign
-    Generator.md.bs.user(address, signcode, signed)
-    Generator.md.bs.document(documentId, owner, fileHash, creator, title, size, signers)
-    Generator.md.bs.getSignDocumentsItem(documentId, owner, currencyId)
-    Generator.md.bs.getSignDocumentsFact(sender, items)
+    Generator.document.blocksign.user(address, signcode, signed)
+    Generator.document.blocksign.document(documentId, owner, fileHash, creator, title, size, signers)
+    Generator.document.blocksign.getSignDocumentsItem(documentId, owner, currencyId)
+    Generator.document.blocksign.getSignDocumentsFact(sender, items)
 
     # For Blockcity
-    Generator.md.bc.candidate(address, nickname, manifest, count)
-    Generator.md.bc.userStatistics(hp, strength, agility, dexterity, charisma intelligence, vital)
-    Generator.md.bc.userDocument(documentId, owner, gold, bankGold, userStatistics)
-    Generator.md.bc.landDocument(documentId, owner, address, area, renter, account, rentDate, period)
-    Generator.md.bc.voteDocument(documentId, owner, round, endTime, candidates, bossName, account, office)
-    Generator.md.bc.historyDocument(documentId, owner, name, account, date, usage, application)
+    Generator.document.blockcity.candidate(address, nickname, manifest, count)
+    Generator.document.blockcity.userStatistics(hp, strength, agility, dexterity, charisma intelligence, vital)
+    Generator.document.blockcity.userDocument(documentId, owner, gold, bankGold, userStatistics)
+    Generator.document.blockcity.landDocument(documentId, owner, address, area, renter, account, rentDate, period)
+    Generator.document.blockcity.voteDocument(documentId, owner, round, endTime, candidates, bossName, account, office)
+    Generator.document.blockcity.historyDocument(documentId, owner, name, account, date, usage, application)
+
+    # For Mitum Feefi
+    Generator.feefi.getPoolRegisterFact(sender, target, initFee, incomeCid, outgoCid, cid)
+    Generator.feefi.getPoolPolicyUpdaterFact(sender, target, fee, incomeCid, outgoCid, cid)
+    Generator.feefi.getPoolDepositsFact(sender, pool, incomeCid, outgoCid, amount)
+    Generator.feefi.getPoolWithdrawFact(sender, pool, incomeCid, outgoCid, amounts)
+
+    # For Mitum NFT
+    Generator.nft.signer(account, share, signed)
+    Generator.nft.signers(total, _signers)
+    Generator.nft.collectionRegisterForm(target, symbol, name, royalty, uri, whites)
+    Generator.nft.collectionPolicy(name, royalty, uri, whites)
+    Generator.nft.mintForm(hash, uri, creators, copyrighters)
+    Generator.nft.getMintItem(collection, form, cid)
+    Generator.nft.getTransferItem(receiver, nid, cid)
+    Generator.nft.getBurnItem(nid, cid)
+    Generator.nft.getApproveItem(approved, nid, cid)
+    Generator.nft.getDelegateItem(collection, agent, mode, cid) # mode: ["allow" || "cancel"]
+    Generator.nft.getSignItem(qualification, nid, cid) # qualification: ["creator" || "copyrighter"]
+    Generator.nft.getCollectionRegisgerFact(sender, form, cid)
+    Generator.nft.getCollectioPolicyUpdaterFact(sender, collection, policy, cid)
+    Generator.nft.getMintFact(sender, items)
+    Generator.nft.getTransferFact(sender, items)
+    Generator.nft.getBurnFact(sender, items)
+    Generator.nft.getApproveFact(sender, items)
+    Generator.nft.getDelegateFact(sender, items)
+    Generator.nft.getSignFact(sender, items)
 
     # Common
     Generator.getOperation(fact, memo)
